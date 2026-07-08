@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 420" fill="none">
+  <!-- Outer gold circle -->
+  <circle cx="200" cy="155" r="130" stroke="#C9A84C" stroke-width="5" fill="none"/>
+
+  <!-- Bridge pylons -->
+  <rect x="155" y="90" width="8" height="85" fill="#1a3a5c" rx="2"/>
+  <rect x="237" y="90" width="8" height="85" fill="#1a3a5c" rx="2"/>
+
+  <!-- Bridge cables left -->
+  <line x1="159" y1="92" x2="200" y2="165" stroke="#1a3a5c" stroke-width="2.5"/>
+  <line x1="159" y1="105" x2="200" y2="165" stroke="#1a3a5c" stroke-width="1.8"/>
+  <line x1="159" y1="120" x2="200" y2="165" stroke="#1a3a5c" stroke-width="1.5"/>
+  <line x1="159" y1="135" x2="200" y2="165" stroke="#1a3a5c" stroke-width="1.2"/>
+
+  <!-- Bridge cables right -->
+  <line x1="241" y1="92" x2="200" y2="165" stroke="#1a3a5c" stroke-width="2.5"/>
+  <line x1="241" y1="105" x2="200" y2="165" stroke="#1a3a5c" stroke-width="1.8"/>
+  <line x1="241" y1="120" x2="200" y2="165" stroke="#1a3a5c" stroke-width="1.5"/>
+  <line x1="241" y1="135" x2="200" y2="165" stroke="#1a3a5c" stroke-width="1.2"/>
+
+  <!-- Bridge road deck -->
+  <rect x="120" y="163" width="160" height="7" fill="#1a3a5c" rx="2"/>
+
+  <!-- Ashoka emblem simplified -->
+  <rect x="185" y="50" width="30" height="28" rx="3" fill="#C9A84C"/>
+  <rect x="188" y="53" width="24" height="18" rx="2" fill="#8B6914"/>
+  <!-- Lion silhouette simplified -->
+  <ellipse cx="200" cy="52" rx="14" ry="9" fill="#C9A84C"/>
+  <circle cx="200" cy="48" r="7" fill="#C9A84C"/>
+  <text x="200" y="73" text-anchor="middle" font-size="5" fill="white" font-family="serif">సత్యమేవ జయతే</text>
+
+  <!-- Hands (cupped) -->
+  <!-- Left hand -->
+  <path d="M105 215 Q130 190 165 195 Q185 200 200 210" stroke="#1a3a5c" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <!-- Right hand -->
+  <path d="M295 215 Q270 190 235 195 Q215 200 200 210" stroke="#1a3a5c" stroke-width="12" stroke-linecap="round" fill="none"/>
+  <!-- Palm base -->
+  <path d="M105 215 Q140 240 200 242 Q260 240 295 215" stroke="#1a3a5c" stroke-width="12" stroke-linecap="round" fill="none"/>
+
+  <!-- Left figure (saffron/orange) -->
+  <circle cx="175" cy="200" r="8" fill="#e07b00"/>
+  <path d="M163 225 Q175 212 187 225" stroke="#e07b00" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <line x1="175" y1="208" x2="175" y2="230" stroke="#e07b00" stroke-width="5" stroke-linecap="round"/>
+  <!-- Arms up left -->
+  <line x1="175" y1="215" x2="163" y2="207" stroke="#e07b00" stroke-width="4" stroke-linecap="round"/>
+  <line x1="175" y1="215" x2="164" y2="222" stroke="#e07b00" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Center figure (navy) -->
+  <circle cx="200" cy="196" r="9" fill="#1a3a5c"/>
+  <path d="M186 223 Q200 208 214 223" stroke="#1a3a5c" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <line x1="200" y1="205" x2="200" y2="230" stroke="#1a3a5c" stroke-width="6" stroke-linecap="round"/>
+  <!-- Arms up center -->
+  <line x1="200" y1="210" x2="187" y2="200" stroke="#1a3a5c" stroke-width="5" stroke-linecap="round"/>
+  <line x1="200" y1="210" x2="213" y2="200" stroke="#1a3a5c" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Right figure (green) -->
+  <circle cx="225" cy="200" r="8" fill="#2d7a4f"/>
+  <path d="M213 225 Q225 212 237 225" stroke="#2d7a4f" stroke-width="7" stroke-linecap="round" fill="none"/>
+  <line x1="225" y1="208" x2="225" y2="230" stroke="#2d7a4f" stroke-width="5" stroke-linecap="round"/>
+  <!-- Arms up right -->
+  <line x1="225" y1="215" x2="236" y2="207" stroke="#2d7a4f" stroke-width="4" stroke-linecap="round"/>
+  <line x1="225" y1="215" x2="236" y2="222" stroke="#2d7a4f" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Wordmark: SevaSetu -->
+  <text x="200" y="300" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="bold">
+    <tspan fill="#1a3a5c">Seva</tspan><tspan fill="#C9A84C">Setu</tspan>
+  </text>
+
+  <!-- Tricolor divider lines -->
+  <line x1="105" y1="315" x2="183" y2="315" stroke="#e07b00" stroke-width="3"/>
+  <circle cx="200" cy="315" r="4" fill="#1a3a5c"/>
+  <line x1="217" y1="315" x2="295" y2="315" stroke="#2d7a4f" stroke-width="3"/>
+
+  <!-- Telugu tagline -->
+  <text x="200" y="342" text-anchor="middle" font-family="'Noto Sans Telugu', sans-serif" font-size="14" fill="#1a3a5c">
+    ఒకే వేదిక. ప్రతి ప్రభుత్వ సేవ. ప్రతి నగరికుడి కోసం.
+  </text>
+
+  <!-- VERIFIED. OFFICIAL. TRUSTED. -->
+  <text x="200" y="368" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" letter-spacing="3" fill="#1a3a5c" font-weight="600">
+    VERIFIED. OFFICIAL. TRUSTED.
+  </text>
+</svg>
