@@ -1,0 +1,95 @@
+{
+  "id": "aadhaar",
+  "name": "Aadhaar Card",
+  "officialPortal": "https://myaadhaar.uidai.gov.in",
+  "alternatePortal": "https://uidai.gov.in",
+  "helpline": "1947",
+  "lastVerified": "2026-07-01",
+  "issuingAuthority": "UIDAI (Unique Identification Authority of India)",
+
+  "sections": {
+    "purpose": "Aadhaar is a 12-digit unique identity number issued by UIDAI to every Indian resident. It serves as: (1) Universal identity proof accepted across India. (2) Address proof for government and private services. (3) KYC (Know Your Customer) for banks, SIM cards, and financial services. (4) Authentication for government subsidies (DBT — Direct Benefit Transfer). (5) Linking with PAN, bank accounts, mobile, Voter ID. (6) Verification for passport, driving licence, and other documents. (7) Digital identity for online services via Aadhaar-based e-KYC.",
+    "eligibility": "Any person residing in India (citizen or resident) is eligible for Aadhaar. No age limit — newborns can be enrolled. No income, caste, or nationality restriction (resident foreigners also eligible after 182 days of stay). Only one Aadhaar per person — biometrics ensure uniqueness.",
+    "documents": [
+      "For New Enrollment: Proof of Identity (Passport / PAN / Voter ID / Ration Card / Driving Licence / Government ID)",
+      "Proof of Address (Same documents as identity plus: utility bills, bank statement, rent agreement)",
+      "Proof of Date of Birth (Birth certificate / School certificate / Passport)",
+      "Proof of Relationship (for child enrollment — parent's Aadhaar)",
+      "For Updates: Existing Aadhaar card plus supporting document for the field being updated"
+    ],
+    "optionalDocuments": [
+      "Mobile number (for OTP-based online services)",
+      "Email ID (for Aadhaar correspondence)",
+      "Bank passbook (as alternate address proof)"
+    ],
+    "fees": "New Aadhaar enrollment: FREE. Demographic updates (name, address, DOB) at Aadhaar Seva Kendra: ₹50. Online address update via portal: FREE (if mobile is linked). Biometric update: ₹100. PVC Aadhaar card reprint: ₹50. e-Aadhaar download: FREE.",
+    "processingTime": "New enrollment: 15 to 90 days for physical card delivery. Update requests: 7 to 10 working days for reflection in database. e-Aadhaar available for download within 24–48 hours of enrollment/update. PVC card: 15–20 days via post.",
+    "validity": "Aadhaar has no expiry date. It is valid for a lifetime. However, UIDAI recommends updating biometrics every 10 years (optional). Address and demographic updates can be done anytime.",
+    "applicationSteps": [
+      "For New Enrollment:",
+      "Step 1 — Locate nearest Aadhaar Seva Kendra at appointments.uidai.gov.in",
+      "Step 2 — Book appointment online (recommended) or walk in",
+      "Step 3 — Carry original identity, address, and DOB proof documents",
+      "Step 4 — Fill enrollment form at the centre",
+      "Step 5 — Biometrics captured: fingerprints (all 10 fingers), iris scan, photograph",
+      "Step 6 — Receive Enrollment ID (EID) slip — save this for tracking",
+      "Step 7 — Aadhaar number generated within 15–90 days and sent via post",
+      "For Updates:",
+      "Step 1 — Visit myaadhaar.uidai.gov.in for online updates (address with OTP)",
+      "Step 2 — Or visit Aadhaar Seva Kendra for other updates (name, DOB, biometric)",
+      "Step 3 — Submit supporting documents and pay ₹50 fee",
+      "Step 4 — Receive Update Request Number (URN) for tracking"
+    ],
+    "mobileUpdate": "To update mobile number linked to Aadhaar: Visit any Aadhaar Seva Kendra in person (cannot be done online). Carry: Aadhaar card and any one ID proof. Biometric verification at centre. New mobile number linked within 24–48 hours. Fee: FREE.",
+    "addressUpdate": "Online: Visit myaadhaar.uidai.gov.in → Address Update → Enter OTP on registered mobile → Upload address proof → Submit. Takes 7–10 days. FREE. Offline: Visit Aadhaar Seva Kendra with address proof document. Fee: ₹50.",
+    "nameCorrection": "Visit Aadhaar Seva Kendra. Submit: proof of correct name (Passport/PAN/School certificate showing correct name). Fee: ₹50. Only 2 name changes allowed in lifetime. Processing: 7–10 days.",
+    "dobCorrection": "Visit Aadhaar Seva Kendra. Submit: DOB proof (Birth certificate/School certificate/Passport). Fee: ₹50. Only one DOB change allowed. Note: if DOB was verified during original enrollment, change may require additional scrutiny.",
+    "biometricUpdate": "Visit Aadhaar Seva Kendra. New fingerprints, iris, and photo captured. Recommended every 10 years or if biometrics have degraded (elderly, manual labourers). Fee: ₹100.",
+    "childAadhaar": "Children below 5: enrolled using parent's biometrics + child's photo. No fingerprint or iris. Blue-colored Aadhaar issued. Must be updated with child's biometrics when they turn 5 and again at 15. Children 5–15: child's own biometrics captured.",
+    "lostAadhaar": "If Aadhaar card is lost: (1) Download e-Aadhaar from myaadhaar.uidai.gov.in (FREE). (2) Order PVC reprint at uidai.gov.in (₹50, delivered via post). (3) Your Aadhaar number never changes — only the physical card is lost. (4) If you don't remember your number: use 'Retrieve EID/UID' option on portal using registered mobile or email.",
+    "eAadhaar": "e-Aadhaar is the electronic/digital version of Aadhaar. Download from myaadhaar.uidai.gov.in. Password-protected PDF (first 4 letters of name in caps + birth year). Legally equivalent to physical Aadhaar. Accepted everywhere.",
+    "pvcAadhaar": "PVC Aadhaar is a durable plastic card version. Order at resident.uidai.gov.in or myaadhaar.uidai.gov.in. Fee: ₹50. Delivered via Speed Post in 15–20 days. Looks like a credit card — more durable than paper Aadhaar.",
+    "commonMistakes": [
+      "Using unofficial websites claiming to update Aadhaar — only use uidai.gov.in or myaadhaar.uidai.gov.in",
+      "Trying to update mobile number online — it can only be done at Aadhaar Seva Kendra in person",
+      "Not booking appointment before visiting — leads to long wait or turn-away",
+      "Submitting documents that don't match the requested update",
+      "Not saving the Enrollment ID (EID) or Update Request Number (URN)",
+      "Sharing Aadhaar OTP with strangers or unofficial agents"
+    ],
+    "rejectionReasons": [
+      "Document mismatch — name in proof doesn't match the requested update",
+      "Biometric mismatch during verification at Aadhaar Seva Kendra",
+      "Duplicate Aadhaar detected (person already has another Aadhaar number)",
+      "Invalid or expired address proof submitted",
+      "Exceeding allowed changes (2 name changes or 1 DOB change lifetime limit)"
+    ],
+    "edgeCases": [
+      {"title":"Forgot Aadhaar number","problem":"Person has lost their Aadhaar card and does not remember the 12-digit number.","recommendedNextStep":"Visit myaadhaar.uidai.gov.in → Retrieve Lost or Forgotten EID/UID. Enter registered mobile number or email. OTP verification will reveal your Aadhaar number. If mobile is not linked: visit Aadhaar Seva Kendra with biometric verification.","officialPortal":"https://myaadhaar.uidai.gov.in","notes":"Aadhaar number never changes. It can always be retrieved through biometrics at any Aadhaar centre."},
+      {"title":"Mobile number changed — cannot access Aadhaar online","problem":"Person's registered mobile number is no longer active. They cannot receive OTP for online Aadhaar services.","recommendedNextStep":"Visit any Aadhaar Seva Kendra in person with your Aadhaar card and any ID proof. Request mobile number update. Biometric verification is done at the centre. New number linked within 24–48 hours. This cannot be done online.","officialPortal":"https://myaadhaar.uidai.gov.in","notes":"Always keep your mobile number updated in Aadhaar. It is essential for all OTP-based government services."}
+    ]
+  },
+
+  "faqs": [
+    {"id":"aa-faq-001","question":"What is Aadhaar?","intent":"purpose","keywords":["aadhaar","what is","definition","UID"],"difficulty":"basic","answer":"Aadhaar is a 12-digit unique identity number issued by UIDAI to every Indian resident. It is based on biometric data (fingerprints and iris) and serves as universal identity proof, address proof, and is used for government services, banking, and subsidies.","relatedSections":["purpose"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-002","question":"How to update address in Aadhaar?","intent":"address_change","keywords":["address update","change address","new address"],"difficulty":"basic","answer":"Online: Visit myaadhaar.uidai.gov.in → Address Update → Enter OTP → Upload new address proof → Submit. Free of charge. Takes 7–10 days. Offline: Visit Aadhaar Seva Kendra with address proof and pay ₹50.","relatedSections":["addressUpdate"],"officialSource":"https://myaadhaar.uidai.gov.in"},
+    {"id":"aa-faq-003","question":"How to update mobile number in Aadhaar?","intent":"general","keywords":["mobile","phone number","update mobile","change number"],"difficulty":"basic","answer":"Mobile number can ONLY be updated by visiting an Aadhaar Seva Kendra in person. It cannot be done online. Carry your Aadhaar card and any ID proof. Biometric verification is done at the centre. New number is linked within 24–48 hours. Free of charge.","relatedSections":["mobileUpdate"],"officialSource":"https://myaadhaar.uidai.gov.in"},
+    {"id":"aa-faq-004","question":"How to correct name in Aadhaar?","intent":"name_change","keywords":["name correction","wrong name","change name","spelling"],"difficulty":"basic","answer":"Visit an Aadhaar Seva Kendra with proof of correct name (Passport/PAN/School certificate). Fee: ₹50. Processing: 7–10 days. Note: only 2 name changes are allowed in a lifetime.","relatedSections":["nameCorrection"],"officialSource":"https://myaadhaar.uidai.gov.in"},
+    {"id":"aa-faq-005","question":"How to download e-Aadhaar?","intent":"general","keywords":["download","e-aadhaar","online","digital"],"difficulty":"basic","answer":"Visit myaadhaar.uidai.gov.in → Download Aadhaar → Enter Aadhaar number or Enrollment ID → Complete OTP/TOTP verification → Download PDF. It is free and password-protected (first 4 letters of name in CAPS + birth year). e-Aadhaar is legally equivalent to physical Aadhaar.","relatedSections":["eAadhaar"],"officialSource":"https://myaadhaar.uidai.gov.in"},
+    {"id":"aa-faq-006","question":"What is the fee for Aadhaar update?","intent":"fees","keywords":["fee","cost","charge","update fee"],"difficulty":"basic","answer":"New enrollment: FREE. Online address update: FREE. Demographic updates at centre (name, DOB): ₹50. Biometric update: ₹100. PVC card reprint: ₹50. e-Aadhaar download: FREE.","relatedSections":["fees"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-007","question":"Does Aadhaar expire?","intent":"processing_time","keywords":["expire","validity","lifetime","permanent"],"difficulty":"basic","answer":"No. Aadhaar has no expiry date and is valid for a lifetime. However, UIDAI recommends updating biometrics every 10 years (optional). Your Aadhaar number never changes.","relatedSections":["validity"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-008","question":"How to get PVC Aadhaar card?","intent":"general","keywords":["PVC","plastic card","reprint","order"],"difficulty":"basic","answer":"Order at resident.uidai.gov.in or myaadhaar.uidai.gov.in → Order Aadhaar PVC Card. Fee: ₹50. Delivered via Speed Post in 15–20 days. It is a durable plastic card similar to a credit card.","relatedSections":["pvcAadhaar"],"officialSource":"https://myaadhaar.uidai.gov.in"},
+    {"id":"aa-faq-009","question":"What if I lost my Aadhaar card?","intent":"lost_document","keywords":["lost","misplaced","missing","cannot find"],"difficulty":"basic","answer":"Your Aadhaar number never changes even if the card is lost. (1) Download e-Aadhaar for free at myaadhaar.uidai.gov.in. (2) Order PVC reprint for ₹50. (3) If you forgot the number: use 'Retrieve EID/UID' on the portal with registered mobile/email.","relatedSections":["lostAadhaar"],"officialSource":"https://myaadhaar.uidai.gov.in"},
+    {"id":"aa-faq-010","question":"How to enroll child for Aadhaar?","intent":"general","keywords":["child","baby","minor","kid","enrollment"],"difficulty":"basic","answer":"Children below 5: enrolled using parent's Aadhaar + child's photo only (no fingerprint/iris). Blue Aadhaar issued. Must update biometrics at age 5 and 15. Children 5–15: child's own biometrics captured. Visit Aadhaar Seva Kendra with child's birth certificate and parent's Aadhaar.","relatedSections":["childAadhaar"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-011","question":"How to correct date of birth in Aadhaar?","intent":"general","keywords":["DOB","date of birth","correction","wrong date"],"difficulty":"intermediate","answer":"Visit Aadhaar Seva Kendra with DOB proof (birth certificate/school certificate/passport). Fee: ₹50. Only ONE DOB change is allowed in a lifetime. If DOB was verified during original enrollment, additional scrutiny may apply.","relatedSections":["dobCorrection"],"officialSource":"https://myaadhaar.uidai.gov.in"},
+    {"id":"aa-faq-012","question":"What documents are needed for Aadhaar?","intent":"documents","keywords":["documents","required","papers","proof"],"difficulty":"basic","answer":"For new enrollment: Proof of Identity (Passport/PAN/Voter ID/Ration Card/DL), Proof of Address (same plus utility bills/bank statement), Proof of DOB (birth certificate/school certificate). For updates: existing Aadhaar plus document supporting the specific change.","relatedSections":["documents"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-013","question":"Where is the nearest Aadhaar centre?","intent":"portal","keywords":["nearest","centre","location","where"],"difficulty":"basic","answer":"Find the nearest Aadhaar Seva Kendra at appointments.uidai.gov.in. Book an appointment online before visiting (recommended). Walk-in is possible but may involve long waiting. Aadhaar helpline: 1947.","relatedSections":["applicationSteps"],"officialSource":"https://appointments.uidai.gov.in"},
+    {"id":"aa-faq-014","question":"How long does Aadhaar take?","intent":"processing_time","keywords":["how long","days","time","when ready"],"difficulty":"basic","answer":"New enrollment: 15–90 days for physical card delivery via post. e-Aadhaar available online within 24–48 hours of enrollment. Updates: reflected in database within 7–10 days. PVC card: 15–20 days via Speed Post.","relatedSections":["processingTime"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-015","question":"Is Aadhaar mandatory?","intent":"purpose","keywords":["mandatory","compulsory","required","must have"],"difficulty":"basic","answer":"Aadhaar is mandatory for: filing income tax returns, receiving government subsidies (DBT), opening bank accounts (KYC), getting a new SIM card, and many government services. While the Supreme Court has limited mandatory usage, practically it is needed for most services.","relatedSections":["purpose"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-016","question":"What mistakes to avoid with Aadhaar?","intent":"rejection","keywords":["mistakes","avoid","errors","problems"],"difficulty":"basic","answer":"Avoid: using unofficial websites, trying to update mobile online (must be in person), not booking appointment, sharing OTP with strangers, not saving enrollment/update reference numbers, and submitting mismatched documents.","relatedSections":["commonMistakes"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-017","question":"Can I have two Aadhaar numbers?","intent":"general","keywords":["two","duplicate","multiple","second"],"difficulty":"basic","answer":"No. Each person can have only one Aadhaar number. Biometrics (fingerprints and iris) ensure uniqueness. If a duplicate is detected, one will be cancelled. If you suspect a duplicate exists, contact UIDAI helpline 1947.","relatedSections":["rejectionReasons"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-018","question":"How to check Aadhaar update status?","intent":"tracking","keywords":["track","status","check","URN"],"difficulty":"basic","answer":"Visit myaadhaar.uidai.gov.in → Check Aadhaar Update Status → Enter your Update Request Number (URN) received during update submission. You can also call 1947 with your URN for status.","relatedSections":["applicationSteps"],"officialSource":"https://myaadhaar.uidai.gov.in"},
+    {"id":"aa-faq-019","question":"What is biometric update in Aadhaar?","intent":"general","keywords":["biometric","fingerprint","iris","photo update"],"difficulty":"intermediate","answer":"Biometric update means re-capturing your fingerprints, iris scans, and photograph at an Aadhaar Seva Kendra. Recommended every 10 years or if biometrics have degraded (common for elderly or manual labourers). Fee: ₹100.","relatedSections":["biometricUpdate"],"officialSource":"https://uidai.gov.in"},
+    {"id":"aa-faq-020","question":"What if my mobile is not linked to Aadhaar?","intent":"edge_case","keywords":["mobile not linked","no OTP","cannot verify"],"difficulty":"intermediate","answer":"If mobile is not linked, you cannot use online Aadhaar services (no OTP). Visit any Aadhaar Seva Kendra in person with your Aadhaar and ID proof to link your mobile. Biometric verification is done. New number linked in 24–48 hours. Free of charge.","relatedSections":["mobileUpdate","edgeCases"],"officialSource":"https://myaadhaar.uidai.gov.in"}
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "id": "birth-certificate",
+  "name": "Birth Certificate",
+  "officialPortal": "https://www.ghmc.gov.in",
+  "alternatePortal": "https://crsorgi.gov.in",
+  "helpline": "040-21111111",
+  "lastVerified": "2026-07-01",
+  "issuingAuthority": "Municipal Administration (GHMC / Municipality / Gram Panchayat), Government of Telangana",
+
+  "sections": {
+    "purpose": "A Birth Certificate is the official government record of a child's birth, issued by the local municipal authority or gram panchayat where the birth occurred. It is the most fundamental identity document for Indian citizens. Uses: (1) School admission — mandatory requirement. (2) Aadhaar enrollment for children. (3) Passport application — primary proof of date and place of birth. (4) Voter ID registration — age proof. (5) Marriage registration — age verification. (6) Property inheritance and succession claims. (7) Insurance, pension, and financial claims. (8) Proof of Indian citizenship and nationality. (9) Government scheme eligibility verification.",
+    "eligibility": "Birth must have occurred within the territory of Telangana (for Telangana-issued certificate). Any parent or legal guardian can apply. Registration within 21 days of birth is free. Late registration (after 21 days): requires late fee and additional documentation. Delayed registration after 1 year: requires an order from the Judicial Magistrate / Executive Magistrate. No income, caste, or nationality restriction for registration — even foreign nationals whose child is born in India can register.",
+    "documents": [
+      "Hospital discharge summary or Birth Intimation Form issued by the hospital",
+      "Aadhaar cards of both parents",
+      "Parents' marriage certificate",
+      "Address proof of parents (Aadhaar / Electricity bill / Rent agreement)",
+      "Birth registration application form (from GHMC / Municipality / Gram Panchayat)"
+    ],
+    "optionalDocuments": [
+      "Ration Card of parents",
+      "Affidavit (for delayed registration)",
+      "Judicial Magistrate order (for registration after 1 year)",
+      "Hospital identity card of mother (if delivered in government hospital)"
+    ],
+    "fees": "Free if registered within 21 days of birth. Late fee for registration after 21 days: ₹5 to ₹50 depending on local body rules. Delayed registration (after 1 year): additional court fee and municipal charges. Duplicate certificate: ₹50 to ₹100.",
+    "processingTime": "Within 21 days registration: 3 to 7 working days for certificate issuance. Late registration (21 days to 1 year): 7 to 15 working days. Delayed registration (after 1 year): 30 to 60 days (includes court process). Online download from CRS portal (if already registered): instant.",
+    "validity": "Permanent — Birth certificates never expire. Once issued, it is a lifelong document. However, corrections to name or other details require a fresh process.",
+    "applicationSteps": [
+      "Step 1 — Obtain the hospital birth record (discharge summary or birth intimation form) before leaving the hospital",
+      "Step 2 — Contact GHMC / Municipal Office / Gram Panchayat that has jurisdiction over the birth location",
+      "Step 3 — Obtain the birth registration form from the local body office or download from their website",
+      "Step 4 — Fill the form with: child's name, date and time of birth, place of birth, parents' details, address",
+      "Step 5 — Submit the form along with hospital birth record and parents' documents",
+      "Step 6 — Pay applicable fee (free within 21 days)",
+      "Step 7 — Collect acknowledgement slip with registration number",
+      "Step 8 — Collect or download birth certificate within 3–7 working days"
+    ],
+    "delayedRegistration": {
+      "overview": "If birth was not registered within 21 days, the process depends on the delay period.",
+      "after21daysTo1year": "Apply to the local Registrar (Municipal Commissioner / Sarpanch) with: birth proof, parents' documents, affidavit explaining delay, and late fee. The Registrar may approve after verification.",
+      "after1year": "Requires an order from the First Class Judicial Magistrate or Executive Magistrate. Submit: court application, hospital records, parents' affidavit, school records (if child is school-age), and any other supporting evidence. Court process may take 30–60 days."
+    },
+    "nameCorrection": "To correct the child's name on a birth certificate: Submit an application to the Registrar (Municipal Commissioner or equivalent) with: gazette notification of name change OR affidavit, school certificate showing correct name, parents' declaration. Processing: 15–30 days. Note: Only one name correction is typically allowed.",
+    "downloadOnline": "If the birth is already registered in the CRS (Civil Registration System), you can download the certificate online at crsorgi.gov.in. Search by: registration number or parents' details. Available for births registered after the state digitized records.",
+    "commonMistakes": [
+      "Delaying registration beyond 21 days — this creates complications and extra fees",
+      "Not collecting the hospital birth intimation form before discharge",
+      "Name mismatch between parents' Aadhaar and the registration form",
+      "Spelling errors in child's name during registration — difficult to correct later",
+      "Approaching agents instead of going directly to GHMC/municipal office",
+      "Not verifying that the hospital submitted the birth notification to the municipality (for private hospitals)"
+    ],
+    "rejectionReasons": [
+      "Missing hospital birth record or birth intimation form",
+      "Parents' documents have name or date discrepancy",
+      "Hospital did not register/notify the birth to the local body",
+      "Late registration without proper affidavit or supporting documents",
+      "Jurisdictional mismatch — applying at wrong municipal office"
+    ],
+    "edgeCases": [
+      {"title":"Birth at home (not in hospital)","problem":"Child was born at home and there is no hospital birth record.","recommendedNextStep":"Submit: affidavit by the person who attended the birth (midwife/family member), parents' joint declaration, any available proof (immunization record, Anganwadi record). The Registrar will verify and may register after field enquiry.","officialPortal":"https://www.ghmc.gov.in","notes":"Home births are registerable but require additional verification. Register within 21 days if possible."},
+      {"title":"Registration after 5+ years","problem":"Child's birth was never registered and now they are school-age.","recommendedNextStep":"Requires Judicial Magistrate order. Submit: parents' affidavit, school admission records, immunization card, Anganwadi records, and any other evidence of birth. Court process takes 30–60 days.","officialPortal":"https://www.ghmc.gov.in","notes":"Many schools require birth certificates for admission. Start this process well before admission deadlines."}
+    ]
+  },
+
+  "faqs": [
+    {"id":"bc-faq-001","question":"What is a birth certificate?","intent":"purpose","keywords":["birth certificate","what is","definition"],"difficulty":"basic","answer":"A Birth Certificate is the official government record of a child's birth. It records the date, time, place of birth, and parents' details. It is the most fundamental identity document required for school admission, Aadhaar, passport, and other services.","relatedSections":["purpose"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-002","question":"Why is birth certificate important?","intent":"purpose","keywords":["important","why","use","purpose"],"difficulty":"basic","answer":"A birth certificate is required for: school admission, Aadhaar enrollment, passport application, voter ID registration, marriage registration, property inheritance, insurance claims, and proving Indian citizenship. It is the foundational document for all other identity proofs.","relatedSections":["purpose"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-003","question":"How to register birth in Telangana?","intent":"steps","keywords":["register","how to","apply","registration"],"difficulty":"basic","answer":"Get the hospital birth record before discharge. Visit the GHMC/Municipal Office/Gram Panchayat with jurisdiction over the birth location. Fill the registration form, submit hospital record and parents' documents. Collect the birth certificate within 3–7 working days. Registration is free within 21 days.","relatedSections":["applicationSteps"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-004","question":"What documents are needed for birth certificate?","intent":"documents","keywords":["documents","required","papers"],"difficulty":"basic","answer":"Required: Hospital discharge summary/birth intimation form, Aadhaar cards of both parents, parents' marriage certificate, address proof of parents, and the birth registration application form from the local body.","relatedSections":["documents"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-005","question":"Is birth registration free?","intent":"fees","keywords":["fee","cost","free","charge"],"difficulty":"basic","answer":"Yes, birth registration is completely free if done within 21 days of birth. After 21 days, a late fee of ₹5–₹50 applies. After 1 year, court fees and additional charges apply for delayed registration.","relatedSections":["fees"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-006","question":"How long does birth certificate take?","intent":"processing_time","keywords":["how long","days","time","when"],"difficulty":"basic","answer":"If registered within 21 days: 3 to 7 working days. Late registration (21 days to 1 year): 7 to 15 working days. Delayed registration (after 1 year): 30 to 60 days including court process.","relatedSections":["processingTime"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-007","question":"What if birth is not registered within 21 days?","intent":"edge_case","keywords":["late","delayed","after 21 days","missed"],"difficulty":"intermediate","answer":"After 21 days to 1 year: apply to the Registrar with birth proof, parents' documents, affidavit explaining delay, and late fee. After 1 year: requires a Judicial Magistrate order with supporting evidence (hospital records, school records, immunization card).","relatedSections":["delayedRegistration"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-008","question":"Where to apply for birth certificate in Telangana?","intent":"portal","keywords":["where","office","apply","location"],"difficulty":"basic","answer":"Apply at the GHMC office (for Hyderabad), Municipal Office (for other municipalities), or Gram Panchayat (for rural areas) that has jurisdiction over the place of birth. Some services are also available through MeeSeva centres.","relatedSections":["applicationSteps"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-009","question":"Can I download birth certificate online?","intent":"steps","keywords":["download","online","digital","internet"],"difficulty":"basic","answer":"If the birth is already registered in the CRS (Civil Registration System), you can download it at crsorgi.gov.in. Search by registration number or parents' details. This is available for births registered after digitization.","relatedSections":["downloadOnline"],"officialSource":"https://crsorgi.gov.in"},
+    {"id":"bc-faq-010","question":"How to correct name on birth certificate?","intent":"name_change","keywords":["name correction","wrong name","change name","spelling"],"difficulty":"intermediate","answer":"Submit an application to the Registrar with: gazette notification or affidavit of name change, school certificate showing correct name, and parents' declaration. Processing takes 15–30 days. Only one correction is typically allowed.","relatedSections":["nameCorrection"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-011","question":"What if baby was born at home?","intent":"edge_case","keywords":["home birth","no hospital","born at home"],"difficulty":"intermediate","answer":"For home births: submit an affidavit by the person who attended the birth (midwife or family member), parents' joint declaration, and any supporting proof (immunization record, Anganwadi record). The Registrar verifies and registers after field enquiry. Register within 21 days if possible.","relatedSections":["edgeCases"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-012","question":"Does birth certificate expire?","intent":"processing_time","keywords":["expire","validity","how long valid"],"difficulty":"basic","answer":"No. Birth certificates are permanent documents and never expire. Once issued, they are valid for a lifetime. However, if details need correction (name spelling, date), a fresh process is required.","relatedSections":["validity"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-013","question":"What mistakes to avoid for birth certificate?","intent":"rejection","keywords":["mistakes","avoid","errors","problems"],"difficulty":"basic","answer":"Avoid: delaying beyond 21 days, not collecting hospital birth record before discharge, name mismatches in parents' documents, spelling errors in child's name, approaching agents, and not verifying hospital submitted the notification.","relatedSections":["commonMistakes"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-014","question":"Is Aadhaar needed for birth certificate?","intent":"documents","keywords":["aadhaar","required","mandatory","parents"],"difficulty":"basic","answer":"Parents' Aadhaar cards are required as identity and address proof when registering a birth. The newborn does not need Aadhaar for birth registration — Aadhaar for the child is applied separately after birth registration.","relatedSections":["documents"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-015","question":"How to get duplicate birth certificate?","intent":"lost_document","keywords":["duplicate","lost","damaged","copy"],"difficulty":"intermediate","answer":"Apply to the same municipal office where the birth was originally registered. Submit: application form, parents' ID proof, and fee (₹50–₹100). If you have the registration number, processing is faster. Can also be downloaded from crsorgi.gov.in if digitized.","relatedSections":["fees"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-016","question":"Can I get birth certificate from MeeSeva?","intent":"portal","keywords":["meeseva","where","centre"],"difficulty":"basic","answer":"Some birth certificate services are available through MeeSeva centres in Telangana. However, the primary issuing authority is the local municipal body (GHMC/Municipality/Gram Panchayat). Check with your local MeeSeva centre for availability.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"bc-faq-017","question":"What if hospital did not register the birth?","intent":"edge_case","keywords":["hospital","not registered","notification","private hospital"],"difficulty":"intermediate","answer":"Private hospitals are required to submit birth notifications to the local municipality. If they failed to do so: contact the hospital to issue a birth intimation letter, then submit it along with your application to the municipal office. The Registrar will process after verification.","relatedSections":["edgeCases"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-018","question":"Is marriage certificate needed for birth registration?","intent":"documents","keywords":["marriage certificate","parents","married"],"difficulty":"basic","answer":"Parents' marriage certificate is one of the supporting documents for birth registration. For unmarried mothers or single parents, alternative documentation (self-declaration, court order) may be submitted. The birth can still be registered without it in some jurisdictions.","relatedSections":["documents"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-019","question":"Can grandparent register a birth?","intent":"eligibility","keywords":["grandparent","who can apply","guardian","relative"],"difficulty":"intermediate","answer":"Primarily parents should register. However, in their absence (death, incapacity), a close relative or guardian can apply with: relationship proof, reason for parents' absence (death certificate/medical certificate), and all required documents. This is at the Registrar's discretion.","relatedSections":["eligibility"],"officialSource":"https://www.ghmc.gov.in"},
+    {"id":"bc-faq-020","question":"What is CRS portal for birth certificate?","intent":"portal","keywords":["CRS","crsorgi","online","portal"],"difficulty":"basic","answer":"CRS (Civil Registration System) at crsorgi.gov.in is the national online portal for birth and death registration. If your birth is already registered and digitized, you can search and download the certificate online using registration number or parents' details.","relatedSections":["downloadOnline"],"officialSource":"https://crsorgi.gov.in"}
+  ]
+}

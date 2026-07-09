@@ -1,0 +1,623 @@
+{
+  "id": "passport",
+  "name": "Passport",
+  "officialPortal": "https://www.passportindia.gov.in",
+  "helpline": "1800-258-1800",
+  "lastVerified": "2026-07-01",
+  "issuingAuthority": "Ministry of External Affairs, Government of India",
+
+  "sections": {
+    "purpose": "An Indian Passport is an official travel document issued by the Ministry of External Affairs (MEA), Government of India. It certifies the identity and nationality of the holder for the purpose of international travel. The passport serves as a globally recognised proof of Indian citizenship. It is required for: (1) International travel — mandatory for leaving and entering India through any port of entry. (2) Visa applications — all foreign embassies require a valid passport before granting a visa. (3) Proof of citizenship — serves as primary evidence of Indian nationality. (4) Identity proof — widely accepted by banks, government agencies, and institutions as a photo identity document. (5) Address proof — the address page of a passport is accepted as valid address proof. (6) Age proof — date of birth recorded in the passport is legally accepted. Indian passports are issued in two booklet sizes: 36 pages (standard) and 60 pages (for frequent travellers). Validity: 10 years for adults (18 and above), 5 years for minors (below 18) or until the minor turns 18, whichever is earlier.",
+
+    "eligibility": "Any Indian citizen is eligible to apply for an Indian passport regardless of age, gender, income, caste, or religion. Specific eligibility criteria: (1) The applicant must be an Indian citizen by birth, descent, registration, or naturalisation. (2) There is no minimum or maximum age requirement — even newborns can be issued a passport. (3) For minors (below 18 years): both parents must give consent, or a single parent must submit Annexure H with appropriate court order or declaration. (4) Persons with criminal cases: may be denied if criminal proceedings are pending or if a court has restricted travel. (5) Government employees: must provide a prior intimation letter or No Objection Certificate (NOC) from their department (Annexure M/N). (6) Persons who have renounced Indian citizenship are not eligible. (7) Persons holding a valid Indian passport can apply for reissue but not a fresh passport. (8) NRI/OCI holders who have surrendered Indian citizenship are not eligible for an Indian passport.",
+
+    "documents": [
+      "Proof of Date of Birth (any one): Birth Certificate issued by Municipal Authority or Registrar of Births and Deaths; OR Transfer/School Leaving Certificate with DOB from a recognised institution; OR PAN card; OR Aadhaar card/e-Aadhaar with DOB; OR Voter ID card (EPIC) with DOB; OR Matriculation (Class 10) certificate from a recognised board",
+      "Proof of Present Address (any one): Aadhaar card/e-Aadhaar (most widely accepted); OR Water bill, Telephone (landline/postpaid mobile), Electricity bill, Gas connection bill in applicant's name — not older than 3 months; OR Voter ID card (EPIC) with current address; OR Spouse's passport with current address (for same-address applicants); OR Bank account statement/passbook with photo (public sector bank) — not older than 3 months; OR Rent agreement registered with sub-registrar office; OR Employer's certificate on letterhead (for central/state government employees only)",
+      "Proof of Identity: The Proof of Date of Birth and Proof of Address documents typically serve as identity proof. Aadhaar card is sufficient as both identity and address proof in most cases.",
+      "Passport-size Photographs: Recent photographs with white background, 3.5 cm x 3.5 cm, front-facing, 80% face coverage, ears visible, no spectacles. Note: photographs are typically captured digitally at PSK, but carry 2 physical copies as backup.",
+      "Old Passport (if applying for reissue): Original old passport. If expired within last 3 years, it qualifies for reissue without police verification in most cases.",
+      "Self-Declaration / Annexures (if applicable): Annexure A — Criminal/Derogatory antecedent declaration. Annexure D — for applicants not having specified documents. Annexure E — Statement of non-availability of Birth Certificate (for those born before 26 January 1989). Annexure H — prior consent of parent/legal guardian for minors. Annexure I — Identity Certificate for persons with no listed documents. Annexure M/N — Government Employee NOC or Prior Intimation Certificate.",
+      "Supporting Documents for Special Cases: Marriage Certificate (for name change after marriage); Gazette Notification (for legal name change); Court Order (for custody/minor passport cases); NOC from company/government department (for government servants)"
+    ],
+    "fees": "Fresh Passport (Normal): 36 pages — ₹1,500; 60 pages — ₹2,000. Fresh Passport (Tatkaal): 36 pages — ₹3,500; 60 pages — ₹4,000. Reissue of Passport (Normal): 36 pages — ₹1,500; 60 pages — ₹2,000. Reissue of Passport (Tatkaal): 36 pages — ₹3,500; 60 pages — ₹4,000. Minor Passport (below 18): 36 pages — ₹1,000 (Tatkaal not available for minors). Police Clearance Certificate (PCC): ₹500. Identity Certificate: ₹300. Duplicate Passport (lost/damaged): ₹3,000 for 36 pages; ₹3,500 for 60 pages. Note: All fees are paid online through the Passport Seva Portal at the time of application submission. Fee is non-refundable even if the application is rejected. No additional fee is charged at PSK/POPSK except SMS charges (₹0-₹10). Tatkaal fee is in addition to the normal application fee — total Tatkaal cost for 36-page adult passport is ₹3,500 (not ₹1,500 + ₹2,000).",
+
+    "processingTime": "Normal Passport (Fresh Issue): 30 to 45 days from the date of application at PSK, including police verification time. Tatkaal Passport: 1 to 3 working days for passport printing at PSK, but total dispatch time is 7 to 14 days including Speed Post delivery. Reissue (no change in personal particulars, same address): 10 to 15 days if no police verification is required (post-issuance PV may happen). Reissue (with changes — name, address, spouse addition): 30 to 45 days as pre-issuance police verification is typically required. Minor Passport: Same as fresh issue — 30 to 45 days. Police Verification Timeline: Typically completed within 2 to 4 weeks after PSK visit, but can take longer depending on local police workload. Dispatch: Passport is dispatched via India Speed Post to the registered address. Speed Post delivery takes 2 to 5 days depending on location. Overall Note: These are standard timelines. Delays can occur due to pending police verification, document discrepancies, adverse reports, or high application volume at RPO.",
+
+    "applicationSteps": [
+      "Step 1 — Register on Passport Seva Portal: Visit passportindia.gov.in. Click 'Register Now'. Create an account using a valid email ID. Verify email and set a strong password. Login to the portal.",
+      "Step 2 — Fill Application Form: Click 'Apply for Fresh Passport / Reissue of Passport'. Select the type: Fresh or Reissue. Choose the booklet type: 36 pages (standard) or 60 pages (frequent traveller). Select scheme: Normal or Tatkaal. Fill personal details: name, DOB, gender, marital status, parents' details, present address, permanent address, emergency contact, and other details. Answer all mandatory questions carefully. Review and submit the form. Note the Application Reference Number (ARN).",
+      "Step 3 — Upload Documents: Upload scanned copies of Proof of DOB, Proof of Address, and any annexures. Scans must be clear, legible, and in specified format (JPEG/PDF, file size as per portal guidelines). Ensure name and DOB in uploaded documents exactly match the application form.",
+      "Step 4 — Pay Fee Online: Pay the applicable fee using net banking, credit card, debit card, or SBI challan. Save the payment receipt. Fee is non-refundable.",
+      "Step 5 — Book Appointment: After successful payment, select 'Schedule Appointment'. Choose your preferred Passport Seva Kendra (PSK) or Post Office Passport Seva Kendra (POPSK). Select an available date and time slot. Print the appointment confirmation slip.",
+      "Step 6 — Visit PSK/POPSK on Appointment Date: Arrive 15 minutes before the scheduled time. Carry: printed appointment slip, original documents, self-attested photocopies of all documents, and the application receipt. Process at PSK involves 4 counters: (A) Document Verification — officer checks originals against application. (B) Biometrics — fingerprints of all 10 fingers scanned. (C) Photograph — digital photo captured at PSK. (D) Final Verification — senior officer reviews the file. Total time at PSK: typically 1 to 3 hours depending on queue.",
+      "Step 7 — Police Verification: For Normal channel (fresh passport, address change cases): police verification is initiated after PSK visit. Local police will visit your registered address to verify identity and antecedents. Be available at your registered address. Keep copies of submitted documents ready. For Tatkaal channel: police verification is done post-issuance (after passport is dispatched).",
+      "Step 8 — Passport Dispatch: After successful processing and police verification clearance (for Normal channel), the passport is printed at the Central Passport Printing Facility. Dispatched to your registered address via India Speed Post. Track dispatch status on passportindia.gov.in using your File Number. Delivery typically takes 2 to 5 working days after dispatch.",
+      "Step 9 — Receive Passport: Collect the Speed Post delivery at your registered address. Verify all details (name, DOB, address, photograph) on the passport immediately. If any error is found, apply for correction through the reissue process within 30 days."
+    ],
+
+    "appointmentBooking": {
+      "overview": "After submitting your passport application and paying the fee on the Passport Seva Portal (passportindia.gov.in), you must book an appointment at a Passport Seva Kendra (PSK) or Post Office Passport Seva Kendra (POPSK). The appointment is mandatory — walk-in applications are not accepted. You must visit the PSK/POPSK on your scheduled date and time with all original documents.",
+      "steps": [
+        "Login to passportindia.gov.in with your registered credentials",
+        "Go to 'View Saved/Submitted Applications' section",
+        "Click 'Schedule Appointment' against your submitted application",
+        "Select 'Passport Office' — this is the RPO jurisdiction for your area (auto-assigned based on address in most cases)",
+        "Select 'PSK/POPSK' — choose the specific centre you want to visit. You can select any PSK/POPSK under your assigned Passport Office jurisdiction",
+        "Select an available date from the calendar. Only dates with open slots will be shown in green",
+        "Select a time slot from the available options (typically 15-minute intervals)",
+        "Confirm your appointment. The system generates an Appointment Confirmation slip",
+        "Print the Appointment Confirmation slip — this is mandatory to carry on the visit day"
+      ],
+      "tips": [
+        "Book your appointment immediately after fee payment — slots fill up fast, especially in metro cities like Hyderabad",
+        "Morning slots (9:00 AM – 11:00 AM) are recommended — queues are shorter and processing is faster",
+        "Choose a PSK/POPSK closest to your present address for convenience",
+        "If no slots are available at your preferred PSK, check nearby PSK/POPSK centres or try booking early morning (new slots open around midnight)",
+        "Your Application Reference Number (ARN) is generated at the time of form submission and is required for all tracking and appointment actions",
+        "Fee payment must be completed before appointment booking — the Schedule Appointment option only appears after successful payment",
+        "If you do not book an appointment within the validity period (typically 90 days from form submission), your application may expire and you will need to reapply with fresh fee"
+      ],
+      "whatToCarry": [
+        "Printed Appointment Confirmation slip (mandatory)",
+        "Original documents: Proof of DOB, Proof of Address, old passport (if reissue)",
+        "Self-attested photocopies of all original documents",
+        "Application Receipt printout (with ARN number)",
+        "2 recent passport-size photographs (white background) as backup — though photo is captured digitally at PSK",
+        "Any applicable Annexures in original (Annexure A, D, E, H, I, M, or N as per your case)"
+      ]
+    },
+
+    "appointmentReschedule": {
+      "overview": "The Passport Seva Portal allows applicants to reschedule their appointment if they are unable to attend on the originally booked date. Rescheduling is subject to availability of slots and a maximum number of attempts. It is strongly recommended to attend the original appointment date whenever possible, as reschedule options are limited.",
+      "maxReschedules": "The Passport Seva Portal typically allows up to 3 reschedule attempts per application. This limit may vary based on the RPO jurisdiction and portal policies. Once the reschedule limit is exhausted, the portal will no longer display the reschedule option for that application.",
+      "howToReschedule": [
+        "Login to passportindia.gov.in",
+        "Go to 'View Saved/Submitted Applications'",
+        "Click the 'Reschedule Appointment' link next to your application (this option is only visible if reschedules are still available)",
+        "Select a new date and time slot from the available options",
+        "Confirm the rescheduled appointment",
+        "Print the new Appointment Confirmation slip — the old slip is no longer valid",
+        "Note: Rescheduling is free of charge — no additional fee is required"
+      ],
+      "whatIfMissedAppointment": "If you miss your scheduled appointment (no-show): (1) Login to the portal and check if the reschedule option is still available. (2) If available, reschedule immediately to the earliest open slot. (3) If the reschedule option is not available (limit exhausted), call the Passport Seva helpline at 1800-258-1800 to request guidance. (4) Repeated no-shows may affect your ability to get a new appointment. (5) In some cases, the application may expire if no action is taken within the validity period.",
+      "whatIfCannotAttend": "If you have already rescheduled multiple times and cannot attend the final given date: (1) Check the Passport Seva Portal first — sometimes a fresh reschedule window opens after a period. (2) If the portal does not allow rescheduling, call the Passport Seva Helpline immediately: 1800-258-1800 (toll-free, available 8 AM to 10 PM). Explain your situation clearly. Note down the call reference number and agent name. (3) If the helpline cannot resolve the issue, visit or write to the Regional Passport Office (RPO) for your jurisdiction. (4) When visiting the RPO, carry: Appointment receipt (printed or screenshot), Application Reference Number (ARN) or File Number, Original photo ID proof (Aadhaar / Voter ID / PAN), A written application explaining your reason for not attending, Supporting proof if available (medical certificate, travel emergency documents, employer letter). (5) RPO officers review on a case-by-case basis. There is no guaranteed extension or fresh appointment. (6) In some cases, the RPO may allow a fresh appointment OR advise re-submission of the application. (7) If the application validity period has expired, you may need to submit a fresh application with fresh fee payment. (8) Do NOT pay anyone outside the official portal or RPO to fix appointment issues — there are no unofficial agents authorised by Passport Seva.",
+      "differenceRescheduleVsCancel": "Reschedule: Your application remains active. You simply move the appointment to a new date/time. No fee is charged. Your ARN and file remain the same. Cancel: If you cancel the application entirely, the fee is forfeited (non-refundable). You will need to start a new application from scratch with a new form, new fee, and new ARN. Recommendation: Always reschedule rather than cancel unless there is a fundamental change in your application (e.g., wrong type selected, wrong personal details submitted).",
+      "helplineGuidance": "Passport Seva Helpline: 1800-258-1800 (Toll-Free). Available: 8:00 AM to 10:00 PM, Monday to Saturday. The helpline can assist with: appointment rescheduling guidance, understanding application status, connecting you to the concerned RPO, and general passport process queries. Note: The helpline cannot directly book or reschedule appointments — they provide guidance on next steps.",
+      "rpoVisitSteps": [
+        "Identify the RPO that has jurisdiction over your passport application (this is shown on your application receipt)",
+        "Visit the RPO office during working hours (typically 9:30 AM to 5:00 PM, Monday to Friday)",
+        "Carry all required documents (see documentsForRpo list)",
+        "Approach the public grievance counter or information desk",
+        "Submit a written application explaining your situation",
+        "The officer will review your application status in the system",
+        "Based on the case, they may: allow a fresh appointment slot, extend the application validity, or advise resubmission"
+      ],
+      "documentsForRpo": [
+        "Printed Appointment Confirmation slip (showing the date you could not attend)",
+        "Application Reference Number (ARN) printed or noted",
+        "File Number (if already assigned after PSK visit)",
+        "Original Photo ID proof (Aadhaar card / Voter ID / PAN card)",
+        "Written application/letter explaining why you could not attend and requesting a fresh appointment",
+        "Supporting documents (medical certificate, emergency travel proof, employer letter — if applicable)",
+        "Photocopy of all the above documents"
+      ],
+      "importantNotes": [
+        "Never share your login credentials with agents or third parties",
+        "The portal's reschedule feature is the only official way to change your appointment date",
+        "If you see no reschedule option, it means the limit has been exhausted — contact helpline",
+        "Appointments once booked and confirmed are linked to your biometric data at PSK — ensure you attend personally",
+        "If you have a medical emergency or genuine hardship, carry documentary proof when visiting the RPO",
+        "Some RPO offices accept written requests by post or email — check the specific RPO's contact details on passportindia.gov.in",
+        "Application validity is typically 90 days from submission date — if this period expires without a PSK visit, you may need to reapply"
+      ]
+    },
+
+    "policeVerification": {
+      "overview": "Police Verification (PV) is a mandatory background check conducted by the local police at the applicant's residential address as part of the passport issuance process. It is initiated by the Regional Passport Office (RPO) after the applicant's visit to the Passport Seva Kendra (PSK). The purpose is to verify the applicant's identity, address, and criminal antecedents. The police submit a verification report to the RPO, which determines whether the passport can be issued, kept on hold, or rejected.",
+      "types": [
+        "Pre-issuance Police Verification: Conducted before the passport is printed and dispatched. Applies to: fresh passport applications through Normal channel, applications involving change of address, applications where the applicant has declared criminal antecedents (Annexure A), and certain reissue cases where address has changed.",
+        "Post-issuance Police Verification: Conducted after the passport has been printed and dispatched to the applicant. Applies to: Tatkaal passport applications, reissue applications where address has not changed and no adverse record exists. Note: If post-issuance PV returns an adverse report, the passport can be impounded (cancelled) later.",
+        "Re-verification: Conducted when the first verification report is unclear, incomplete, or the applicant was not available during the initial police visit."
+      ],
+      "process": [
+        "After your PSK visit, the RPO sends your application details to the Superintendent of Police (SP) of the district where your address is located",
+        "The SP assigns the verification to the Station House Officer (SHO) of the police station with jurisdiction over your address",
+        "A police constable or sub-inspector is assigned to physically visit your registered address",
+        "The police officer verifies: (a) whether you actually reside at the declared address, (b) your identity by checking documents, (c) information from neighbours or local contacts, (d) whether any criminal cases are pending or registered against you",
+        "The officer fills the Police Verification Report form with findings: Clear, Adverse, or Incomplete",
+        "The report is submitted through the online police portal back to the RPO",
+        "RPO reviews the report and proceeds accordingly: Clear report → passport processed; Adverse report → passport put on hold or rejected; Incomplete → re-verification ordered"
+      ],
+      "documentsToKeepReady": [
+        "Original Aadhaar card with current address",
+        "Printed copy of passport application receipt (with ARN/File Number)",
+        "Rent agreement or lease deed (if residing in rented accommodation)",
+        "Electricity bill or water bill in your name (recent, within 3 months)",
+        "Any utility bill or bank statement showing your name and current address",
+        "Photocopies of all documents submitted at PSK",
+        "Landlord's contact number and identity proof (for tenant verification)",
+        "Contact number of a neighbour who can confirm your residence"
+      ],
+      "tenantVerification": "If you are residing in a rented accommodation: (1) The police officer will ask for your rent agreement (registered/notarised preferred). (2) The officer may contact or visit your landlord to confirm tenancy. (3) Keep your landlord's phone number and Aadhaar copy handy. (4) If the landlord is unavailable or denies tenancy, verification may be marked incomplete. (5) For PG/hostel accommodation, a letter from the PG/hostel owner on their letterhead with their ID proof is helpful. (6) Ensure your Aadhaar address matches the rented address — if not, update Aadhaar before applying for passport.",
+      "addressMismatch": "If the address on your passport application does not match the address found during police visit: (1) The verification report will be marked 'Adverse' or 'Incomplete'. (2) The RPO will put your application on hold. (3) To resolve: ensure your Aadhaar card, electricity bill, and rent agreement all show the same address as declared in the passport application. (4) If you have moved after applying, you may need to contact the RPO and update your address or reapply. (5) Common cause: applicants enter a different address in the application form than what is on their Aadhaar or utility bills.",
+      "applicantNotAvailable": "If the police officer visits and you are not present at the address: (1) The officer may leave a notice or contact you on the mobile number provided. (2) If repeated visits fail, the report is marked 'Incomplete — applicant not available'. (3) The RPO will order a re-verification. (4) If you are still unavailable during re-verification, the application may be put on hold or rejected. (5) Tip: Inform family members at the address that police may visit. Stay reachable on your registered mobile number. If you are travelling, inform a family member to coordinate with the officer.",
+      "familyMemberVerification": "The police officer may speak to family members present at the address during the visit. Family members should: (1) Confirm the applicant's identity and that they reside at the address. (2) Be ready to show the applicant's documents if available (Aadhaar, application receipt). (3) Provide their own ID if asked (to confirm relationship). (4) Not provide conflicting information about the applicant's details. Note: Family member statements alone are not sufficient — the officer needs to verify the address independently through documents or neighbours.",
+      "passportOnHold": "If the police verification report is adverse or incomplete, the RPO places the application on 'HOLD' status. This means: (1) The passport will not be printed or dispatched until the issue is resolved. (2) You can check HOLD status on passportindia.gov.in → Track Application Status. (3) Common reasons for HOLD: criminal case pending, address mismatch, applicant not found, adverse report from police. (4) To resolve HOLD status: Contact the RPO directly or call helpline 1800-258-1800. Visit the RPO with your File Number, original documents, and a written explanation. If the hold is due to police report, visit the concerned police station to understand the issue and provide clarification. (5) The RPO may order a fresh verification after you resolve the issue.",
+      "afterSuccessfulVerification": "After the police submit a 'Clear' report: (1) The RPO processes the application for printing. (2) Passport is printed at the Central Passport Printing Facility. (3) Passport is dispatched to your registered address via India Speed Post. (4) You receive an SMS notification with the Speed Post tracking number. (5) Track dispatch at passportindia.gov.in using your File Number. (6) Total time from clear PV report to delivery: typically 3 to 7 working days.",
+      "whatIfFails": "If police verification fails (adverse report submitted): (1) Your application is put on HOLD at the RPO. (2) You will NOT receive the passport until the issue is resolved. (3) Steps to take: Check application status online to confirm the reason. Call Passport Seva helpline 1800-258-1800 for guidance. Visit the RPO with your File Number, original ID proof, address proof, and a written representation. If the adverse report is due to incorrect police findings, provide counter-evidence at the RPO. If due to criminal case: consult a legal professional; passport may not be issued while cases are pending. (4) For address-related issues: update your Aadhaar and utility bills to match, then submit to RPO for re-verification. (5) Re-verification can be ordered by the RPO — cooperate fully during the second visit.",
+      "timeline": "Pre-issuance PV: Typically completed within 2 to 4 weeks after PSK visit. Post-issuance PV: Initiated after passport is dispatched; completed within 2 to 6 weeks. Re-verification: Additional 2 to 3 weeks. Note: Timelines vary significantly by city and district. Metro cities (Hyderabad, Delhi, Mumbai, Bangalore) often have longer PV timelines due to high volume.",
+      "tips": [
+        "Ensure your Aadhaar address exactly matches the address in your passport application — this is the single most important factor",
+        "If you are a tenant, keep your rent agreement and landlord's contact details ready",
+        "Inform family members at home that police may visit for passport verification",
+        "Stay reachable on your registered mobile number during the verification period",
+        "Do not travel or relocate during the PV period if possible",
+        "If police constable asks for any payment or bribe, refuse politely and report to SP office or Passport Seva grievance portal",
+        "Keep photocopies of all passport application documents at home so family members can show them if you are briefly away",
+        "If you live in a gated community or apartment, inform your security guard to allow police entry for verification"
+      ]
+    },
+
+    "tatkaalPassport": {
+      "overview": "",
+      "eligibility": "",
+      "documents": [],
+      "fees": "",
+      "processingTime": "",
+      "steps": [],
+      "restrictions": [],
+      "importantNotes": []
+    },
+
+    "normalPassport": {
+      "overview": "",
+      "eligibility": "",
+      "documents": [],
+      "fees": "",
+      "processingTime": "",
+      "steps": []
+    },
+
+    "minorPassport": {
+      "overview": "",
+      "eligibility": "",
+      "documents": [],
+      "fees": "",
+      "processingTime": "",
+      "validity": "",
+      "parentConsent": "",
+      "steps": [],
+      "importantNotes": []
+    },
+
+    "passportRenewal": {
+      "overview": "",
+      "eligibility": "",
+      "documents": [],
+      "fees": "",
+      "processingTime": "",
+      "steps": [],
+      "importantNotes": []
+    },
+
+    "lostPassport": {
+      "overview": "",
+      "immediateSteps": [],
+      "documents": [],
+      "fees": "",
+      "processingTime": "",
+      "firRequired": "",
+      "steps": [],
+      "importantNotes": []
+    },
+
+    "damagedPassport": {
+      "overview": "",
+      "documents": [],
+      "fees": "",
+      "processingTime": "",
+      "steps": [],
+      "importantNotes": []
+    },
+
+    "addressChange": {
+      "overview": "",
+      "documents": [],
+      "fees": "",
+      "processingTime": "",
+      "steps": [],
+      "importantNotes": []
+    },
+
+    "nameChange": {
+      "overview": "",
+      "documents": [],
+      "fees": "",
+      "processingTime": "",
+      "steps": [],
+      "importantNotes": []
+    },
+
+    "dobCorrection": {
+      "overview": "",
+      "documents": [],
+      "fees": "",
+      "processingTime": "",
+      "steps": [],
+      "importantNotes": []
+    },
+
+    "passportStatusTracking": {
+      "overview": "",
+      "methods": [],
+      "statusStages": [],
+      "smsTracking": "",
+      "onlineTracking": ""
+    },
+
+    "rejectionReasons": [],
+
+    "commonMistakes": [],
+
+    "rpo": {
+      "fullForm": "",
+      "role": "",
+      "whenToVisit": [],
+      "whatToCarry": [],
+      "hyderabadAddress": "",
+      "contactInfo": ""
+    },
+
+    "psk": {
+      "fullForm": "",
+      "role": "",
+      "services": [],
+      "whatToExpect": [],
+      "timings": ""
+    },
+
+    "popsk": {
+      "fullForm": "",
+      "role": "",
+      "difference": "",
+      "services": [],
+      "timings": ""
+    },
+
+    "officialLinks": {
+      "mainPortal": "",
+      "appointmentBooking": "",
+      "statusTracking": "",
+      "feeCalculator": "",
+      "pskLocator": "",
+      "helpline": "",
+      "grievance": ""
+    },
+
+    "edgeCases": [
+      {
+        "title": "Lost passport within India",
+        "problem": "Passport has been lost or misplaced while within India. Applicant needs a replacement.",
+        "recommendedNextStep": "File an FIR at the nearest police station. Apply for reissue on passportindia.gov.in selecting reason 'Lost Passport'. Upload FIR copy, affidavit of loss, and new address/identity documents. Attend PSK appointment. Police verification will be initiated.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Fee for lost passport reissue is higher (₹3,000 for 36 pages). FIR is mandatory. Processing time is typically 30–45 days as fresh police verification is required."
+      },
+      {
+        "title": "Passport stolen",
+        "problem": "Passport was stolen (pickpocket, burglary, snatching). Applicant needs a replacement and to secure against misuse.",
+        "recommendedNextStep": "File an FIR immediately with full passport details (number, date of issue). Report the theft to the nearest RPO as well. Apply for reissue on the portal with FIR copy. Consider filing an online complaint on the MEA Grievance portal for record.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "A stolen passport can be misused for identity fraud. Timely FIR and RPO intimation help prevent misuse. The old passport number will be flagged in the system."
+      },
+      {
+        "title": "Passport lost abroad",
+        "problem": "Indian citizen has lost their passport while travelling or residing in a foreign country.",
+        "recommendedNextStep": "Report the loss to the local police in the foreign country and obtain a police report. Contact the nearest Indian Embassy or Consulate immediately. Apply for an Emergency Certificate (EC) for return travel OR a fresh passport through the Embassy. Carry at least 2 photocopies of the lost passport, any other Indian ID (Aadhaar, Voter ID), and the local police report.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Indian Embassies can issue Emergency Certificates within 1–3 days for return travel. A full replacement passport through the Embassy may take 4–6 weeks. Always carry photocopies of your passport separately when travelling abroad."
+      },
+      {
+        "title": "Passport expired while abroad",
+        "problem": "Applicant is outside India and their passport has expired. They cannot return or apply for visa extensions.",
+        "recommendedNextStep": "Visit the nearest Indian Embassy or Consulate. Apply for passport renewal (reissue) at the Embassy. Carry: expired passport, proof of residence abroad, recent photographs, any Indian ID available. The Embassy can issue a renewed passport within 2–6 weeks depending on workload.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Most countries allow a grace period for expired passports for return travel. Contact the Embassy before your passport expires if possible. Some airlines may not board passengers with expired passports even for return flights."
+      },
+      {
+        "title": "Damaged passport",
+        "problem": "Passport is physically damaged — pages torn, water damage, illegible entries, lamination peeling, photo defaced.",
+        "recommendedNextStep": "Apply for reissue on passportindia.gov.in selecting reason 'Damaged Passport'. Submit the damaged passport at PSK. Police verification may or may not be required depending on the extent of damage and officer discretion. FIR is not mandatory for damage (unlike loss).",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "A damaged passport is not valid for travel. Even minor damage like coffee stains on the photo page can cause immigration rejection. Fee: ₹3,000 for 36 pages (same as lost passport)."
+      },
+      {
+        "title": "Wrong date of birth printed on passport",
+        "problem": "The passport was issued with an incorrect date of birth. This could be a data entry error by the applicant or a processing mistake.",
+        "recommendedNextStep": "Apply for reissue on passportindia.gov.in selecting reason 'Change in existing personal particulars — Date of Birth correction'. Upload: Birth certificate, 10th class marksheet, Aadhaar card — all showing the correct DOB. If the error was the applicant's, regular fee applies. If it was a government error within 30 days of issue, correction may be done free of charge at the concerned RPO.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "DOB correction requires strong documentary proof. If the DOB differs across your documents, get them corrected first (Aadhaar, school records). The RPO may require an affidavit or court declaration in disputed cases."
+      },
+      {
+        "title": "Wrong name printed on passport",
+        "problem": "Name on the passport is misspelled, incomplete, or has a wrong initial/surname.",
+        "recommendedNextStep": "Apply for reissue selecting reason 'Change in existing personal particulars — Name correction/change'. Upload all documents showing the correct name. If it is a minor spelling error within 30 days of issue, contact the RPO directly for correction without fresh application.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Ensure all supporting documents (Aadhaar, PAN, Voter ID) consistently show the same name. For name change after marriage, submit marriage certificate. For legal name change, submit Gazette Notification or court order."
+      },
+      {
+        "title": "Wrong address on passport",
+        "problem": "The address printed on the passport is incorrect or outdated. Applicant has moved to a new address.",
+        "recommendedNextStep": "Apply for reissue selecting reason 'Change in existing personal particulars — Change of Address'. Upload new address proof (Aadhaar with updated address, electricity bill, rent agreement). Pre-issuance police verification at the new address will be initiated.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Update your Aadhaar address first before applying for passport address change. The new address must be within India. Police verification at the new address takes 2–4 weeks."
+      },
+      {
+        "title": "Police verification failed — adverse report",
+        "problem": "Local police submitted an adverse verification report. Passport application is on HOLD.",
+        "recommendedNextStep": "Check application status on passportindia.gov.in to confirm HOLD reason. Call helpline 1800-258-1800 for details. Visit the RPO with File Number, original documents, and a written representation. If the adverse report is factually incorrect, provide counter-evidence (utility bills, Aadhaar, landlord statement). The RPO may order a re-verification.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Common reasons for adverse reports: address mismatch, criminal antecedents, applicant not found. If you have a pending criminal case, passport issuance is at RPO/court discretion. Provide all clarifications in writing to the RPO."
+      },
+      {
+        "title": "Missed passport appointment — no show",
+        "problem": "Applicant did not attend the PSK on the scheduled date. No cancellation or rescheduling was done beforehand.",
+        "recommendedNextStep": "Login to passportindia.gov.in and check if the reschedule option is still available. If yes, reschedule immediately. If not, call helpline 1800-258-1800. In critical cases, visit the RPO with ARN, appointment receipt, and a written explanation.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "A no-show does not automatically cancel your application, but it uses up one of your limited appointment attempts. Repeated no-shows may require a fresh application."
+      },
+      {
+        "title": "Reschedule limit exhausted — cannot attend final date",
+        "problem": "Applicant has used all allowed reschedules (typically 3) and still cannot attend the final scheduled date.",
+        "recommendedNextStep": "Check the portal — sometimes a fresh reschedule window opens after a waiting period. If not, call helpline 1800-258-1800 immediately. If helpline cannot resolve, visit the RPO with: appointment receipt, ARN, photo ID, written explanation, and supporting proof (medical certificate, travel emergency docs). RPO reviews on a case-by-case basis.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "There is no guaranteed extension or fresh appointment from the RPO. This is at official discretion. If application validity expires (typically 90 days), you may need to reapply with fresh fee. Do not approach unofficial agents."
+      },
+      {
+        "title": "Tatkaal passport application rejected at PSK",
+        "problem": "Applicant applied for Tatkaal passport but the application was rejected or converted to Normal at the PSK counter.",
+        "recommendedNextStep": "Ask the PSK officer for the exact reason for rejection/conversion. Common reasons: insufficient verification documents for Tatkaal (Annexure F or verification certificate missing), discrepancy in documents. If converted to Normal, your application proceeds through Normal channel (30–45 days). The fee difference is not refunded.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Tatkaal requires additional documents beyond Normal: self-declaration (Annexure F) and in some cases a verification certificate from a Gazetted Officer or notary. Ensure all Tatkaal-specific requirements are met before visiting PSK."
+      },
+      {
+        "title": "Minor passport — parents divorced",
+        "problem": "Parents are divorced and one parent wants to apply for the child's passport without the other parent's consent.",
+        "recommendedNextStep": "The applying parent must submit: Court custody order in their favour, Annexure H (declaration of consent from one parent), and the child's birth certificate. If the other parent objects or no custody order exists, the RPO may require both parents' consent or a court order specifically allowing passport issuance.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "This is a legally sensitive case. The RPO exercises discretion based on the court order and child's welfare. If there is an active custody dispute, the passport may not be issued until the court resolves the matter. Consult a family law advocate if needed."
+      },
+      {
+        "title": "Minor passport — single parent",
+        "problem": "A single parent (unmarried, widowed, or separated) wants to apply for their child's passport.",
+        "recommendedNextStep": "Submit Annexure H signed by the applying parent along with supporting documents: death certificate (if widowed), court order (if separated), or self-declaration (if unmarried). The child's birth certificate is mandatory. Only one parent's details will appear on the passport.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Annexure H format is available on the Passport Seva Portal. It must be signed in front of a First Class Magistrate or notarised. For unwed mothers, no father's details are required if Annexure H is submitted."
+      },
+      {
+        "title": "Name change after marriage — passport update",
+        "problem": "Applicant got married and wants to update their name (add spouse's surname) and marital status on the passport.",
+        "recommendedNextStep": "Apply for reissue on passportindia.gov.in selecting reason 'Change in personal particulars — Name Change'. Upload: Marriage certificate, joint photograph (optional), Aadhaar with updated name (recommended), old passport. Spouse details can also be added at this time.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Update your Aadhaar name first to match the new name. This avoids address/name mismatch during police verification. Both name change and spouse addition can be done in a single reissue application."
+      },
+      {
+        "title": "Passport still in maiden name — need to travel urgently",
+        "problem": "Applicant is married but passport still shows maiden name. They have an urgent trip and cannot wait for reissue.",
+        "recommendedNextStep": "You can travel on your current passport in maiden name — it is still a valid travel document as long as it has not expired. For visa applications, carry your marriage certificate as supporting document to explain the name difference. Apply for reissue after return from travel.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "A passport in maiden name remains legally valid until expiry. Airlines and immigration accept it. Some embassies may ask for marriage certificate during visa processing. There is no legal requirement to update your passport name immediately after marriage."
+      },
+      {
+        "title": "ECR category instead of ECNR — want to change",
+        "problem": "Passport was issued with Emigration Check Required (ECR) status. Applicant wants to change to ECNR (Emigration Check Not Required).",
+        "recommendedNextStep": "Apply for reissue selecting 'Change in personal particulars'. Upload proof of ECNR eligibility: 10th pass certificate (most common), or proof of income tax payment, or professional degree certificate, or government employee proof. No police verification is needed for ECR to ECNR change.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "ECNR status means you do not need emigration clearance for travelling to ECR countries. Class 10 pass certificate is the simplest proof for ECNR eligibility. If you passed Class 10, you are automatically eligible for ECNR."
+      },
+      {
+        "title": "Passport pages exhausted — all pages stamped",
+        "problem": "All visa pages in the passport are full with stamps/visas. No blank pages available for new visa or immigration stamps.",
+        "recommendedNextStep": "Apply for reissue selecting reason 'Exhaustion of pages'. Choose 60-page booklet this time. Upload old passport (first and last pages scan). This is a straightforward reissue — police verification may not be required if address has not changed.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "India no longer offers the option to add pages to an existing passport. You must apply for a completely new passport. Processing time is typically 10–15 days for simple exhaustion cases without address change."
+      },
+      {
+        "title": "Passport application pending for months — no update",
+        "problem": "Application was submitted weeks or months ago. Status shows 'Under Process' with no progress. No SMS or dispatch notification received.",
+        "recommendedNextStep": "Track status on passportindia.gov.in using File Number. If status shows pending police verification: contact local police station to check. If status shows 'Under Process at RPO': call helpline 1800-258-1800 and ask for specific update. Visit the RPO if no resolution after 60 days from PSK visit.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Normal processing time is 30–45 days. If it exceeds 60 days, there may be an issue with police verification or internal processing. Filing a grievance on the Passport Seva portal can escalate the case."
+      },
+      {
+        "title": "Applied for Tatkaal but passport not received within promised time",
+        "problem": "Applicant paid for Tatkaal service expecting 1–3 day processing at PSK, but the passport has not been received even after 2+ weeks.",
+        "recommendedNextStep": "Track status online. If status shows 'Printed' or 'Dispatched', track the Speed Post consignment number. If status still shows 'Under Process', call helpline. Visit RPO if Tatkaal passport is not dispatched within 14 days.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Tatkaal processing at PSK is typically 1–3 days, but dispatch via Speed Post adds 3–7 days. Total time: 7–14 days is normal for Tatkaal. If it exceeds 14 days, escalate to RPO."
+      },
+      {
+        "title": "Government employee — NOC not available",
+        "problem": "Applicant is a government employee. Their department is not providing NOC (No Objection Certificate) or Prior Intimation Certificate in time.",
+        "recommendedNextStep": "Submit Annexure M (for Prior Intimation) instead of NOC. Annexure M is a self-declaration that you have informed your department and are applying without waiting for formal NOC. If department refuses both, contact the RPO with proof of intimation (email/letter to department) and request processing.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "The passport cannot be denied solely because of NOC delay if the applicant has given prior intimation to the department (as per MEA guidelines). Annexure M is accepted as a substitute for NOC."
+      },
+      {
+        "title": "Criminal case pending — can I get a passport?",
+        "problem": "Applicant has a pending criminal case (FIR registered) and wants to know if they can apply for a passport.",
+        "recommendedNextStep": "You can apply for a passport. Declare the criminal case honestly in Annexure A of the application form. The RPO will check with the concerned court. If the court has not restricted your travel or issued a LOC (Look Out Circular), the passport may be issued at RPO discretion. If the court has restricted travel, the passport will be denied until the court lifts the restriction.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Hiding criminal antecedents in the application is a criminal offence (IPC Section 177). Always declare truthfully. The RPO exercises independent discretion. Many applicants with pending cases receive passports if the court has not restricted travel."
+      },
+      {
+        "title": "Passport dispatched but not received — Speed Post lost",
+        "problem": "Application status shows 'Dispatched' with a Speed Post tracking number, but the passport was never delivered.",
+        "recommendedNextStep": "Track the Speed Post consignment on indiapost.gov.in. If it shows 'Delivered' but you did not receive it: contact the local post office and file a complaint. If it shows 'Returned to sender' or 'Lost': contact the RPO with your File Number and proof of non-delivery. The RPO can re-dispatch or ask you to collect from RPO.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Speed Post issues are not uncommon. Always track the consignment daily after dispatch notification. If returned to RPO, it is kept for 30 days before destruction. Collect promptly."
+      },
+      {
+        "title": "Passport shows wrong photo — someone else's photo printed",
+        "problem": "The received passport has another person's photograph or a distorted/wrong photo printed.",
+        "recommendedNextStep": "This is a printing error. Do NOT use this passport. Contact the RPO immediately with the passport and your File Number. The RPO will initiate a reprint at no additional cost. This must be reported within 30 days of receipt.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "This is rare but a serious error. The RPO handles such cases on priority. Keep the wrongly printed passport safe — do not attempt to alter or destroy it. You may need to visit the RPO in person."
+      },
+      {
+        "title": "Child turning 18 — minor passport expiring",
+        "problem": "A minor passport holder is turning 18. Their passport (issued as minor) will expire at age 18 or earlier. They need a fresh adult passport.",
+        "recommendedNextStep": "Apply for a fresh adult passport (not reissue) on passportindia.gov.in after turning 18. Submit: minor passport (for reference), fresh DOB proof, Aadhaar card, adult photograph. This is treated as a fresh application with full police verification.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Minor passports cannot be renewed into adult passports — a fresh application is required. Apply immediately after turning 18 if you need the passport for college admissions or travel. Processing: 30–45 days (Normal)."
+      },
+      {
+        "title": "Want to add spouse name but spouse has different address",
+        "problem": "After marriage, applicant wants to add spouse details to passport but the spouse lives at a different address (not yet moved together).",
+        "recommendedNextStep": "You can add spouse details during reissue without changing your own address. Submit: marriage certificate, spouse's Aadhaar (for name verification only). Your address remains the same in the application. Police verification will be at YOUR address only.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Spouse addition does not require same-address proof. It is a change in personal particulars. Your own address and police verification are independent of your spouse's address."
+      },
+      {
+        "title": "Applied online but cannot find ARN or application",
+        "problem": "Applicant filled the form online but did not save the ARN (Application Reference Number). Cannot find the application in the portal.",
+        "recommendedNextStep": "Login to passportindia.gov.in → 'View Saved/Submitted Applications'. If the application was submitted, it will appear with the ARN. If it was only saved (draft), it appears under 'Saved Applications'. If nothing appears: check if you used a different email to register. Call helpline 1800-258-1800 with your registered email and personal details for retrieval.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Always screenshot or note the ARN immediately after submission. The ARN format is typically a combination of letters and digits. If the application was never submitted (only filled), it may have expired after the saving period."
+      },
+      {
+        "title": "Passport valid but name differs from flight ticket",
+        "problem": "The name on the airline ticket does not exactly match the passport name (extra initial, missing middle name, etc.).",
+        "recommendedNextStep": "Contact the airline immediately to correct the ticket name to match the passport exactly. Most airlines allow minor name corrections (1–3 characters) for a fee. If the difference is major, you may need to rebook. At immigration, the name must match exactly.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Always book tickets using the exact name printed on the passport — including middle name, initials, and surname order. Immigration officers match the ticket name against the passport name character by character. This is not a passport issue — it is a ticketing issue."
+      },
+      {
+        "title": "Address proof is in parent's name — not applicant's name",
+        "problem": "Applicant (young adult or student) does not have any address proof in their own name. All utility bills are in parent's name.",
+        "recommendedNextStep": "Acceptable options: (1) Aadhaar card with current address — this is the simplest solution; update Aadhaar address if needed. (2) Parent's passport with same address can serve as your address proof. (3) Bank passbook with photo showing your name and address. (4) Election card (Voter ID) with address. (5) If none available, submit Annexure D (declaration of address) sworn before a Magistrate.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "Aadhaar card is the most universally accepted address proof for passport. If your address is correct on Aadhaar, that is sufficient. You do not need a utility bill in your own name if Aadhaar is available."
+      },
+      {
+        "title": "Passport appointment booked at wrong PSK city",
+        "problem": "Applicant accidentally booked an appointment at a PSK in a different city (e.g., lives in Hyderabad but booked at Delhi PSK).",
+        "recommendedNextStep": "Login to the portal and cancel/reschedule the appointment to your correct city's PSK. If you have already used all reschedules, call helpline 1800-258-1800 for assistance. You can only visit the PSK where your appointment is booked — other PSKs will not accept you.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "The PSK must be under the same RPO jurisdiction as your present address. If you book outside your jurisdiction, the application may be rejected at the PSK counter. Always verify the PSK location before confirming."
+      },
+      {
+        "title": "NRI returning to India — passport expired, need to apply from India",
+        "problem": "An NRI who has returned permanently to India has an expired passport and wants to renew it from their Indian address.",
+        "recommendedNextStep": "Apply for reissue on passportindia.gov.in from your current Indian address. Submit expired passport plus Indian address proof (Aadhaar, utility bill). If your Aadhaar still shows the old address, update it first. Police verification will be conducted at your current Indian address.",
+        "officialPortal": "https://www.passportindia.gov.in",
+        "notes": "You do not need to apply through the Embassy if you are back in India. Apply directly on the portal like any other Indian resident. Ensure your current Indian address documents are in order."
+      }
+    ],
+
+    "faqs": []
+  },
+
+  "faqs": [
+    {
+      "id": "passport-faq-001",
+      "question": "What is a passport?",
+      "intent": "purpose",
+      "keywords": ["passport", "what is passport", "definition"],
+      "difficulty": "basic",
+      "answer": "A passport is an official travel document issued by the Government of India that certifies the holder's identity and nationality. It allows Indian citizens to travel internationally and also serves as accepted proof of identity and nationality.",
+      "relatedSections": ["purpose"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    },
+    {
+      "id": "passport-faq-002",
+      "question": "Why do I need a passport?",
+      "intent": "purpose",
+      "keywords": ["purpose", "why passport", "use of passport"],
+      "difficulty": "basic",
+      "answer": "A passport is mainly required for international travel. It is also commonly used for visa applications, immigration, identity proof, nationality proof, and official verification processes.",
+      "relatedSections": ["purpose"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    },
+    {
+      "id": "passport-faq-003",
+      "question": "Who can apply for an Indian passport?",
+      "intent": "eligibility",
+      "keywords": ["eligibility", "who can apply", "indian citizen"],
+      "difficulty": "basic",
+      "answer": "Any eligible Indian citizen can apply for an Indian passport by submitting the required identity, address, and supporting documents through the Passport Seva system.",
+      "relatedSections": ["eligibility"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    },
+    {
+      "id": "passport-faq-004",
+      "question": "Can a minor apply for a passport?",
+      "intent": "minor_passport",
+      "keywords": ["minor passport", "child passport", "passport for children"],
+      "difficulty": "basic",
+      "answer": "Yes. A minor can apply for a passport. The process usually requires parent or guardian details and supporting documents. Requirements may vary depending on parental status and case type.",
+      "relatedSections": ["minorPassport", "eligibility"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    },
+    {
+      "id": "passport-faq-005",
+      "question": "What documents are required for a fresh passport?",
+      "intent": "documents",
+      "keywords": ["documents", "fresh passport", "required documents"],
+      "difficulty": "basic",
+      "answer": "Documents depend on the applicant category and case. Commonly required documents include proof of identity, proof of address, proof of date of birth, and any additional documents required for the selected passport category. The final list should be checked using the Passport Seva Document Advisor.",
+      "relatedSections": ["documents"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    },
+    {
+      "id": "passport-faq-006",
+      "question": "Do I need Aadhaar to apply for a passport?",
+      "intent": "documents",
+      "keywords": ["aadhaar", "documents", "identity proof", "address proof"],
+      "difficulty": "basic",
+      "answer": "Aadhaar is commonly used as a supporting identity or address document where applicable, but document requirements depend on the applicant's case. The accepted document combinations should be verified using the Passport Seva Document Advisor.",
+      "relatedSections": ["documents"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    },
+    {
+      "id": "passport-faq-007",
+      "question": "How much does a passport cost?",
+      "intent": "fees",
+      "keywords": ["passport fee", "cost", "charges"],
+      "difficulty": "basic",
+      "answer": "Passport fees depend on passport type, booklet size, applicant category, and whether the application is Normal or Tatkaal. Applicants should check the official Passport Seva fee calculator or fee schedule for the latest amount.",
+      "relatedSections": ["fees"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    },
+    {
+      "id": "passport-faq-008",
+      "question": "How long does it take to get a passport?",
+      "intent": "processing_time",
+      "keywords": ["processing time", "how many days", "passport delivery time"],
+      "difficulty": "basic",
+      "answer": "Passport processing time depends on document verification, police verification, application type, and case status. Applicants can track their application using the Passport Seva portal after submission.",
+      "relatedSections": ["processingTime"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    },
+    {
+      "id": "passport-faq-009",
+      "question": "What types of passports are available in India?",
+      "intent": "general",
+      "keywords": ["passport types", "ordinary passport", "official passport", "diplomatic passport"],
+      "difficulty": "basic",
+      "answer": "India issues different categories of passports, including Ordinary Passports for citizens, Official Passports for eligible government officials, and Diplomatic Passports for eligible diplomatic personnel, subject to government rules.",
+      "relatedSections": ["purpose"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    },
+    {
+      "id": "passport-faq-010",
+      "question": "How long is an Indian passport valid?",
+      "intent": "validity",
+      "keywords": ["passport validity", "expiry", "valid for how many years"],
+      "difficulty": "basic",
+      "answer": "Passport validity depends on passport type and applicant category. Adult passports are generally issued with longer validity than many minor passports. The exact validity should be verified on the Passport Seva portal for the applicant's case.",
+      "relatedSections": ["validity"],
+      "officialSource": "https://www.passportindia.gov.in/"
+    }
+  ]
+}

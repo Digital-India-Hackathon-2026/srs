@@ -1,0 +1,128 @@
+{
+  "id": "driving-licence",
+  "name": "Driving Licence",
+  "officialPortal": "https://sarathi.parivahan.gov.in",
+  "helpline": "1800-120-0026",
+  "lastVerified": "2026-07-01",
+  "issuingAuthority": "Transport Department, Government of Telangana / RTO",
+
+  "sections": {
+    "purpose": "A Driving Licence (DL) is an official document issued by the Transport Department authorising a person to operate a motor vehicle on public roads in India. It certifies that the holder has passed the required tests and is legally permitted to drive the specified class of vehicles. It is also widely accepted as photo identity proof, address proof, and age proof for various government and private purposes.",
+    "eligibility": "Age requirements: 18 years or above for motorcycles with gear, cars, and light motor vehicles. 16 years or above for gearless two-wheelers up to 50cc engine capacity (with parent/guardian consent). 20 years or above for commercial transport vehicles. Additional: Must be physically and mentally fit to drive. Must not be disqualified by any court from holding a licence. Must pass the Learner Licence test before applying for permanent DL.",
+    "documents": [
+      "Aadhaar card (serves as age proof, address proof, and identity proof)",
+      "Passport-size photographs — recent, white background",
+      "Application Form 4 (available on Sarathi portal or at RTO)",
+      "Existing Learner Licence (mandatory when applying for permanent DL)",
+      "Medical certificate Form 1A (mandatory for commercial/transport vehicle licence)",
+      "Proof of age (Birth certificate / Class 10 marksheet — if Aadhaar does not show DOB clearly)"
+    ],
+    "optionalDocuments": [
+      "Vehicle insurance papers (for driving test — vehicle must be insured)",
+      "Vehicle RC (Registration Certificate — vehicle used for test must be registered)",
+      "Blood group certificate",
+      "NOC from existing RTO (if applying from a different state)"
+    ],
+    "fees": "Learner Licence (LL): approximately ₹200. Permanent Driving Licence (DL): approximately ₹200. DL Renewal: approximately ₹200. International Driving Permit: approximately ₹1000. Duplicate DL: approximately ₹200. Fees vary slightly by vehicle class and state surcharges.",
+    "processingTime": "Learner Licence: issued within 1–7 days after passing the LL test (some RTOs issue same day). Permanent DL: 15–30 working days after passing the driving test. DL dispatch: sent via Speed Post or collected at RTO. Renewal: 7–15 days.",
+    "validity": "Permanent DL: Valid for 20 years from date of issue or until the holder turns 50 years old, whichever is earlier. After age 50: renewed every 5 years subject to medical fitness. Learner Licence: Valid for 6 months from date of issue. Commercial DL: Valid for 3 years, renewable with medical fitness certificate.",
+    "applicationSteps": [
+      "Step 1 — Apply for Learner Licence (LL) at sarathi.parivahan.gov.in",
+      "Step 2 — Fill Form 2 (LL application), upload documents, pay LL fee online",
+      "Step 3 — Book LL test slot at your nearest RTO",
+      "Step 4 — Visit RTO and pass the computer-based LL test (traffic rules, road signs)",
+      "Step 5 — Receive Learner Licence (valid for 6 months to practice driving)",
+      "Step 6 — Wait minimum 30 days after LL issue date (mandatory gap before DL test)",
+      "Step 7 — Apply for Permanent DL on Sarathi portal (Form 4)",
+      "Step 8 — Book driving test slot at RTO and pay DL fee",
+      "Step 9 — Visit RTO on test date with: LL, original documents, and a registered+insured vehicle",
+      "Step 10 — Pass the driving test conducted by RTO inspector",
+      "Step 11 — DL processed and dispatched to registered address via Speed Post (15–30 days)"
+    ],
+    "learnerLicence": {
+      "overview": "A Learner Licence (LL) is a temporary permit that allows you to practice driving under supervision. It must be obtained before applying for a permanent DL. Valid for 6 months.",
+      "eligibility": "Same age criteria as permanent DL. Must pass a computer-based test on traffic rules and road signs at RTO.",
+      "testFormat": "Computer-based test with multiple choice questions on traffic signs, road rules, and safety. Typically 15–20 questions. Must score above 60% to pass.",
+      "afterLL": "You can drive only with a permanent DL holder seated beside you. Must display L-plate on vehicle. Wait at least 30 days before applying for permanent DL."
+    },
+    "drivingTest": {
+      "overview": "The driving test is conducted by an RTO Motor Vehicle Inspector. You must demonstrate ability to drive safely on a designated test track or road.",
+      "requirements": "Bring: valid LL, original documents, a registered and insured vehicle of the class you are applying for, vehicle owner (if not your vehicle) with RC and insurance.",
+      "testElements": "Typically includes: starting the vehicle, moving forward and backward, turning, stopping, parallel parking, figure-8 or S-curve on track, hill driving (where applicable).",
+      "ifFail": "You can rebook and retake the test. A fresh fee may apply. There is no limit on attempts but each requires a new booking."
+    },
+    "vehicleClasses": "MCWG — Motorcycle with gear. MCWOG — Motorcycle without gear (scooter/moped). LMV — Light Motor Vehicle (car, jeep, van up to 7500kg). HMV — Heavy Motor Vehicle (truck, bus). TRANS — Transport vehicle (commercial). HGMV — Heavy Goods Motor Vehicle.",
+    "commercialLicence": "For transport vehicles (TRANS/HMV/HGMV): Must be 20+ years old. Must hold LMV DL for at least 1 year. Must submit medical fitness certificate (Form 1A). Must pass heavy vehicle driving test at RTO.",
+    "duplicateLicence": "If DL is lost or damaged: Apply online on Sarathi portal → Select 'Issue of Duplicate DL'. Submit FIR (for lost DL), damaged DL (for damaged), affidavit, address proof. Fee: approximately ₹200. Processing: 7–15 days.",
+    "internationalDrivingPermit": "IDP allows driving in foreign countries that recognise it. Apply at RTO with: valid Indian DL, passport, visa, photographs, fee ₹1000. Valid for 1 year. Not all countries accept IDP — verify with the destination country.",
+    "renewal": {
+      "overview": "DL must be renewed before or within 1 year of expiry. Can be renewed up to 1 year after expiry without penalty. Beyond 1 year, a fresh driving test may be required.",
+      "process": "Apply online at sarathi.parivahan.gov.in → Select 'Renewal of DL'. Upload medical fitness certificate (for age 50+). Pay renewal fee. Visit RTO if biometrics needed.",
+      "fee": "Approximately ₹200",
+      "medicalRequired": "Medical fitness certificate (Form 1A) mandatory for age 40+ for transport vehicles, age 50+ for non-transport vehicles."
+    },
+    "commonMistakes": [
+      "Applying for permanent DL before completing 30 days after LL issue",
+      "Not carrying original documents on driving test day",
+      "Selecting wrong vehicle class during application",
+      "Vehicle used for test not having valid insurance or registration",
+      "Not practicing enough — failing the driving test causes delay and re-fee",
+      "Applying from wrong RTO jurisdiction (must apply at RTO of your address)",
+      "Not booking LL test slot — just showing up without appointment"
+    ],
+    "rejectionReasons": [
+      "Failing the driving test (most common)",
+      "Document mismatch between LL application and DL application",
+      "Medically unfit (for commercial licence)",
+      "LL expired (older than 6 months) — must get fresh LL",
+      "Vehicle does not meet test requirements (uninsured, unregistered)",
+      "Applicant below minimum age for the vehicle class applied"
+    ],
+    "edgeCases": [
+      {
+        "title": "LL expired before I could take driving test",
+        "problem": "Learner Licence validity (6 months) expired before the applicant could book or pass the driving test.",
+        "recommendedNextStep": "Apply for a fresh Learner Licence. There is no extension for expired LL. You must pass the LL test again and wait 30 days before the DL driving test.",
+        "officialPortal": "https://sarathi.parivahan.gov.in",
+        "notes": "LL fee must be paid again. Plan your DL test within 6 months of LL issue to avoid this."
+      },
+      {
+        "title": "Failed driving test multiple times",
+        "problem": "Applicant has failed the RTO driving test and wants to retry.",
+        "recommendedNextStep": "You can rebook and retake the test as many times as needed, as long as your LL is still valid (within 6 months). Each attempt requires a new booking and may require a fresh fee. Practice extensively before rebooking.",
+        "officialPortal": "https://sarathi.parivahan.gov.in",
+        "notes": "There is no penalty for failing. Focus on improving weak areas — typically parallel parking and S-curve cause most failures."
+      },
+      {
+        "title": "Want to add new vehicle class to existing DL",
+        "problem": "Applicant already has a DL for MCWG (motorcycle) and wants to add LMV (car).",
+        "recommendedNextStep": "Apply on Sarathi portal → 'Addition of New Class'. Get a fresh LL for the new class. Wait 30 days. Pass driving test for the new vehicle class. Your existing DL will be updated.",
+        "officialPortal": "https://sarathi.parivahan.gov.in",
+        "notes": "You do not need to surrender your existing DL. The new class is endorsed on the same licence after passing the test."
+      }
+    ]
+  },
+
+  "faqs": [
+    {"id":"dl-faq-001","question":"What is a driving licence?","intent":"purpose","keywords":["driving licence","what is","definition","DL"],"difficulty":"basic","answer":"A Driving Licence is an official document issued by the Transport Department that legally permits a person to drive motor vehicles on public roads in India. It also serves as a widely accepted photo identity and address proof.","relatedSections":["purpose"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-002","question":"What is the minimum age for driving licence?","intent":"eligibility","keywords":["age","minimum age","age limit","how old"],"difficulty":"basic","answer":"Minimum age: 18 years for cars and geared motorcycles. 16 years for gearless scooters/mopeds up to 50cc (with parent consent). 20 years for commercial transport vehicles.","relatedSections":["eligibility"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-003","question":"What documents are needed for driving licence?","intent":"documents","keywords":["documents","required","papers","what to bring"],"difficulty":"basic","answer":"Required: Aadhaar card, passport-size photographs, Application Form 4, existing Learner Licence (for DL application). For commercial licence additionally: Medical certificate Form 1A. The vehicle used for the test must have valid registration and insurance.","relatedSections":["documents"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-004","question":"How much does driving licence cost?","intent":"fees","keywords":["fee","cost","charge","how much","price"],"difficulty":"basic","answer":"Learner Licence: approximately ₹200. Permanent DL: approximately ₹200. Renewal: approximately ₹200. International Driving Permit: approximately ₹1000. Duplicate DL: approximately ₹200.","relatedSections":["fees"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-005","question":"How to apply for driving licence?","intent":"steps","keywords":["how to apply","process","steps","get licence"],"difficulty":"basic","answer":"First get a Learner Licence (LL) by passing the computer-based test at RTO. Wait minimum 30 days. Then apply for permanent DL, book a driving test slot, pass the driving test at RTO, and receive your DL via Speed Post within 15–30 days.","relatedSections":["applicationSteps"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-006","question":"How long does it take to get driving licence?","intent":"processing_time","keywords":["how long","days","processing time","when"],"difficulty":"basic","answer":"Learner Licence: 1–7 days after passing LL test. Permanent DL: 15–30 working days after passing driving test. Total time from start to finish: minimum 45 days (30 days mandatory gap between LL and DL test plus processing).","relatedSections":["processingTime"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-007","question":"What is learner licence?","intent":"purpose","keywords":["learner licence","LL","what is","temporary"],"difficulty":"basic","answer":"A Learner Licence is a temporary permit valid for 6 months that allows you to practice driving under supervision of a permanent DL holder. You must display an L-plate on the vehicle. It is mandatory to obtain LL before applying for a permanent Driving Licence.","relatedSections":["learnerLicence"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-008","question":"What happens in the driving test?","intent":"steps","keywords":["driving test","test","what happens","exam"],"difficulty":"basic","answer":"The driving test is conducted by an RTO inspector. It typically includes: starting the vehicle, forward and reverse driving, turning, stopping, parallel parking, and figure-8 or S-curve on a designated track. You must bring a registered and insured vehicle for the test.","relatedSections":["drivingTest"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-009","question":"Can I apply for driving licence online?","intent":"steps","keywords":["online","apply online","sarathi","portal"],"difficulty":"basic","answer":"Yes. Apply through sarathi.parivahan.gov.in for both Learner Licence and permanent DL. You can fill forms, upload documents, pay fees, and book test slots online. However, you must physically visit the RTO for the LL computer test and the DL driving test.","relatedSections":["applicationSteps"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-010","question":"What if I fail the driving test?","intent":"rejection","keywords":["fail","failed","test","retry","again"],"difficulty":"basic","answer":"You can rebook and retake the driving test. There is no limit on attempts as long as your Learner Licence is still valid (within 6 months). Each attempt requires a fresh booking and may require a fresh fee. Practice more before rebooking.","relatedSections":["drivingTest","edgeCases"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-011","question":"How to renew driving licence?","intent":"renewal","keywords":["renew","renewal","expired","extend"],"difficulty":"basic","answer":"Apply on sarathi.parivahan.gov.in → Select 'Renewal of DL'. Can be renewed up to 1 year before or after expiry without penalty. Fee: approximately ₹200. Medical certificate required for age 50+. Beyond 1 year after expiry, a fresh driving test may be needed.","relatedSections":["renewal"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-012","question":"How long is driving licence valid?","intent":"processing_time","keywords":["validity","valid","how long","expiry","years"],"difficulty":"basic","answer":"Permanent DL: valid for 20 years or until age 50 (whichever comes first). After 50: renewed every 5 years. Learner Licence: valid for 6 months. Commercial DL: valid for 3 years.","relatedSections":["validity"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-013","question":"What are vehicle classes on driving licence?","intent":"general","keywords":["vehicle class","MCWG","LMV","HMV","type"],"difficulty":"intermediate","answer":"Common classes: MCWG (motorcycle with gear), MCWOG (scooter/moped without gear), LMV (car/jeep/van up to 7500kg), HMV (truck/bus), TRANS (commercial transport), HGMV (heavy goods vehicle). Your DL is valid only for the classes endorsed on it.","relatedSections":["vehicleClasses"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-014","question":"How to get duplicate driving licence?","intent":"lost_document","keywords":["duplicate","lost","damaged","replacement"],"difficulty":"intermediate","answer":"Apply on Sarathi portal → 'Issue of Duplicate DL'. Submit: FIR copy (for lost DL), damaged DL (for damage), affidavit, Aadhaar for address proof. Fee: approximately ₹200. Processing: 7–15 days.","relatedSections":["duplicateLicence"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-015","question":"How to get international driving permit?","intent":"general","keywords":["international","IDP","driving abroad","foreign"],"difficulty":"intermediate","answer":"Apply at RTO with: valid Indian DL, passport copy, visa copy, photographs, fee ₹1000. IDP is valid for 1 year. Not all countries accept IDP — verify with the destination country before travel.","relatedSections":["internationalDrivingPermit"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-016","question":"Can I add a new vehicle class to my DL?","intent":"steps","keywords":["add class","new vehicle","motorcycle to car","endorse"],"difficulty":"intermediate","answer":"Yes. Apply on Sarathi → 'Addition of New Class'. Get a fresh LL for the new class, wait 30 days, and pass the driving test for that vehicle. Your existing DL will be updated with the new endorsement.","relatedSections":["edgeCases"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-017","question":"What if my learner licence expired?","intent":"edge_case","keywords":["LL expired","learner expired","too late"],"difficulty":"intermediate","answer":"If your LL expired (older than 6 months) before you could take the driving test, you must apply for a fresh Learner Licence, pass the LL test again, and wait 30 days before applying for the DL driving test. There is no extension for expired LL.","relatedSections":["edgeCases"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-018","question":"Do I need a medical certificate for DL?","intent":"documents","keywords":["medical","certificate","Form 1A","doctor"],"difficulty":"intermediate","answer":"Medical certificate (Form 1A) is mandatory for: commercial/transport vehicle licence (all ages), and DL renewal for non-transport vehicles if applicant is 50 years or older. For regular non-commercial DL under age 50, medical certificate is not required.","relatedSections":["documents","renewal"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-019","question":"Which RTO should I apply at?","intent":"portal","keywords":["which RTO","jurisdiction","correct office","location"],"difficulty":"basic","answer":"You must apply at the RTO that has jurisdiction over your present residential address (as per your Aadhaar). You cannot apply at an RTO in a different city or district. The Sarathi portal auto-assigns your RTO based on the address entered.","relatedSections":["applicationSteps"],"officialSource":"https://sarathi.parivahan.gov.in"},
+    {"id":"dl-faq-020","question":"What mistakes to avoid for driving licence?","intent":"rejection","keywords":["mistakes","avoid","common errors","problems"],"difficulty":"basic","answer":"Avoid: applying for DL before 30 days after LL, not carrying originals on test day, selecting wrong vehicle class, using an uninsured/unregistered vehicle for the test, not practicing enough, and applying at the wrong RTO.","relatedSections":["commonMistakes"],"officialSource":"https://sarathi.parivahan.gov.in"}
+  ]
+}

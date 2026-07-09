@@ -1,0 +1,86 @@
+{
+  "id": "residence-certificate",
+  "name": "Residence Certificate",
+  "officialPortal": "https://tg.meeseva.gov.in",
+  "helpline": "1800-599-4788",
+  "lastVerified": "2026-07-01",
+  "issuingAuthority": "Revenue Department, Government of Telangana",
+
+  "sections": {
+    "purpose": "A Residence Certificate (also called Domicile Certificate) is an official document issued by the Revenue Department confirming that a person is a permanent resident of a specific location in Telangana. It is used for: (1) Educational admissions requiring Telangana domicile proof (local candidate status). (2) Government job applications where local/domicile reservation applies. (3) State government welfare schemes reserved for Telangana residents. (4) Hostel admissions under state quota. (5) Scholarship applications requiring state residency proof. (6) Bank loan applications requiring residence verification. (7) Property-related legal matters requiring domicile proof.",
+    "eligibility": "Must be currently residing in Telangana with verifiable address proof. Aadhaar card with current Telangana address is the strongest eligibility indicator. Some institutions may require proof of residence for a specific minimum period (e.g., 7 years for certain admissions). No income, caste, or age restriction for applying.",
+    "documents": [
+      "Application form (from MeeSeva or online)",
+      "Aadhaar card with current Telangana address",
+      "Address proof — Electricity bill / Water bill / Telephone bill (not older than 1 year)",
+      "Voter ID Card (if available — shows constituency)",
+      "Ration Card (if available — shows family residence)",
+      "Property tax receipt (if property owner in Telangana)",
+      "Passport-size photograph"
+    ],
+    "optionalDocuments": [
+      "Rent agreement (notarised preferred — for rented accommodation)",
+      "Employer letter on company letterhead (for employee quarters)",
+      "Bank passbook with address (showing Telangana address)",
+      "School/college certificate showing Telangana institution attendance"
+    ],
+    "fees": "Approximately ₹35 at MeeSeva centre. No additional charges.",
+    "processingTime": "7 to 10 working days from submission. Tahsildar verifies residence through records or field visit. In straightforward cases with clear Aadhaar address match, processing may be faster (5–7 days).",
+    "validity": "Usually valid for 6 months to 1 year from date of issue. Some institutions may ask for a certificate issued within the last 3–6 months. There is no permanent validity — reapplication is needed periodically.",
+    "applicationSteps": [
+      "Step 1 — Ensure your Aadhaar address matches your current Telangana residence",
+      "Step 2 — Gather address proof documents (utility bills, Voter ID, Ration Card)",
+      "Step 3 — Visit nearest MeeSeva centre or apply online at tg.meeseva.gov.in",
+      "Step 4 — Select Revenue Department → Residence / Domicile Certificate",
+      "Step 5 — Fill in personal details and current address accurately",
+      "Step 6 — Upload or submit all address proof documents",
+      "Step 7 — Pay fee of approximately ₹35",
+      "Step 8 — Collect Application Reference Number (ARN)",
+      "Step 9 — Tahsildar verifies through records or may conduct field visit",
+      "Step 10 — Certificate issued within 7–10 working days"
+    ],
+    "acceptedAddressProofs": "Aadhaar card (strongest), Electricity bill (within 1 year), Water bill, Telephone/Postpaid mobile bill, Voter ID, Ration Card, Property tax receipt, Rent agreement (registered/notarised), Bank passbook with photo, Gas connection bill. Important: Aadhaar address must match the address in the application form.",
+    "commonMistakes": [
+      "Aadhaar address not matching the address written in the application form",
+      "Using utility bills older than 1 year — they may not be accepted",
+      "Applying from a rented address without notarised rent agreement",
+      "Not updating Aadhaar before applying — if Aadhaar shows old address",
+      "Incomplete form — leaving mandatory fields blank",
+      "Not being available for field verification if Tahsildar initiates one"
+    ],
+    "rejectionReasons": [
+      "Address mismatch between Aadhaar and application",
+      "Utility bill older than 1 year or in someone else's name",
+      "No valid address proof for current Telangana residence",
+      "Applicant found to not actually reside at declared address during field check",
+      "Incomplete application form"
+    ],
+    "edgeCases": [
+      {"title":"Living in rented house with no utility bills in own name","problem":"Applicant lives in a rented house. All bills are in landlord's name.","recommendedNextStep":"Submit: notarised rent agreement, landlord's NOC or written statement, Aadhaar with current address (update Aadhaar first if needed), and bank passbook showing current address. Aadhaar is the most critical document.","officialPortal":"https://tg.meeseva.gov.in","notes":"Update your Aadhaar address to the rented address before applying. This resolves most tenant verification issues."},
+      {"title":"Student from another state needing Telangana residence proof","problem":"Student from another state studying in Telangana needs residence certificate for local admission benefits.","recommendedNextStep":"Residence certificate is issued based on permanent/current residence, not temporary student stay. If you have been residing in Telangana for the required period with valid address proof, you may be eligible. If you are a recent migrant, the certificate may not be issued. Check specific institution requirements.","officialPortal":"https://tg.meeseva.gov.in","notes":"Each institution may have different residency duration requirements. Some require 7+ years of domicile."}
+    ]
+  },
+
+  "faqs": [
+    {"id":"rc-faq-001","question":"What is a residence certificate?","intent":"purpose","keywords":["residence certificate","what is","domicile"],"difficulty":"basic","answer":"A Residence Certificate (Domicile Certificate) is an official document issued by the Revenue Department of Telangana confirming that a person is a permanent resident of a specific location. It is used for educational admissions, government jobs, state welfare schemes, and other purposes requiring proof of Telangana residency.","relatedSections":["purpose"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-002","question":"What is the use of residence certificate?","intent":"purpose","keywords":["use","purpose","why need"],"difficulty":"basic","answer":"Used for: college admissions requiring local candidate status, government job applications with domicile reservation, state welfare schemes, hostel admissions, scholarships requiring state residency, and property-related legal matters.","relatedSections":["purpose"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-003","question":"What documents needed for residence certificate?","intent":"documents","keywords":["documents","required","papers"],"difficulty":"basic","answer":"Required: Aadhaar card (with current Telangana address), address proof (electricity/water/telephone bill within 1 year), Voter ID, Ration Card (if available), property tax receipt (if applicable), passport-size photograph, and application form.","relatedSections":["documents"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-004","question":"How much does residence certificate cost?","intent":"fees","keywords":["fee","cost","charge"],"difficulty":"basic","answer":"Approximately ₹35 at MeeSeva centre. No additional government fees.","relatedSections":["fees"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-005","question":"How long does residence certificate take?","intent":"processing_time","keywords":["how long","days","time"],"difficulty":"basic","answer":"7 to 10 working days. The Tahsildar verifies residence through records or field visit. Straightforward cases with clear Aadhaar match may process in 5–7 days.","relatedSections":["processingTime"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-006","question":"How to apply for residence certificate?","intent":"steps","keywords":["how to apply","process","steps"],"difficulty":"basic","answer":"Ensure Aadhaar shows your current Telangana address. Visit MeeSeva or apply at tg.meeseva.gov.in. Select Revenue → Residence Certificate. Fill form, upload address proofs, pay ₹35 fee. Tahsildar verifies. Certificate issued in 7–10 days.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-007","question":"What address proofs are accepted?","intent":"documents","keywords":["address proof","accepted","valid"],"difficulty":"basic","answer":"Accepted proofs: Aadhaar (strongest), electricity bill (within 1 year), water bill, telephone bill, Voter ID, Ration Card, property tax receipt, registered rent agreement, bank passbook with photo, gas connection bill. Aadhaar address must match application.","relatedSections":["acceptedAddressProofs"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-008","question":"How long is residence certificate valid?","intent":"processing_time","keywords":["validity","valid","expire","how long valid"],"difficulty":"basic","answer":"Usually valid for 6 months to 1 year from issue date. Some institutions require one issued within the last 3–6 months. It does not have permanent validity — you need to reapply periodically when needed.","relatedSections":["validity"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-009","question":"Can I apply online for residence certificate?","intent":"steps","keywords":["online","portal","internet"],"difficulty":"basic","answer":"Yes. Apply online at tg.meeseva.gov.in. Upload scanned address proof documents and pay the fee online. Tahsildar verification is still required regardless of online or offline application.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-010","question":"What if I live in rented house?","intent":"edge_case","keywords":["rented","tenant","landlord","rent"],"difficulty":"intermediate","answer":"Submit: notarised rent agreement, Aadhaar with current rented address (update if needed), and bank passbook showing current address. Landlord's NOC may help. The most important step is ensuring your Aadhaar shows the current rented address.","relatedSections":["edgeCases"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-011","question":"What if residence certificate is rejected?","intent":"rejection","keywords":["rejected","denied","refused"],"difficulty":"intermediate","answer":"Common reasons: Aadhaar address mismatch, expired utility bills, no valid address proof, or Tahsildar found applicant not residing at declared address. Fix: update Aadhaar, get fresh utility bills in your name, and reapply with correct information.","relatedSections":["rejectionReasons"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-012","question":"Is Aadhaar required for residence certificate?","intent":"documents","keywords":["aadhaar","mandatory","required"],"difficulty":"basic","answer":"Yes. Aadhaar card with current Telangana address is mandatory and is the strongest address proof. If your Aadhaar shows an old address, update it before applying for the residence certificate.","relatedSections":["documents"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-013","question":"Where to apply for residence certificate?","intent":"portal","keywords":["where","office","meeseva","location"],"difficulty":"basic","answer":"Apply at any MeeSeva centre in Telangana, at the Tahsildar office of your mandal, or online at tg.meeseva.gov.in. MeeSeva helpline: 1800-599-4788.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-014","question":"Is residence certificate same as domicile certificate?","intent":"purpose","keywords":["domicile","same","difference"],"difficulty":"basic","answer":"Yes. In Telangana, Residence Certificate and Domicile Certificate refer to the same document. Both confirm permanent residency in a specific location in the state.","relatedSections":["purpose"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-015","question":"What mistakes to avoid for residence certificate?","intent":"rejection","keywords":["mistakes","avoid","errors"],"difficulty":"basic","answer":"Avoid: Aadhaar address mismatch with application, using utility bills older than 1 year, not having rent agreement for rented address, incomplete form, and not being available if Tahsildar orders field verification.","relatedSections":["commonMistakes"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-016","question":"Can I track residence certificate status?","intent":"tracking","keywords":["track","status","ARN","check"],"difficulty":"basic","answer":"Yes. Use the Application Reference Number (ARN) to track at tg.meeseva.gov.in or call 1800-599-4788. Visit the MeeSeva centre for in-person status check.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-017","question":"Can student from another state get Telangana residence certificate?","intent":"edge_case","keywords":["student","another state","migrant","outside"],"difficulty":"intermediate","answer":"Residence certificate is based on actual permanent residence, not temporary student stay. If you have been residing in Telangana for the required period with valid address proof, you may be eligible. Recent migrants may not qualify. Check the specific institution's residency duration requirements.","relatedSections":["edgeCases"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-018","question":"Do I need to update Aadhaar before applying?","intent":"documents","keywords":["update aadhaar","address change","before"],"difficulty":"intermediate","answer":"Yes, strongly recommended. Your Aadhaar address must match the address in your residence certificate application. If your Aadhaar shows a different or old address, update it at the nearest Aadhaar Seva Kendra before applying.","relatedSections":["documents","commonMistakes"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-019","question":"Can I use residence certificate for government job?","intent":"purpose","keywords":["government job","employment","local candidate"],"difficulty":"basic","answer":"Yes. Residence certificates are commonly required for government job applications where local candidate or domicile reservation applies. Check the specific recruitment notification for residency requirements and certificate validity period accepted.","relatedSections":["purpose"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"rc-faq-020","question":"How to renew residence certificate?","intent":"renewal","keywords":["renew","renewal","expired","again"],"difficulty":"basic","answer":"There is no renewal process. Residence certificates expire after 6–12 months. When you need a new one, submit a fresh application with current address proof and pay the fee again. Each application is processed independently.","relatedSections":["validity"],"officialSource":"https://tg.meeseva.gov.in"}
+  ]
+}

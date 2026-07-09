@@ -1,0 +1,88 @@
+{
+  "id": "caste-certificate",
+  "name": "Caste Certificate",
+  "officialPortal": "https://tg.meeseva.gov.in",
+  "helpline": "1800-599-4788",
+  "lastVerified": "2026-07-01",
+  "issuingAuthority": "Revenue Department, Government of Telangana",
+
+  "sections": {
+    "purpose": "A Caste Certificate is an official document issued by the Revenue Department of Telangana that certifies a person belongs to a specific caste or community (SC, ST, BC, or OBC) as per the Telangana government schedule. It is used for: (1) Availing reservations in government jobs under SC/ST/BC/OBC quota. (2) College admissions under reserved category seats. (3) Government scholarships for SC/ST/BC students. (4) Fee reimbursement schemes for reserved category students. (5) Hostel admissions under welfare department schemes. (6) Contesting elections from reserved constituencies. (7) UPSC/TSPSC and other competitive exams — category declaration. (8) Government welfare scheme benefits targeting specific communities.",
+    "eligibility": "Must belong to a recognized SC, ST, BC, or OBC community as listed in the official Telangana Government caste schedule. Must be a permanent resident of Telangana (domicile proof required). Must have documentary evidence of community — ancestral documents strongly preferred. The caste must be listed in the official schedule published by the Government of Telangana for the specific district.",
+    "documents": [
+      "Application form (available at MeeSeva or online)",
+      "Aadhaar card of applicant",
+      "Address proof — Electricity bill / Voter ID / Ration Card",
+      "School Transfer Certificate (TC) or SSC/10th Certificate showing caste",
+      "Ration Card showing family caste entry",
+      "Parent's or ancestor's caste certificate (strongly recommended — most important document)",
+      "Community or caste proof from village records (if available)",
+      "Passport-size photograph"
+    ],
+    "optionalDocuments": [
+      "Grandfather's or great-grandfather's caste certificate",
+      "Village elder affidavit (in rural areas if formal proof unavailable)",
+      "Birth certificate (showing parents' community if mentioned)",
+      "School admission register extract showing community"
+    ],
+    "fees": "Approximately ₹35 to ₹45 at MeeSeva centre. No additional government fee beyond the MeeSeva service charge.",
+    "processingTime": "15 to 30 working days. The Tahsildar conducts a mandatory field verification of the community claim. In complex cases (no ancestral proof available), processing may take up to 45 days as additional enquiry is conducted.",
+    "validity": "Caste certificates in Telangana are generally considered permanent. However, some institutions and competitive exams may require a certificate issued within the last 1–2 years. For UPSC/TSPSC, check the specific notification requirements.",
+    "applicationSteps": [
+      "Step 1 — Gather all documents, especially parent's or ancestor's caste certificate",
+      "Step 2 — Visit nearest MeeSeva centre or apply at Tahsildar office of your mandal",
+      "Step 3 — Select Revenue Department → Caste Certificate",
+      "Step 4 — Fill the form with: applicant name, father's name, community/caste, sub-caste, district, mandal, village",
+      "Step 5 — Upload or submit all supporting documents",
+      "Step 6 — Pay the service fee of approximately ₹35–₹45",
+      "Step 7 — Collect Application Reference Number (ARN)",
+      "Step 8 — Tahsildar conducts field verification — may visit your address or contact local village officials",
+      "Step 9 — Certificate issued within 15–30 working days after successful verification"
+    ],
+    "verification": "The Tahsildar verifies the caste claim through: (1) Checking parent's/ancestor's caste certificate if provided. (2) Cross-referencing with school records and Ration Card entries. (3) Conducting field enquiry through VRO (Village Revenue Officer) in rural areas. (4) Consulting village elders or community leaders if needed. (5) Verifying against the official government caste schedule for the district.",
+    "parentCertificate": "Parent's caste certificate is the single most important document for caste certificate applications. If available, it significantly speeds up verification. If parent's certificate is unavailable: submit grandfather's certificate, school records showing caste, or village elder attestation. The Tahsildar will conduct additional enquiry in such cases.",
+    "commonMistakes": [
+      "Not providing parent's or ancestor's caste certificate — most common cause of delay",
+      "Name mismatch between applicant's Aadhaar and school Transfer Certificate",
+      "Applying for the wrong caste category (e.g., applying as ST when listed under BC)",
+      "Missing school Transfer Certificate or 10th marksheet",
+      "Not knowing the correct sub-caste name as per the government schedule",
+      "Applying at wrong jurisdiction (must apply at mandal of residence)"
+    ],
+    "rejectionReasons": [
+      "Insufficient ancestral documentary proof for community claim",
+      "Caste/community not listed in the Telangana government schedule for that district",
+      "Name or DOB mismatch across documents",
+      "Incorrect caste category selected in application",
+      "Tahsildar field enquiry unable to verify community claim",
+      "Applicant not a resident of Telangana"
+    ],
+    "edgeCases": [
+      {"title":"No parent caste certificate available","problem":"Applicant's parents never obtained a caste certificate and now the applicant needs one.","recommendedNextStep":"Submit: grandfather's caste proof if any, school TC showing community, Ration Card showing caste, village elder attestation, and a self-declaration. The Tahsildar will conduct detailed field enquiry. Processing takes longer (30–45 days).","officialPortal":"https://tg.meeseva.gov.in","notes":"This is common for first-generation applicants. Cooperate fully with the field verification process."},
+      {"title":"Caste certificate from one state, now living in Telangana","problem":"Applicant migrated from another state and holds a caste certificate from that state. Telangana institutions require a Telangana-issued certificate.","recommendedNextStep":"A caste certificate from another state is not directly valid in Telangana. You must apply for a fresh Telangana caste certificate through MeeSeva with your existing proof. The old certificate from another state serves as supporting evidence but not a substitute.","officialPortal":"https://tg.meeseva.gov.in","notes":"Inter-state caste certificate transfer is not automatic. Each state issues its own certificates."}
+    ]
+  },
+
+  "faqs": [
+    {"id":"cc-faq-001","question":"What is a caste certificate?","intent":"purpose","keywords":["caste certificate","what is","definition"],"difficulty":"basic","answer":"A Caste Certificate is an official document issued by the Revenue Department of Telangana that certifies a person belongs to a specific SC, ST, BC, or OBC community as per the state government schedule. It is used for reservation benefits in education, employment, and government schemes.","relatedSections":["purpose"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-002","question":"Why do I need a caste certificate?","intent":"purpose","keywords":["why","need","use","purpose"],"difficulty":"basic","answer":"A caste certificate is needed for: government job reservations (SC/ST/BC/OBC quota), college admission under reserved seats, scholarships, fee reimbursement, competitive exam category declarations (UPSC/TSPSC), and government welfare scheme benefits.","relatedSections":["purpose"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-003","question":"Who can apply for caste certificate?","intent":"eligibility","keywords":["who","eligible","eligibility","apply"],"difficulty":"basic","answer":"Any person who belongs to a recognized SC, ST, BC, or OBC community as per the Telangana government caste schedule and is a resident of Telangana can apply. Documentary proof of community (preferably parent's caste certificate) is required.","relatedSections":["eligibility"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-004","question":"What documents are needed for caste certificate?","intent":"documents","keywords":["documents","required","papers"],"difficulty":"basic","answer":"Required: Application form, Aadhaar card, address proof, school TC or 10th certificate showing caste, Ration Card, parent's or ancestor's caste certificate (most important), and passport-size photograph.","relatedSections":["documents"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-005","question":"How much does caste certificate cost?","intent":"fees","keywords":["fee","cost","charge","price"],"difficulty":"basic","answer":"Approximately ₹35 to ₹45 service charge at MeeSeva. No additional government fee.","relatedSections":["fees"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-006","question":"How long does caste certificate take?","intent":"processing_time","keywords":["how long","days","time","processing"],"difficulty":"basic","answer":"15 to 30 working days. Tahsildar field verification is mandatory. If ancestral proof is weak or unavailable, processing may take up to 45 days due to additional enquiry.","relatedSections":["processingTime"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-007","question":"How to apply for caste certificate?","intent":"steps","keywords":["how to apply","process","steps"],"difficulty":"basic","answer":"Visit MeeSeva or Tahsildar office. Select Revenue Department → Caste Certificate. Fill form with community details. Submit documents (especially parent's caste certificate). Pay ₹35–₹45 fee. Tahsildar conducts field verification. Certificate issued in 15–30 days.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-008","question":"Is parent caste certificate mandatory?","intent":"documents","keywords":["parent","father","mother","ancestor","mandatory"],"difficulty":"intermediate","answer":"It is not technically mandatory but is the single most important document. Without it, verification takes much longer (30–45 days) and requires additional field enquiry. If unavailable, submit grandfather's certificate, school records, or village elder attestation as alternatives.","relatedSections":["parentCertificate"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-009","question":"What if I don't have parent's caste certificate?","intent":"edge_case","keywords":["no parent","without","not available","missing"],"difficulty":"intermediate","answer":"Submit alternatives: grandfather's caste proof, school TC showing community, Ration Card caste entry, village elder attestation, and self-declaration. The Tahsildar conducts detailed field enquiry. Processing takes longer (30–45 days) but the certificate can still be issued.","relatedSections":["edgeCases","parentCertificate"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-010","question":"Can I apply for caste certificate online?","intent":"steps","keywords":["online","portal","internet","meeseva"],"difficulty":"basic","answer":"Yes. Apply online through tg.meeseva.gov.in by selecting Revenue Department → Caste Certificate. Upload scanned documents and pay the fee online. Physical verification by Tahsildar is still required regardless of online or offline application.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-011","question":"Does caste certificate expire?","intent":"processing_time","keywords":["expire","validity","how long valid"],"difficulty":"basic","answer":"Caste certificates are generally considered permanent in Telangana. However, some institutions and competitive exams may require one issued within the last 1–2 years. Check specific requirements before relying on an old certificate.","relatedSections":["validity"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-012","question":"What if caste certificate application is rejected?","intent":"rejection","keywords":["rejected","rejection","denied"],"difficulty":"intermediate","answer":"Common reasons: insufficient ancestral proof, caste not in the state schedule, name mismatch across documents, wrong category selected, or Tahsildar unable to verify claim. To resolve: correct documents, provide additional proof, and reapply. You can also appeal to the District Collector.","relatedSections":["rejectionReasons"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-013","question":"What mistakes to avoid for caste certificate?","intent":"rejection","keywords":["mistakes","avoid","errors","common"],"difficulty":"basic","answer":"Avoid: not providing parent's certificate, name mismatches, applying in wrong caste category, missing school TC, not knowing correct sub-caste name per government schedule, and applying at wrong mandal.","relatedSections":["commonMistakes"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-014","question":"Where to apply for caste certificate in Telangana?","intent":"portal","keywords":["where","office","meeseva","tahsildar"],"difficulty":"basic","answer":"Apply at any MeeSeva centre in Telangana or directly at the Tahsildar office of your mandal. Online applications can be made at tg.meeseva.gov.in. MeeSeva Helpline: 1800-599-4788.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-015","question":"Is caste certificate needed for TSPSC exams?","intent":"purpose","keywords":["TSPSC","competitive exam","government job","reservation"],"difficulty":"intermediate","answer":"Yes. For claiming reservation benefits (SC/ST/BC/OBC quota) in TSPSC or any government recruitment, a valid caste certificate issued by the competent authority in Telangana is mandatory. Check the specific notification for validity requirements.","relatedSections":["purpose"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-016","question":"How is caste verified by Tahsildar?","intent":"general","keywords":["verification","tahsildar","field","how verified"],"difficulty":"intermediate","answer":"The Tahsildar verifies through: checking parent's caste certificate, cross-referencing school records and Ration Card, conducting field enquiry via VRO, consulting village elders, and verifying against the official government caste schedule.","relatedSections":["verification"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-017","question":"Can I use caste certificate from another state?","intent":"edge_case","keywords":["another state","migration","transfer","other state"],"difficulty":"intermediate","answer":"A caste certificate from another state is NOT directly valid in Telangana. You must apply for a fresh Telangana certificate through MeeSeva. The old certificate from another state serves as supporting evidence during verification but is not a substitute.","relatedSections":["edgeCases"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-018","question":"What is the difference between BC and OBC?","intent":"general","keywords":["BC","OBC","difference","category"],"difficulty":"intermediate","answer":"In Telangana, BC (Backward Classes) is the state-level classification. OBC (Other Backward Classes) is the central government classification. Both refer to socially and educationally backward communities but the lists may differ slightly. For state services use BC certificate; for central services/exams, OBC certificate may be needed.","relatedSections":["purpose"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-019","question":"Can I track caste certificate application?","intent":"tracking","keywords":["track","status","reference number","check"],"difficulty":"basic","answer":"Yes. Use the Application Reference Number (ARN) from your receipt to track status at tg.meeseva.gov.in or call MeeSeva helpline 1800-599-4788. You can also visit the MeeSeva centre or Tahsildar office in person.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"cc-faq-020","question":"Is Aadhaar mandatory for caste certificate?","intent":"documents","keywords":["aadhaar","mandatory","required"],"difficulty":"basic","answer":"Yes. Aadhaar card is mandatory as identity and address proof for caste certificate applications in Telangana. Ensure your Aadhaar address matches your current residence in Telangana.","relatedSections":["documents"],"officialSource":"https://tg.meeseva.gov.in"}
+  ]
+}

@@ -1,65 +1,109 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { getServiceById } from "../../../lib/telanganaServices";
+/**
+ * SevaSetu AI Chat API
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Returns: { answer, metadata: { service, intent, officialSource } }
+ * Never exposes: JSON file names, matched FAQ IDs, raw context, debug info
+ */
 
-const NOT_VERIFIED = "This information is not verified yet. Please check the official Telangana portal or visit nearest MeeSeva center.";
+import { detectService } from "../../../lib/intent/detectService";
+import { detectIntent } from "../../../lib/intent/detectIntent";
+import { retrieveKnowledge } from "../../../lib/retriever/retrieveKnowledge";
+import { buildChatPrompt, buildLocalAnswer } from "../../../lib/prompts/buildChatPrompt";
 
-function buildContext(service) {
-  return `
-SERVICE: ${service.name}
-DEPARTMENT: ${service.department}
-WHERE_TO_APPLY: ${service.applyAt}
-OVERVIEW: ${service.overview}
-DOCUMENTS_REQUIRED: ${service.documents.join("; ")}
-ELIGIBILITY: ${service.eligibility.join("; ")}
-APPLICATION_STEPS: ${service.steps.join(" | ")}
-PROCESSING_TIME: ${service.processingTime}
-FEES: ${service.fees}
-COMMON_MISTAKES: ${service.mistakes.join("; ")}
-OFFICIAL_SOURCE: ${service.officialLink}
-LAST_VERIFIED: ${service.lastVerified}
-`.trim();
-}
+const isDev = process.env.NODE_ENV === "development";
+function log(label, value) { if (isDev) console.log(`[SevaSetu] ${label}:`, value); }
+
+const FALLBACK_ANSWER = "I don't have verified information for this yet. Please check the official portal or contact the nearest MeeSeva centre.";
 
 export async function POST(req) {
+  const start = Date.now();
+
   try {
-    const { message, serviceId = "income-certificate", lang = "en" } = await req.json();
+    const { message, serviceId, lang = "en" } = await req.json();
 
-    const service = getServiceById(serviceId);
-
-    if (!service || service.status === "coming-soon") {
-      return Response.json({ answer: NOT_VERIFIED });
+    if (!message?.trim()) {
+      return Response.json({ answer: "Please type a question.", metadata: {} });
     }
 
-    const context = buildContext(service);
+    // 1. Detect service & intent
+    const service = detectService(message, serviceId || null);
+    const intent = detectIntent(message);
+    log("service", service);
+    log("intent", intent);
 
-    // Fallback when no API key
-    if (!process.env.GEMINI_API_KEY) {
-      return Response.json({
-        answer: `${service.name} — ${service.department}\n\nDocuments Required:\n${service.documents.map((d, i) => `${i + 1}. ${d}`).join("\n")}\n\nApplication Steps:\n${service.steps.map((s, i) => `${i + 1}. ${s}`).join("\n")}\n\nProcessing Time: ${service.processingTime}\n\nOfficial Source: ${service.officialLink}\n(Last verified: ${service.lastVerified})`,
-      });
+    // 2. Retrieve knowledge
+    const retrieval = retrieveKnowledge(service, intent, message);
+    log("found", retrieval.found);
+    log("sectionKey", retrieval.sectionKey);
+
+    // Build clean metadata (user-facing — no file names or internal IDs)
+    const metadata = {
+      service: retrieval.serviceName || service,
+      intent: intent.replace(/_/g, " "),
+      officialSource: retrieval.officialPortal || "",
+    };
+
+    // If retrieval fails
+    if (!retrieval.found) {
+      log("ms", Date.now() - start);
+      return Response.json({ answer: FALLBACK_ANSWER, metadata });
     }
 
-    const systemPrompt = `You are SevaSetu Help Desk, an official government service guidance assistant for Telangana, India.
-Your role is to help Telangana citizens understand government services clearly and accurately.
+    // 3. Build internal context (never sent to frontend)
+    const internalContext = buildLocalAnswer(retrieval, intent);
+    log("contextLength", internalContext.length);
 
-STRICT RULES:
-1. Answer ONLY using the CONTEXT provided. Do not add any outside information.
-2. If the answer cannot be found in the CONTEXT, respond with exactly: "${NOT_VERIFIED}"
-3. Always mention the official source and last verified date at the end of your response.
-4. Keep answers practical, step-by-step and easy to understand.
-5. Respond in the same language the user wrote in (English, Telugu, or Hindi).
-6. Format lists clearly with numbered steps or bullet points.
-7. Do not speculate or add fees/rules not present in the CONTEXT.`;
+    // 4. Try OpenAI
+    if (process.env.OPENAI_API_KEY) {
+      try {
+        const { messages } = buildChatPrompt(intent, internalContext, message, lang);
+        const { OpenAI } = await import("openai");
+        const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const completion = await openai.chat.completions.create({
+          model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+          messages,
+          max_tokens: 400,
+          temperature: 0.15,
+        });
 
-    const result = await model.generateContent(
-      `${systemPrompt}\n\nCONTEXT:\n${context}\n\nCITIZEN QUESTION:\n${message}`
-    );
+        const answer = completion.choices[0]?.message?.content?.trim();
+        log("ms", Date.now() - start);
 
-    return Response.json({ answer: result.response.text() });
-  } catch {
-    return Response.json({ answer: NOT_VERIFIED });
+        if (answer) {
+          return Response.json({ answer, metadata });
+        }
+      } catch (e) {
+        log("OpenAI error", e.message);
+      }
+    }
+
+    // 5. Try Gemini
+    if (process.env.GEMINI_API_KEY) {
+      try {
+        const { messages } = buildChatPrompt(intent, internalContext, message, lang);
+        const { GoogleGenerativeAI } = await import("@google/generative-ai");
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        const result = await model.generateContent(`${messages[0].content}\n\n${messages[1].content}`);
+        const answer = result.response.text()?.trim();
+        log("ms", Date.now() - start);
+
+        if (answer) {
+          return Response.json({ answer, metadata });
+        }
+      } catch (e) {
+        log("Gemini error", e.message);
+      }
+    }
+
+    // 6. Local fallback — use the clean formatted answer
+    log("ms", Date.now() - start);
+    return Response.json({ answer: internalContext, metadata });
+
+  } catch (err) {
+    log("route error", err.message);
+    return Response.json({ answer: FALLBACK_ANSWER, metadata: {} });
   }
 }
