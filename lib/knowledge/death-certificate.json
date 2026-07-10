@@ -1,0 +1,85 @@
+{
+  "id": "death-certificate",
+  "name": "Death Certificate",
+  "officialPortal": "https://cdma.telangana.gov.in",
+  "alternatePortal": "https://crsorgi.gov.in",
+  "helpline": "040-21111111",
+  "lastVerified": "2026-07-01",
+  "issuingAuthority": "Municipal Administration (GHMC / Municipality / Gram Panchayat), Government of Telangana",
+  "dataSource": "cdma.telangana.gov.in and crsorgi.gov.in — official Telangana government websites",
+
+  "sections": {
+    "purpose": "A Death Certificate is the official government record of a person's death, issued by the municipal authority or gram panchayat where the death occurred. It is required for: (1) Property transfer and mutation in the deceased's name. (2) Settling insurance claims and pension benefits. (3) Banking — closing deceased's accounts, transferring funds to nominee. (4) Legal succession and inheritance proceedings. (5) Removal of deceased's name from government records (Aadhaar, Voter ID, Ration Card). (6) Cancellation or transfer of utilities in the deceased's name. (7) Obtaining legal heir certificates. Source: cdma.telangana.gov.in",
+
+    "eligibility": "Any family member or relative of the deceased can apply. The nearest relative, head of household, or authorised person can register the death. Registration must be done within 21 days of death — free of charge. Late registration (after 21 days): late fee applies. Delayed registration (after 1 year): requires an order from the Judicial/Executive Magistrate. Death must have occurred within the jurisdiction of Telangana for a Telangana-issued certificate. Source: Registration of Births and Deaths Act, 1969",
+
+    "documents": [
+      "Hospital Death Certificate or Doctor's Certificate of Cause of Death (Form 4 / Form 4A — issued by hospital/doctor at time of death)",
+      "Deceased's Aadhaar card (or any identity proof)",
+      "Applicant's (family member's) Aadhaar card",
+      "Address proof of applicant (Aadhaar / Electricity Bill / Voter ID)",
+      "Application form for Death Registration (available at GHMC / Municipality / MeeSeva)",
+      "Ration Card of family (if available, for family details verification)",
+      "Source: GHMC / cdma.telangana.gov.in"
+    ],
+
+    "fees": "Registration within 21 days of death: FREE as per Registration of Births and Deaths Act, 1969. Late registration (21 days to 30 days): nominal late fee as per local body rules. Certificate copy: approx ₹25 (Panchayat: ₹10 per copy; Municipality: ₹50 for up to 4 copies, ₹100 for 5–10 copies). Source: scribd Telangana MeeSeva / cdma.telangana.gov.in",
+
+    "processingTime": "If death is already registered: certificate copy issued within 3–7 working days. Online download from CDMA/CRS portal: possible if already registered (instantly). Print option available for 24 hours on CDMA portal after printing. New registration: 3–7 working days. Delayed registration (after 1 year): 30–60 days (includes court process). Source: cdma.telangana.gov.in / scribd",
+
+    "validity": "Death Certificate has no expiry — it is a permanent legal record. However, some institutions (banks, property offices) may require a recently issued copy (within 6 months) for verification purposes.",
+
+    "applicationSteps": [
+      "Step 1 — Obtain hospital Death Certificate or Doctor's Certificate (Form 4/4A) before leaving the hospital",
+      "Step 2 — Contact the GHMC / Municipal Office / Gram Panchayat of the area where death occurred",
+      "Step 3 — Fill the Death Registration Form with deceased's details (name, DOB, date of death, cause of death, address)",
+      "Step 4 — Submit hospital death certificate and family documents",
+      "Step 5 — Pay applicable fee (free within 21 days)",
+      "Step 6 — Collect the acknowledgement receipt",
+      "Step 7 — Obtain Death Certificate copy within 3–7 working days",
+      "Step 8 — For online access: Visit cdma.telangana.gov.in or crsorgi.gov.in to search/download if already registered",
+      "Alternative: Apply through MeeSeva → CDMA → Birth or Death Certificate",
+      "Source: cdma.telangana.gov.in / MeeSeva Telangana"
+    ],
+
+    "onlineCertificate": "If the death was already registered, you can search and download the certificate online at cdma.telangana.gov.in or crsorgi.gov.in. Select 'Birth/Death Certificate Search', enter the registration details. The print option is available for 24 hours after printing as per CDMA portal rules. You can also apply through MeeSeva by selecting CDMA → Birth or Death Certificate. Source: cdma.telangana.gov.in / scribd",
+
+    "lostCertificate": "If the original death certificate is lost: Apply for a duplicate copy at the same issuing authority (GHMC/Municipality/Gram Panchayat) or through MeeSeva. Provide registration details (registration number, date, name of deceased). Fee: nominal copy charge. Can also be downloaded from cdma.telangana.gov.in if available in the digital records.",
+
+    "delayedRegistration": "If death was not registered within 1 year: Must obtain an order from the Judicial Magistrate / Executive Magistrate. Submit the order along with all documents to the local municipal authority. Processing takes 30–60 days. Affidavit from a family member declaring the death details may also be required. Source: Registration of Births and Deaths Act, 1969",
+
+    "commonMistakes": [
+      "Not obtaining hospital death certificate before the body is taken — this is the primary document needed",
+      "Delaying registration beyond 21 days — late fees and additional procedures apply",
+      "Wrong details in the registration (spelling of deceased's name, DOB, date of death) — requires costly correction later",
+      "Not collecting multiple copies at time of issuance — multiple agencies (bank, insurance, property) each require original copies"
+    ],
+
+    "edgeCases": [
+      {
+        "title": "Death occurred at home — no hospital certificate",
+        "problem": "Person died at home and there is no hospital death certificate.",
+        "recommendedNextStep": "Call a registered medical practitioner (doctor) to examine and issue a 'Cause of Death' certificate. Then register at the local GHMC/Municipality/Gram Panchayat. If no doctor was present, the family must file a declaration and local authorities will verify. The registration authority may issue a notice before registration.",
+        "officialPortal": "https://cdma.telangana.gov.in",
+        "source": "Registration of Births and Deaths Act, 1969 / GHMC"
+      },
+      {
+        "title": "Death certificate not found in digital records",
+        "problem": "Trying to download death certificate online but cannot find it.",
+        "recommendedNextStep": "Older registrations (before digitisation) may not be available online. Visit the issuing authority (GHMC / Municipality / Gram Panchayat) in person with the registration number and obtain a certified copy. Contact CDMA helpline: 040-21111111.",
+        "officialPortal": "https://cdma.telangana.gov.in",
+        "source": "cdma.telangana.gov.in"
+      }
+    ]
+  },
+
+  "faqs": [
+    {"id":"dc-faq-001","question":"What is death certificate?","intent":"purpose","keywords":["death certificate","what is","use"],"difficulty":"basic","answer":"A Death Certificate is the official government record of a person's death, issued by GHMC/Municipality/Gram Panchayat. Required for property transfer, insurance claims, bank account settlement, and legal succession. Source: cdma.telangana.gov.in","relatedSections":["purpose"],"officialSource":"https://cdma.telangana.gov.in"},
+    {"id":"dc-faq-002","question":"What documents are needed for death certificate?","intent":"documents","keywords":["documents","required","hospital","papers"],"difficulty":"basic","answer":"Hospital death certificate (Form 4/4A), deceased's Aadhaar, applicant's Aadhaar, address proof, and death registration application form. Source: GHMC / cdma.telangana.gov.in","relatedSections":["documents"],"officialSource":"https://cdma.telangana.gov.in"},
+    {"id":"dc-faq-003","question":"How to apply for death certificate in Telangana?","intent":"steps","keywords":["apply","process","how to","meeseva"],"difficulty":"basic","answer":"Obtain hospital death certificate → Contact GHMC/Municipality/Gram Panchayat → Fill registration form → Submit documents → Free within 21 days → Certificate in 3–7 days. Also via MeeSeva → CDMA. Source: cdma.telangana.gov.in","relatedSections":["applicationSteps"],"officialSource":"https://cdma.telangana.gov.in"},
+    {"id":"dc-faq-004","question":"What is the fee for death certificate?","intent":"fees","keywords":["fee","cost","free","charge"],"difficulty":"basic","answer":"Free if registered within 21 days. Copy charge: approx ₹25 (Panchayat: ₹10/copy; Municipality: ₹50 for up to 4 copies). Source: cdma.telangana.gov.in / Telangana MeeSeva","relatedSections":["fees"],"officialSource":"https://cdma.telangana.gov.in"},
+    {"id":"dc-faq-005","question":"How to download death certificate online Telangana?","intent":"steps","keywords":["download","online","cdma","digital"],"difficulty":"basic","answer":"Visit cdma.telangana.gov.in or crsorgi.gov.in → Birth/Death Certificate Search. Enter registration details. Print option available 24 hours. Or apply via MeeSeva → CDMA. Source: cdma.telangana.gov.in","relatedSections":["onlineCertificate"],"officialSource":"https://cdma.telangana.gov.in"},
+    {"id":"dc-faq-006","question":"How long does death certificate take?","intent":"processing_time","keywords":["how long","days","time","processing"],"difficulty":"basic","answer":"3–7 working days for already-registered deaths. Instant download if available in digital records. Delayed registration (after 1 year): 30–60 days. Source: cdma.telangana.gov.in","relatedSections":["processingTime"],"officialSource":"https://cdma.telangana.gov.in"},
+    {"id":"dc-faq-007","question":"What if death was not registered within 21 days?","intent":"edge_case","keywords":["late","not registered","21 days","delayed"],"difficulty":"intermediate","answer":"Late fees apply after 21 days. If more than 1 year has passed, a Judicial/Executive Magistrate order is required. Then register at GHMC/Municipality with all documents. Source: Registration of Births and Deaths Act, 1969","relatedSections":["delayedRegistration"],"officialSource":"https://cdma.telangana.gov.in"}
+  ]
+}
