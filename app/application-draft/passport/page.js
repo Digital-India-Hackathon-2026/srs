@@ -31,6 +31,8 @@ const QUESTION_GROUPS = [
     title: "Personal Details",
     id: "personal",
     fields: [
+      { id: "givenName", label: "Given Name (First + Middle)", type: "text", required: true },
+      { id: "surname", label: "Surname / Family Name", type: "text", required: true },
       { id: "placeOfBirth", label: "Place of Birth (City/Town)", type: "text", required: true },
       { id: "placeOfBirthDistrict", label: "District of Birth", type: "text", required: true },
       { id: "placeOfBirthState", label: "State of Birth", type: "text", required: true },
@@ -449,8 +451,6 @@ export default function PassportDraftPage() {
 
   // ════════════════════════ PHASE 3: MISSING QUESTIONS ════════════════════════
   if (phase === PHASE_QUESTIONS) {
-    const allKnown = { ...extractedFields, ...answers };
-
     return (
       <div className="min-h-screen flex flex-col">
         <Header />
@@ -458,7 +458,7 @@ export default function PassportDraftPage() {
           <div className="max-w-2xl mx-auto">
             <p className="text-xs text-gray-400 mb-1">Step 3 of 4 — Complete Missing Information</p>
             <h2 className="text-lg font-black">We Still Need a Few Details</h2>
-            <p className="text-gray-300 text-xs mt-0.5">Only fields not extracted from your documents are shown below.</p>
+            <p className="text-gray-300 text-xs mt-0.5">Fill in the fields below. Already-extracted fields are not shown here.</p>
           </div>
         </div>
         <main className="flex-1 max-w-2xl mx-auto w-full px-4 py-6 space-y-5">
@@ -476,6 +476,28 @@ export default function PassportDraftPage() {
             </div>
           )}
 
+          {/* Name split confirmation if givenName/surname need user input */}
+          {(extractedFields.givenName || extractedFields.surname) && !answers._nameConfirmed && (
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+              <p className="text-xs font-bold text-blue-800 mb-2">Please confirm the name split for your passport:</p>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-0.5">Given Name</label>
+                  <input type="text" value={extractedFields.givenName || ""} onChange={e => setExtractedFields(prev => ({ ...prev, givenName: e.target.value }))}
+                    className="w-full border border-blue-200 rounded px-2 py-1.5 text-sm outline-none focus:ring-1 focus:ring-blue-400" />
+                </div>
+                <div>
+                  <label className="text-[10px] text-gray-500 uppercase block mb-0.5">Surname</label>
+                  <input type="text" value={extractedFields.surname || ""} onChange={e => setExtractedFields(prev => ({ ...prev, surname: e.target.value }))}
+                    className="w-full border border-blue-200 rounded px-2 py-1.5 text-sm outline-none focus:ring-1 focus:ring-blue-400" />
+                </div>
+              </div>
+              <button onClick={() => setAnswer("_nameConfirmed", "yes")} className="mt-2 text-xs font-semibold text-blue-700 hover:text-blue-900 underline">
+                ✓ Confirm name split
+              </button>
+            </div>
+          )}
+
           {ocrError && (
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-start gap-2">
               <AlertCircle size={13} className="text-amber-600 flex-shrink-0 mt-0.5" />
@@ -483,39 +505,44 @@ export default function PassportDraftPage() {
             </div>
           )}
 
-          {/* Question groups */}
+          {/* Question groups — show ALL fields, not just missing */}
           {QUESTION_GROUPS.map(group => {
-            const missing = group.fields.filter(f => !allKnown[f.id]);
-            if (missing.length === 0) return null;
+            // Show group if it has at least one field not yet in extractedFields
+            const hasAnyToShow = group.fields.some(f => !extractedFields[f.id]);
+            if (!hasAnyToShow) return null;
             return (
               <div key={group.id} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
                 <h3 className="text-sm font-bold text-[#1a3a5c] mb-3">{group.title}</h3>
                 <div className="space-y-4">
-                  {missing.map(q => (
-                    <div key={q.id}>
-                      <label className="text-xs font-semibold text-gray-700 mb-1 block">
-                        {q.label} {q.required && <span className="text-red-500">*</span>}
-                      </label>
-                      {q.type === "radio" ? (
-                        <div className="flex flex-wrap gap-2">
-                          {q.options.map(opt => (
-                            <label key={opt} className={`text-xs px-3 py-1.5 rounded-lg border cursor-pointer transition-colors ${answers[q.id] === opt ? "bg-[#1a3a5c] text-white border-[#1a3a5c]" : "bg-white text-gray-600 border-gray-200 hover:border-[#1a3a5c]"}`}>
-                              <input type="radio" className="hidden" checked={answers[q.id] === opt} onChange={() => setAnswer(q.id, opt)} />{opt}
-                            </label>
-                          ))}
-                        </div>
-                      ) : q.type === "select" ? (
-                        <select value={answers[q.id] || ""} onChange={e => setAnswer(q.id, e.target.value)}
-                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]">
-                          <option value="">Select...</option>
-                          {q.options.map(o => <option key={o} value={o}>{o}</option>)}
-                        </select>
-                      ) : (
-                        <input type="text" value={answers[q.id] || ""} onChange={e => setAnswer(q.id, e.target.value)}
-                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" placeholder={q.label} />
-                      )}
-                    </div>
-                  ))}
+                  {group.fields.filter(f => !extractedFields[f.id]).map(q => {
+                    const isAnswered = !!answers[q.id];
+                    return (
+                      <div key={q.id}>
+                        <label className="text-xs font-semibold text-gray-700 mb-1 flex items-center gap-1.5">
+                          {q.label} {q.required && <span className="text-red-500">*</span>}
+                          {isAnswered && <CheckCircle2 size={11} className="text-green-500" />}
+                        </label>
+                        {q.type === "radio" ? (
+                          <div className="flex flex-wrap gap-2">
+                            {q.options.map(opt => (
+                              <label key={opt} className={`text-xs px-3 py-1.5 rounded-lg border cursor-pointer transition-colors ${answers[q.id] === opt ? "bg-[#1a3a5c] text-white border-[#1a3a5c]" : "bg-white text-gray-600 border-gray-200 hover:border-[#1a3a5c]"}`}>
+                                <input type="radio" className="hidden" checked={answers[q.id] === opt} onChange={() => setAnswer(q.id, opt)} />{opt}
+                              </label>
+                            ))}
+                          </div>
+                        ) : q.type === "select" ? (
+                          <select value={answers[q.id] || ""} onChange={e => setAnswer(q.id, e.target.value)}
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]">
+                            <option value="">Select...</option>
+                            {q.options.map(o => <option key={o} value={o}>{o}</option>)}
+                          </select>
+                        ) : (
+                          <input type="text" value={answers[q.id] || ""} onChange={e => setAnswer(q.id, e.target.value)}
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" placeholder={q.label} />
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             );
