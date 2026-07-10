@@ -404,6 +404,16 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
                   🔗 Official portal ↗
                 </a>
               )}
+              {msg.role === "assistant" && !msg.isError && (
+                <button
+                  onClick={() => speakText(msg.text, msg.lang || activeLang)}
+                  className="inline-flex items-center gap-1 mt-1 ml-1 text-[10px] text-gray-400 hover:text-[#163A63] transition-colors"
+                  title={activeLang === "te" ? "వినండి" : activeLang === "hi" ? "सुनें" : "Listen"}
+                  aria-label="Speak this answer"
+                >
+                  🔊 {activeLang === "te" ? "వినండి" : activeLang === "hi" ? "सुनें" : "Listen"}
+                </button>
+              )}
             </div>
           </div>
         ))}
