@@ -217,18 +217,18 @@ export default function HomePage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { icon: <ShieldCheck size={20} className="text-[#2d7a4f]" />, title: "Verified Official Guidance", desc: "Links directly to official government portals." },
-              { icon: <Users size={20} className="text-[#0f2540]" />, title: "Telugu, Hindi & English", desc: "Multilingual support for all citizens." },
-              { icon: <FileText size={20} className="text-[#e07b00]" />, title: "No Middlemen", desc: "Direct guidance — no agents, no extra fees." },
-              { icon: <MapPin size={20} className="text-[#0f2540]" />, title: "Office Finder", desc: "Find nearest MeeSeva in 33 districts." },
-              { icon: <Bot size={20} className="text-[#2d7a4f]" />, title: "AI Help Desk", desc: "Ask in plain language, get verified answers." },
-              { icon: <Globe size={20} className="text-[#e07b00]" />, title: "Telangana-First", desc: "Built exclusively for Telangana citizens." },
+              { icon: <ShieldCheck size={20} className="text-[#2d7a4f]" />, titleKey: "whyCards.verified", descKey: "whyCards.verifiedDesc" },
+              { icon: <Users size={20} className="text-[#0f2540]" />, titleKey: "whyCards.multilingual", descKey: "whyCards.multilingualDesc" },
+              { icon: <FileText size={20} className="text-[#e07b00]" />, titleKey: "whyCards.noMiddlemen", descKey: "whyCards.noMiddlemenDesc" },
+              { icon: <MapPin size={20} className="text-[#0f2540]" />, titleKey: "whyCards.officeFinder", descKey: "whyCards.officeFinderDesc" },
+              { icon: <Bot size={20} className="text-[#2d7a4f]" />, titleKey: "whyCards.helpDesk", descKey: "whyCards.helpDeskDesc" },
+              { icon: <Globe size={20} className="text-[#e07b00]" />, titleKey: "whyCards.telanganaFirst", descKey: "whyCards.telanganaFirstDesc" },
             ].map(c => (
-              <div key={c.title} className="flex gap-3.5 p-4 rounded-xl bg-white border border-gray-100 hover:shadow-sm transition-all">
+              <div key={c.titleKey} className="flex gap-3.5 p-4 rounded-xl bg-white border border-gray-100 hover:shadow-sm transition-all">
                 <div className="flex-shrink-0 mt-0.5">{c.icon}</div>
                 <div>
-                  <p className="font-bold text-sm text-[#0f2540] mb-0.5">{c.title}</p>
-                  <p className="text-xs text-gray-500">{c.desc}</p>
+                  <p className="font-bold text-sm text-[#0f2540] mb-0.5">{t(c.titleKey)}</p>
+                  <p className="text-xs text-gray-500">{t(c.descKey)}</p>
                 </div>
               </div>
             ))}
