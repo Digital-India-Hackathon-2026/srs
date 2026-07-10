@@ -21,6 +21,7 @@ import { searchServices } from "../../../lib/retriever/serviceSearch";
 import { detectLanguage, FALLBACK_MESSAGES } from "../../../lib/i18n/languageDetector";
 import { detectMultilingualService, detectMultilingualTopic } from "../../../lib/i18n/multilingualAliases";
 import { wrapWithLocalizedHeaders } from "../../../lib/i18n/responseTemplates";
+import { getTranslatedResponse } from "../../../lib/i18n/serviceTranslatedResponses";
 
 const isDev = process.env.NODE_ENV === "development";
 const log   = (l, v) => { if (isDev) console.log(`[SevaSetu] ${l}:`, v); };
@@ -195,7 +196,15 @@ export async function POST(req) {
       } catch (e) { log("Gemini err", e.message); }
     }
 
-    // ── 6c. Local fallback — wrap with localized headers for TE/HI ─────────
+    // ── 6c. Local fallback — use pre-translated response if available ────────
+    // Check for pre-translated Telugu/Hindi response first
+    const translatedAnswer = getTranslatedResponse(service, intent, detectedLang);
+    if (translatedAnswer) {
+      log("ms", Date.now() - start);
+      return Response.json({ answer: translatedAnswer, metadata });
+    }
+
+    // Otherwise wrap English with localized headers
     const localizedAnswer = wrapWithLocalizedHeaders(context, intent, detectedLang, retrieval.officialPortal || "");
     log("ms", Date.now() - start);
     return Response.json({ answer: localizedAnswer, metadata });
