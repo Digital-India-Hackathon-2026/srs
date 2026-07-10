@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import { telanganaDistricts } from "../../../lib/location/telanganaDistricts";
 
 const PHASE_UPLOAD = 0;
 const PHASE_EXTRACTING = 1;
@@ -60,7 +61,7 @@ const QUESTION_GROUPS = [
     fields: [
       { id: "houseStreet", label: "House No. & Street", type: "text", required: true },
       { id: "city", label: "City/Town", type: "text", required: true },
-      { id: "district", label: "District", type: "text", required: true },
+      { id: "district", label: "District", type: "district-select", required: true },
       { id: "state", label: "State", type: "text", required: true },
       { id: "pinCode", label: "PIN Code", type: "text", required: true },
       { id: "policeStation", label: "Nearest Police Station", type: "text", required: true },
@@ -536,6 +537,17 @@ export default function PassportDraftPage() {
                             <option value="">Select...</option>
                             {q.options.map(o => <option key={o} value={o}>{o}</option>)}
                           </select>
+                        ) : q.type === "district-select" ? (
+                          <div>
+                            <select value={answers[q.id] || extractedFields[q.id] || ""} onChange={e => setAnswer(q.id, e.target.value)}
+                              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]">
+                              <option value="">Select District...</option>
+                              {telanganaDistricts.map(d => <option key={d} value={d}>{d}</option>)}
+                            </select>
+                            {extractedFields[q.id] && !answers[q.id] && (
+                              <p className="text-[10px] text-green-600 mt-1">Auto-filled from Aadhaar: {extractedFields[q.id]}</p>
+                            )}
+                          </div>
                         ) : (
                           <input type="text" value={answers[q.id] || ""} onChange={e => setAnswer(q.id, e.target.value)}
                             className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" placeholder={q.label} />
