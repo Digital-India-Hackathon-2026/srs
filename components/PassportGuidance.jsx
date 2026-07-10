@@ -12,6 +12,7 @@ import {
   Timer,
   User,
 } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const SITUATIONS = [
   {
@@ -90,8 +91,7 @@ const SITUATIONS = [
 
 function GuidanceCard({ situation }) {
   const [expanded, setExpanded] = useState(false);
-  let language = "en";
-  try { if (typeof window !== "undefined") language = localStorage.getItem("sevasetu_lang") || "en"; } catch {}
+  const { language } = useLanguage();
 
   const title = typeof situation.title === "object" ? (situation.title[language] || situation.title.en) : situation.title;
   const guidance = typeof situation.guidance === "object" && !Array.isArray(situation.guidance) ? (situation.guidance[language] || situation.guidance.en) : situation.guidance;
@@ -141,14 +141,7 @@ function GuidanceCard({ situation }) {
 }
 
 export default function PassportGuidanceSection() {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  let language = "en";
-  try {
-    // Safe way to get language without requiring hook at top level
-    if (typeof window !== "undefined") {
-      language = localStorage.getItem("sevasetu_lang") || "en";
-    }
-  } catch {}
+  const { language } = useLanguage();
 
   const headers = {
     en: { title: "Important Situations & Practical Guidance", disclaimer: "These are practical guidance notes intended to help applicants prepare better. Depending on individual circumstances and Passport Seva verification, additional documents or procedures may be required. Always follow instructions given by Passport Seva officials." },
