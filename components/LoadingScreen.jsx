@@ -9,11 +9,11 @@ export default function LoadingScreen() {
       {/* 3D Emblem Scene */}
       <div className="emblem-scene">
         <div className="emblem-medallion">
-          {/* Front side — Official Telangana Emblem */}
+          {/* Front side — National Emblem of India (Ashoka Lion Capital) */}
           <div className="emblem-front">
             <img
-              src="/assets/telangana-emblem.png"
-              alt="Telangana State Emblem"
+              src="/assets/national-emblem-india.png"
+              alt="National Emblem of India - Ashoka Lion Capital"
               width={110}
               height={110}
             />
