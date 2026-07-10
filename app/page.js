@@ -20,6 +20,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { telanganaServices, activeServices } from "../lib/telanganaServices";
 import { useLanguage } from "../context/LanguageContext";
+import { useChatbot } from "../context/ChatbotContext";
 
 const POPULAR_IDS = ["passport", "driving-licence", "income-certificate", "aadhaar-update", "birth-certificate", "caste-certificate"];
 
@@ -48,6 +49,7 @@ function WhyIcon({ name, className }) {
 export default function HomePage() {
   const router = useRouter();
   const { t } = useLanguage();
+  const { openChatbot } = useChatbot();
   const [query, setQuery] = useState("");
   const [noMatch, setNoMatch] = useState(false);
   const [open, setOpen] = useState(false);
@@ -293,12 +295,13 @@ export default function HomePage() {
           {t("landing.needHelpDesc")}
         </p>
         <div className="flex flex-wrap gap-3 justify-center">
-          <Link
-            href="/help-desk"
+          <button
+            onClick={() => openChatbot()}
             className="inline-flex items-center gap-2 bg-[#e07b00] hover:bg-[#c96e00] active:bg-[#b56000] text-white font-bold px-5 py-2.5 rounded text-sm transition-colors"
+            aria-label="Open SevaSetu AI Assistant"
           >
             <Bot size={15} /> {t("landing.openHelpDesk")}
-          </Link>
+          </button>
           <Link
             href="/services"
             className="inline-flex items-center gap-2 border border-white/30 hover:border-white text-white font-bold px-5 py-2.5 rounded text-sm transition-colors"

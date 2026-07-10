@@ -22,10 +22,12 @@ import PassportGuidanceSection from "../../../components/PassportGuidance";
 import { getServiceById } from "../../../lib/telanganaServices";
 import { getServiceField, loc } from "../../../lib/serviceData";
 import { useLanguage } from "../../../context/LanguageContext";
+import { useChatbot } from "../../../context/ChatbotContext";
 
 export default function ServiceDetailPage() {
   const params = useParams();
   const { t, language } = useLanguage();
+  const { openChatbot } = useChatbot();
   const service = getServiceById(params.serviceId);
 
   if (!service) {
@@ -211,9 +213,9 @@ export default function ServiceDetailPage() {
               <div className="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2 flex items-center gap-1.5">
                 <Bot size={12} className="text-[#2d7a4f]" /> {t("serviceDetails.haveQuestions")}
               </div>
-              <Link href={`/help-desk?service=${service.id}`} className="w-full inline-flex items-center justify-center gap-2 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold px-4 py-2.5 rounded transition-colors">
+              <button onClick={() => openChatbot(service.id)} className="w-full inline-flex items-center justify-center gap-2 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold px-4 py-2.5 rounded transition-colors" aria-label="Open SevaSetu AI Assistant">
                 <Bot size={13} /> {t("serviceDetails.askHelpDesk")}
-              </Link>
+              </button>
             </div>
 
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-500 space-y-1.5">

@@ -4,14 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "../context/LanguageContext";
+import { useChatbot } from "../context/ChatbotContext";
 
 export default function Header() {
   const pathname = usePathname();
   const { language, setLanguage, t } = useLanguage();
+  const { openChatbot } = useChatbot();
 
   const navLinks = [
     { label: t("nav.services"),        href: "/services" },
-    { label: t("nav.helpDesk"),        href: "/help-desk" },
+    { label: t("nav.helpDesk"),        href: "#chatbot", action: () => openChatbot() },
     { label: t("nav.draftGenerator"),  href: "/application-draft" },
     { label: t("nav.offices"),         href: "/offices" },
     { label: t("nav.about"),           href: "/about" },
@@ -64,7 +66,14 @@ export default function Header() {
       <nav className="bg-[#1a3a5c] px-4 border-b border-white/10" aria-label="Main navigation">
         <div className="max-w-7xl mx-auto flex overflow-x-auto scrollbar-hide">
           {navLinks.map((link) => {
-            const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href + "/"));
+            const active = pathname === link.href || (link.href !== "/" && link.href !== "#chatbot" && pathname.startsWith(link.href + "/"));
+            if (link.action) {
+              return (
+                <button key={link.label} onClick={link.action} className={`px-3 sm:px-4 py-2.5 text-xs font-semibold whitespace-nowrap transition-colors border-b-2 flex-shrink-0 text-gray-300 border-transparent hover:text-white hover:bg-white/5`} aria-label="Open SevaSetu AI Assistant">
+                  {link.label}
+                </button>
+              );
+            }
             return (
               <Link key={link.href} href={link.href} className={`px-3 sm:px-4 py-2.5 text-xs font-semibold whitespace-nowrap transition-colors border-b-2 flex-shrink-0 ${active ? "text-white border-[#e07b00] bg-white/5" : "text-gray-300 border-transparent hover:text-white hover:bg-white/5"}`}>
                 {link.label}

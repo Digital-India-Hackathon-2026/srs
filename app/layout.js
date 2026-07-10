@@ -1,5 +1,6 @@
 import "./globals.css";
 import { LanguageProvider } from "../context/LanguageContext";
+import { ChatbotProvider } from "../context/ChatbotContext";
 import FloatingBot from "../components/assistant/FloatingBot";
 
 export const metadata = {
@@ -15,8 +16,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="min-h-screen flex flex-col bg-[#f4f6f8] text-[#1a2733]">
         <LanguageProvider>
-          {children}
-          <FloatingBot />
+          <ChatbotProvider>
+            {children}
+            <FloatingBot />
+          </ChatbotProvider>
         </LanguageProvider>
       </body>
     </html>

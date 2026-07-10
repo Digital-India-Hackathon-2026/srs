@@ -18,18 +18,19 @@ const SERVICE_CHIPS = [
   { id: "voter-id", label: "Voter ID" },
 ];
 
-export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
+export default function ChatWindow({ onMinimize, onClose, onStateChange, initialService = "" }) {
   const { t, language } = useLanguage();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const [service, setService] = useState("");
+  const [service, setService] = useState(initialService);
   const [lastQuestion, setLastQuestion] = useState("");
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, loading]);
   useEffect(() => { setTimeout(() => inputRef.current?.focus(), 200); }, []);
+  useEffect(() => { if (initialService) setService(initialService); }, [initialService]);
 
   const quickQuestions = service ? getQuickQuestions(service) : DEFAULT_QUESTIONS;
 
