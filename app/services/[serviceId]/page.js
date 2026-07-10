@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
+import PassportGuidanceSection from "../../../components/PassportGuidance";
 import { getServiceById, telanganaServices } from "../../../lib/telanganaServices";
 
 export async function generateStaticParams() {
@@ -35,31 +36,6 @@ export default function ServiceDetailPage({ params }) {
   const service = getServiceById(params.serviceId);
 
   if (!service) notFound();
-
-  if (service.status === "coming-soon") {
-    return (
-      <div className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-12 text-center">
-          <Clock size={44} className="mx-auto text-[#e07b00] mb-4" />
-          <h1 className="text-2xl font-black text-[#1a3a5c] mb-2">{service.name}</h1>
-          <p className="text-gray-500 mb-2">{service.department}</p>
-          <p className="text-sm text-gray-600 mb-6 max-w-md mx-auto">
-            Detailed guidance for this service is coming soon. Please visit the official portal or your nearest MeeSeva centre.
-          </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/services" className="inline-flex items-center gap-2 border border-[#1a3a5c] text-[#1a3a5c] font-bold px-4 py-2 rounded text-sm hover:bg-[#1a3a5c] hover:text-white transition-colors">
-              <ArrowLeft size={14} /> Back to Services
-            </Link>
-            <a href={service.officialLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#1a3a5c] text-white font-bold px-4 py-2 rounded text-sm hover:bg-[#0f2540] transition-colors">
-              <ExternalLink size={14} /> Visit Official Portal
-            </a>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -200,6 +176,9 @@ export default function ServiceDetailPage({ params }) {
                 </div>
               </div>
             </div>
+
+            {/* ── Practical Guidance (Passport only) ─────────────────── */}
+            {service.id === "passport" && <PassportGuidanceSection />}
           </div>
 
           {/* ── Right sidebar ─────────────────────────────────────────── */}

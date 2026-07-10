@@ -20,6 +20,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { telanganaServices, activeServices } from "../lib/telanganaServices";
 
+const POPULAR_IDS = ["passport", "driving-licence", "income-certificate", "aadhaar-update", "birth-certificate", "caste-certificate"];
+
 const WHY_CARDS = [
   { iconName: "shield",  color: "text-[#2d7a4f]", title: "Verified Official Source Guidance",   desc: "Every service page links directly to the official Telangana government portal or MeeSeva." },
   { iconName: "users",   color: "text-[#1a3a5c]", title: "Telugu, Hindi & English Support",      desc: "Full multilingual support so no citizen is left behind due to a language barrier." },
@@ -206,7 +208,7 @@ export default function HomePage() {
 
           {/* Quick stats */}
           <div className="mt-8 flex flex-wrap justify-center gap-4 sm:gap-6 text-xs text-gray-300">
-            <span className="flex items-center gap-1.5"><CheckCircle2 size={13} className="text-green-400" /> 4 Services Active</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 size={13} className="text-green-400" /> 13 Services Available</span>
             <span className="flex items-center gap-1.5"><MapPin size={13} className="text-yellow-300" /> 8 Districts Covered</span>
             <span className="flex items-center gap-1.5"><ShieldCheck size={13} className="text-blue-300" /> Verified Official Data</span>
             <span className="flex items-center gap-1.5"><HelpCircle size={13} className="text-orange-300" /> AI Help Desk Available</span>
@@ -229,8 +231,8 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {activeServices.map((s) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {activeServices.filter(s => POPULAR_IDS.includes(s.id)).map((s) => (
             <div
               key={s.id}
               className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-md hover:border-[#1a3a5c] transition-all flex flex-col"
