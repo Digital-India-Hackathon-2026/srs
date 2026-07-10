@@ -19,6 +19,8 @@ import {
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { telanganaServices, activeServices } from "../lib/telanganaServices";
+import { useLanguage } from "../context/LanguageContext";
+import { useChatbot } from "../context/ChatbotContext";
 
 const POPULAR_IDS = ["passport", "driving-licence", "income-certificate", "aadhaar-update", "birth-certificate", "caste-certificate"];
 
@@ -46,6 +48,8 @@ function WhyIcon({ name, className }) {
 
 export default function HomePage() {
   const router = useRouter();
+  const { t } = useLanguage();
+  const { openChatbot } = useChatbot();
   const [query, setQuery] = useState("");
   const [noMatch, setNoMatch] = useState(false);
   const [open, setOpen] = useState(false);
@@ -110,12 +114,11 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black leading-tight mb-4">
-            Access Telangana Government Services<br className="hidden md:block" /> Without Confusion
+            {t("landing.heroTitle")}
           </h1>
 
           <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8">
-            Find verified documents, eligibility, application steps, official links, MeeSeva guidance,
-            and multilingual AI support for Telangana citizens.
+            {t("landing.heroSubtitle")}
           </p>
 
           {/* Search */}
@@ -128,7 +131,7 @@ export default function HomePage() {
                 />
                 <input
                   className="w-full pl-9 pr-4 py-3 rounded border border-white/20 bg-white text-gray-800 text-sm outline-none focus:ring-2 focus:ring-[#e07b00]"
-                  placeholder="What service are you looking for? Example: Income Certificate"
+                  placeholder={t("landing.searchPlaceholder")}
                   value={query}
                   onChange={handleQueryChange}
                   onKeyDown={handleKeyDown}
@@ -143,7 +146,7 @@ export default function HomePage() {
                 aria-label="Search"
               >
                 <Search size={14} />
-                <span className="hidden sm:inline">Search</span>
+                <span className="hidden sm:inline">{t("landing.searchBtn")}</span>
               </button>
             </div>
 
@@ -208,10 +211,10 @@ export default function HomePage() {
 
           {/* Quick stats */}
           <div className="mt-8 flex flex-wrap justify-center gap-4 sm:gap-6 text-xs text-gray-300">
-            <span className="flex items-center gap-1.5"><CheckCircle2 size={13} className="text-green-400" /> 13 Services Available</span>
-            <span className="flex items-center gap-1.5"><MapPin size={13} className="text-yellow-300" /> 8 Districts Covered</span>
-            <span className="flex items-center gap-1.5"><ShieldCheck size={13} className="text-blue-300" /> Verified Official Data</span>
-            <span className="flex items-center gap-1.5"><HelpCircle size={13} className="text-orange-300" /> AI Help Desk Available</span>
+            <span className="flex items-center gap-1.5"><CheckCircle2 size={13} className="text-green-400" /> 13 {t("landing.servicesAvailable")}</span>
+            <span className="flex items-center gap-1.5"><MapPin size={13} className="text-yellow-300" /> 33 {t("landing.districtsCovered")}</span>
+            <span className="flex items-center gap-1.5"><ShieldCheck size={13} className="text-blue-300" /> {t("landing.verifiedData")}</span>
+            <span className="flex items-center gap-1.5"><HelpCircle size={13} className="text-orange-300" /> {t("landing.helpDeskAvailable")}</span>
           </div>
         </div>
       </section>
@@ -220,14 +223,14 @@ export default function HomePage() {
       <section className="max-w-7xl mx-auto w-full px-4 py-10 sm:py-12">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-lg sm:text-xl font-black text-[#1a3a5c]">Popular Services</h2>
+            <h2 className="text-lg sm:text-xl font-black text-[#1a3a5c]">{t("landing.popularServices")}</h2>
             <p className="text-sm text-gray-500 mt-0.5">Fully verified Telangana government services available now</p>
           </div>
           <Link
             href="/services"
             className="text-sm font-semibold text-[#1a3a5c] hover:text-[#e07b00] flex items-center gap-1 transition-colors flex-shrink-0 ml-4"
           >
-            View all <ArrowRight size={14} />
+            {t("landing.viewAll")} <ArrowRight size={14} />
           </Link>
         </div>
 
@@ -250,7 +253,7 @@ export default function HomePage() {
                 href={`/services/${s.id}`}
                 className="mt-auto inline-flex items-center justify-center gap-2 bg-[#1a3a5c] hover:bg-[#0f2540] active:bg-[#081c35] text-white text-xs font-bold px-4 py-2.5 rounded transition-colors"
               >
-                View Details <ArrowRight size={12} />
+                {t("landing.viewDetails")} <ArrowRight size={12} />
               </Link>
             </div>
           ))}
@@ -261,9 +264,9 @@ export default function HomePage() {
       <section className="bg-white border-y border-gray-200 px-4 py-10 sm:py-12">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-lg sm:text-xl font-black text-[#1a3a5c]">Why SevaSetu?</h2>
+            <h2 className="text-lg sm:text-xl font-black text-[#1a3a5c]">{t("landing.whySevaSetu")}</h2>
             <p className="text-sm text-gray-500 mt-1">
-              Built to make Telangana government services easier for every citizen
+              {t("landing.whySubtitle")}
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -287,22 +290,23 @@ export default function HomePage() {
 
       {/* ── CTA strip ────────────────────────────────────────────────── */}
       <section className="bg-[#1a3a5c] px-4 py-8 text-center text-white">
-        <h3 className="text-base sm:text-lg font-black mb-2">Need help with a specific service?</h3>
+        <h3 className="text-base sm:text-lg font-black mb-2">{t("landing.needHelp")}</h3>
         <p className="text-gray-300 text-sm mb-5">
-          Use our AI Help Desk to ask questions in plain language about any Telangana service.
+          {t("landing.needHelpDesc")}
         </p>
         <div className="flex flex-wrap gap-3 justify-center">
-          <Link
-            href="/help-desk"
+          <button
+            onClick={() => openChatbot()}
             className="inline-flex items-center gap-2 bg-[#e07b00] hover:bg-[#c96e00] active:bg-[#b56000] text-white font-bold px-5 py-2.5 rounded text-sm transition-colors"
+            aria-label="Open SevaSetu AI Assistant"
           >
-            <Bot size={15} /> Open AI Help Desk
-          </Link>
+            <Bot size={15} /> {t("landing.openHelpDesk")}
+          </button>
           <Link
             href="/services"
             className="inline-flex items-center gap-2 border border-white/30 hover:border-white text-white font-bold px-5 py-2.5 rounded text-sm transition-colors"
           >
-            <FileText size={15} /> Browse All Services
+            <FileText size={15} /> {t("landing.browseServices")}
           </Link>
         </div>
       </section>
