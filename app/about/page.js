@@ -147,29 +147,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Future */}
-        <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-          <div className="bg-[#1a3a5c] text-white text-xs font-bold uppercase tracking-wider px-4 py-2">
-            Future Roadmap
-          </div>
-          <div className="p-6 text-sm text-gray-700 space-y-2 leading-relaxed">
-            {[
-              "Phase 1 (Current): 4 active services — Income, Caste, Residence, Birth Certificate",
-              "Phase 2: Expand to 10+ Telangana services including Ration Card, Aadhaar Update, Driving Licence",
-              "Phase 3: Expand to all Telangana districts with hyperlocal office data",
-              "Phase 4: Add Andhra Pradesh, Karnataka, Maharashtra state coverage",
-              "Phase 5: Pan-India government service navigator",
-            ].map((item, i) => (
-              <div key={i} className="flex items-start gap-2.5">
-                <div className="w-5 h-5 rounded-full bg-[#1a3a5c] text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
-                  {i + 1}
-                </div>
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Disclaimer */}
         <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-sm text-yellow-800 leading-relaxed">
           <strong>Disclaimer:</strong> SevaSetu is a student-built guidance platform created for a hackathon.
