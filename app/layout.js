@@ -2,6 +2,7 @@ import "./globals.css";
 import { LanguageProvider } from "../context/LanguageContext";
 import { ChatbotProvider } from "../context/ChatbotContext";
 import FloatingBot from "../components/assistant/FloatingBot";
+import AppLoader from "../components/AppLoader";
 
 export const metadata = {
   title: "SevaSetu Telangana – Public Service Navigator",
@@ -17,8 +18,10 @@ export default function RootLayout({ children }) {
       <body className="min-h-screen flex flex-col bg-[#f4f6f8] text-[#1a2733]">
         <LanguageProvider>
           <ChatbotProvider>
-            {children}
-            <FloatingBot />
+            <AppLoader>
+              {children}
+              <FloatingBot />
+            </AppLoader>
           </ChatbotProvider>
         </LanguageProvider>
       </body>
