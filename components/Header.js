@@ -12,45 +12,26 @@ export default function Header() {
   const { openChatbot } = useChatbot();
 
   const navLinks = [
-    { label: t("nav.services"),        href: "/services" },
-    { label: t("nav.helpDesk"),        href: "#chatbot", action: () => openChatbot() },
-    { label: t("nav.draftGenerator"),  href: "/application-draft" },
-    { label: t("nav.offices"),         href: "/offices" },
-    { label: t("nav.about"),           href: "/about" },
+    { label: t("nav.services"),       href: "/services" },
+    { label: t("nav.helpDesk"),       href: "#chatbot", action: () => openChatbot() },
+    { label: t("nav.draftGenerator"), href: "/application-draft" },
+    { label: t("nav.offices"),        href: "/offices" },
+    { label: t("nav.about"),          href: "/about" },
   ];
 
   return (
-    <header className="w-full">
+    <header className="w-full sticky top-0 z-40">
+      {/* ── Top utility bar ── */}
       <div className="bg-[#0a1a2e] text-gray-300 text-xs py-1.5 px-4 border-b border-white/5">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
+        <div className="max-w-[1600px] mx-auto px-4 flex items-center justify-between gap-2">
           <span className="font-medium truncate">
             {t("header.govName")} &nbsp;|&nbsp; {t("header.portalName")}
           </span>
           <span className="hidden sm:flex items-center gap-1 flex-shrink-0">
             {t("header.helpline")}:&nbsp;<strong className="text-white">1800-599-4788</strong>
-          </span>
-        </div>
-      </div>
-
-      <div className="bg-[#0f2540] border-b-4 border-[#e07b00] px-4 py-2">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-          <Link href="/" className="flex items-center gap-3 group min-w-0" aria-label="Home">
-            <div className="flex-shrink-0">
-              <Image src="/images/sevasetu-logo.png" alt="SevaSetu" width={70} height={70} className="hidden sm:block object-contain h-[70px] w-auto" priority />
-              <Image src="/images/sevasetu-logo.png" alt="SevaSetu" width={45} height={45} className="block sm:hidden object-contain h-[45px] w-auto" priority />
-            </div>
-            <div className="min-w-0">
-              <div className="text-white font-black text-base sm:text-xl leading-tight tracking-tight group-hover:text-[#e8c97a] transition-colors">
-                {t("header.siteName")}
-              </div>
-              <div className="text-gray-300 text-[11px] sm:text-xs mt-0.5 truncate">{t("header.siteSubtitle")}</div>
-            </div>
-          </Link>
-
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <span className="text-gray-400 text-xs hidden md:block">{t("header.language")}:</span>
+            <span className="ml-4 text-gray-400">{t("header.language")}:</span>
             <select
-              className="bg-white/10 border border-white/20 text-white text-sm rounded px-2 py-1.5 outline-none cursor-pointer"
+              className="bg-white/10 border border-white/20 text-white text-xs rounded px-1.5 py-0.5 outline-none cursor-pointer ml-1"
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
               aria-label="Select language"
@@ -59,29 +40,81 @@ export default function Header() {
               <option value="te" className="text-black bg-white">తెలుగు</option>
               <option value="hi" className="text-black bg-white">हिन्दी</option>
             </select>
-          </div>
+          </span>
         </div>
       </div>
 
-      <nav className="bg-[#1a3a5c] px-4 border-b border-white/10" aria-label="Main navigation">
-        <div className="max-w-7xl mx-auto flex overflow-x-auto scrollbar-hide">
-          {navLinks.map((link) => {
-            const active = pathname === link.href || (link.href !== "/" && link.href !== "#chatbot" && pathname.startsWith(link.href + "/"));
-            if (link.action) {
+      {/* ── Main nav bar: Logo | Navigation (flex:1 evenly) | Language (mobile) ── */}
+      <div className="bg-[#0f2540] border-b-4 border-[#e07b00]">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-8 flex items-center" style={{ height: "68px" }}>
+
+          {/* Logo section — fixed width */}
+          <Link href="/" className="flex items-center gap-3 group flex-shrink-0" style={{ width: "300px" }} aria-label="Home">
+            <Image src="/images/sevasetu-logo.png" alt="SevaSetu" width={52} height={52} className="hidden sm:block object-contain h-[52px] w-auto" priority />
+            <Image src="/images/sevasetu-logo.png" alt="SevaSetu" width={38} height={38} className="block sm:hidden object-contain h-[38px] w-auto" priority />
+            <div className="min-w-0 hidden sm:block">
+              <div className="text-white font-black text-base leading-tight tracking-tight group-hover:text-[#e8c97a] transition-colors">
+                {t("header.siteName")}
+              </div>
+              <div className="text-gray-400 text-[10px] mt-0.5 truncate">{t("header.siteSubtitle")}</div>
+            </div>
+          </Link>
+
+          {/* Navigation — fills remaining space, evenly distributed */}
+          <nav className="flex-1 hidden lg:flex items-center justify-evenly" aria-label="Main navigation">
+            {/* Home link */}
+            <Link
+              href="/"
+              className={`px-4 py-3.5 text-[13px] font-semibold whitespace-nowrap transition-all border-b-2 ${
+                pathname === "/" ? "text-white border-[#e07b00]" : "text-gray-300 border-transparent hover:text-white hover:border-[#e07b00]/50"
+              }`}
+            >
+              Home
+            </Link>
+
+            {navLinks.map((link) => {
+              const active = link.href !== "#chatbot" && (pathname === link.href || pathname.startsWith(link.href + "/"));
+              if (link.action) {
+                return (
+                  <button
+                    key={link.label}
+                    onClick={link.action}
+                    className="px-4 py-3.5 text-[13px] font-semibold whitespace-nowrap transition-all border-b-2 text-gray-300 border-transparent hover:text-white hover:border-[#e07b00]/50"
+                    aria-label="Open SevaSetu AI Assistant"
+                  >
+                    {link.label}
+                  </button>
+                );
+              }
               return (
-                <button key={link.label} onClick={link.action} className={`px-3 sm:px-4 py-2.5 text-xs font-semibold whitespace-nowrap transition-colors border-b-2 flex-shrink-0 text-gray-300 border-transparent hover:text-white hover:bg-white/5`} aria-label="Open SevaSetu AI Assistant">
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-4 py-3.5 text-[13px] font-semibold whitespace-nowrap transition-all border-b-2 ${
+                    active ? "text-white border-[#e07b00]" : "text-gray-300 border-transparent hover:text-white hover:border-[#e07b00]/50"
+                  }`}
+                >
                   {link.label}
-                </button>
+                </Link>
               );
-            }
-            return (
-              <Link key={link.href} href={link.href} className={`px-3 sm:px-4 py-2.5 text-xs font-semibold whitespace-nowrap transition-colors border-b-2 flex-shrink-0 ${active ? "text-white border-[#e07b00] bg-white/5" : "text-gray-300 border-transparent hover:text-white hover:bg-white/5"}`}>
-                {link.label}
-              </Link>
-            );
-          })}
+            })}
+          </nav>
+
+          {/* Language selector — visible on mobile only (desktop is in utility bar) */}
+          <div className="flex items-center gap-2 flex-shrink-0 lg:hidden ml-auto">
+            <select
+              className="bg-white/10 border border-white/20 text-white text-sm rounded px-2 py-1.5 outline-none cursor-pointer"
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+              aria-label="Select language"
+            >
+              <option value="en" className="text-black bg-white">EN</option>
+              <option value="te" className="text-black bg-white">తె</option>
+              <option value="hi" className="text-black bg-white">हि</option>
+            </select>
+          </div>
         </div>
-      </nav>
+      </div>
     </header>
   );
 }
