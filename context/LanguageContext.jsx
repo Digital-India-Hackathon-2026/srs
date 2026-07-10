@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { getTranslation } from "../lib/i18n/index";
+import { getTranslation, getLocalizedValue as _glv } from "../lib/i18n/index";
 
 const LanguageContext = createContext(null);
 
@@ -41,7 +41,7 @@ export function LanguageProvider({ children }) {
   const getLocalizedValue = useCallback((obj) => {
     if (!obj) return "";
     if (typeof obj === "string") return obj;
-    return obj[language] || obj.en || obj.te || obj.hi || "";
+    return _glv(obj, language);
   }, [language]);
 
   return (

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowUp, Minus, RotateCcw, Trash2, X } from "lucide-react";
 import { getQuickQuestions, DEFAULT_QUESTIONS } from "../../lib/quickQuestions";
+import { useLanguage } from "../../context/LanguageContext";
 
 const SERVICE_CHIPS = [
   { id: "passport", label: "Passport" },
@@ -18,6 +19,7 @@ const SERVICE_CHIPS = [
 ];
 
 export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
+  const { t, language } = useLanguage();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -45,7 +47,7 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: q, serviceId: service || undefined, lang: "en" }),
+        body: JSON.stringify({ message: q, serviceId: service || undefined, lang: language }),
       });
       const data = await res.json();
       const meta = data.metadata || {};
@@ -108,9 +110,9 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#163A63] to-[#1a4a7a] flex items-center justify-center shadow-lg mb-3 overflow-hidden">
               <Image src="/images/sevasetu-logo.png" alt="" width={40} height={40} className="object-contain w-10 h-10" />
             </div>
-            <h3 className="text-sm font-bold text-[#163A63] mb-1">Hi! I'm SevaSetu AI 👋</h3>
+            <h3 className="text-sm font-bold text-[#163A63] mb-1">{t("helpDesk.greeting")}</h3>
             <p className="text-xs text-gray-500 leading-relaxed max-w-[240px] mb-4">
-              {service ? `Ask me about ${SERVICE_CHIPS.find(s => s.id === service)?.label || "this service"}.` : "Select a service above or ask anything about Telangana Government Services."}
+              {service ? `${t("helpDesk.subtitle")}` : t("helpDesk.description")}
             </p>
 
             {/* Dynamic quick questions */}
@@ -184,12 +186,12 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
       {/* Input */}
       <div className="px-4 pb-4 pt-2 flex-shrink-0 bg-white">
         <div className="flex items-end gap-2 bg-gray-50 border border-gray-200 rounded-2xl px-3.5 py-2.5 focus-within:border-[#163A63] focus-within:ring-1 focus-within:ring-[#163A63]/20 transition-all shadow-sm">
-          <textarea ref={inputRef} rows={1} className="flex-1 bg-transparent text-sm text-gray-800 outline-none resize-none leading-relaxed placeholder:text-gray-400" placeholder={service ? `Ask about ${SERVICE_CHIPS.find(s => s.id === service)?.label || "this service"}...` : "Ask anything about Telangana services..."} value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown} style={{ minHeight: "22px", maxHeight: "80px" }} onInput={e => { e.target.style.height = "auto"; e.target.style.height = Math.min(e.target.scrollHeight, 80) + "px"; }} />
+          <textarea ref={inputRef} rows={1} className="flex-1 bg-transparent text-sm text-gray-800 outline-none resize-none leading-relaxed placeholder:text-gray-400" placeholder={t("helpDesk.placeholder")} value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown} style={{ minHeight: "22px", maxHeight: "80px" }} onInput={e => { e.target.style.height = "auto"; e.target.style.height = Math.min(e.target.scrollHeight, 80) + "px"; }} />
           <button onClick={() => sendMessage()} disabled={loading || !input.trim()} className="w-7 h-7 bg-[#163A63] hover:bg-[#1a4a7a] disabled:opacity-30 disabled:cursor-not-allowed text-white rounded-full flex items-center justify-center transition-all flex-shrink-0 shadow-sm" aria-label="Send">
             <ArrowUp size={14} strokeWidth={2.5} />
           </button>
         </div>
-        <p className="text-center text-[10px] text-gray-300 mt-2">SevaSetu AI • Verified government information only</p>
+        <p className="text-center text-[10px] text-gray-300 mt-2">{t("helpDesk.verified")}</p>
       </div>
     </div>
   );
