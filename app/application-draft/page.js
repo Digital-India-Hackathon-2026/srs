@@ -16,7 +16,8 @@ import Footer from "../../components/Footer";
 
 const SERVICES = [
   { id: "passport", name: "Passport (Fresh / Reissue)" },
-  { id: "learner-licence", name: "Learner Driving Licence" },
+  { id: "driving-licence", name: "Driving Licence (Learner / Permanent)" },
+  { id: "learner-licence", name: "Learner Driving Licence (Legacy)" },
 ];
 
 const DOCUMENT_SLOTS = [
