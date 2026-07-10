@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import {
   AlertCircle, Check, CheckCircle2, ChevronLeft, ChevronRight,
-  ClipboardCopy, Download, FileText, Info, User,
+  ClipboardCopy, Download, FileText, Info, Upload, User,
 } from "lucide-react";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
@@ -125,6 +125,8 @@ export default function VoterIdDraftPage() {
   const [declared, setDeclared] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [toast, setToast] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState(""); // "" | "success" | "error"
 
   const steps = formType ? STEPS[formType] : [];
   const currentStepDef = steps[currentStep];
@@ -132,6 +134,41 @@ export default function VoterIdDraftPage() {
   const getLabel = (obj) => (typeof obj === "object" ? (obj[language] || obj.en) : obj);
 
   const updateField = (id, value) => setFormData(prev => ({ ...prev, [id]: value }));
+
+  // ── Document upload & OCR extraction ──────────────────────────────────────
+  const handleDocUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setUploadStatus("");
+
+    try {
+      const fd = new FormData();
+      fd.append("document", file);
+      fd.append("docType", "aadhaar");
+
+      const res = await fetch("/api/ocr/voter-id", { method: "POST", body: fd });
+      const data = await res.json();
+
+      if (data.success && data.fields) {
+        setFormData(prev => ({ ...prev, ...data.fields }));
+        setUploadStatus("success");
+        setToast(language === "te" ? "పత్రం నుండి డేటా విజయవంతంగా సేకరించబడింది!" : language === "hi" ? "दस्तावेज़ से डेटा सफलतापूर्वक निकाला गया!" : "Data extracted successfully from document!");
+        setTimeout(() => setToast(""), 3000);
+      } else {
+        setUploadStatus("error");
+        setToast(data.error || (language === "te" ? "పత్రం నుండి డేటా సేకరించలేకపోయాము" : language === "hi" ? "दस्तावेज़ से डेटा नहीं निकल सका" : "Could not extract data from document"));
+        setTimeout(() => setToast(""), 4000);
+      }
+    } catch (err) {
+      setUploadStatus("error");
+      setToast(language === "te" ? "అప్‌లోడ్ విఫలమైంది" : language === "hi" ? "अपलोड विफल हुआ" : "Upload failed");
+      setTimeout(() => setToast(""), 3000);
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const handleNext = () => {
     if (currentStep < steps.length - 1) setCurrentStep(s => s + 1);
@@ -311,6 +348,33 @@ export default function VoterIdDraftPage() {
             </div>
             <p className="text-xs text-gray-500 mb-1">{L.step} {currentStep + 1} {L.of} {steps.length}</p>
             <h2 className="text-lg font-bold text-[#1a3a5c] mb-4">{getLabel(currentStepDef.title)}</h2>
+
+            {/* Document Upload for auto-fill (show on personal/address steps) */}
+            {(currentStepDef.id === "personal" || currentStepDef.id === "address" || currentStepDef.id === "indiaAddress") && (
+              <div className="mb-6 p-4 border-2 border-dashed border-[#C89A2B]/40 rounded-lg bg-[#fffbf0]">
+                <div className="flex items-center gap-2 mb-2">
+                  <Upload size={16} className="text-[#C89A2B]" />
+                  <span className="text-sm font-semibold text-[#1a3a5c]">
+                    {language === "te" ? "ఆధార్ కార్డ్ అప్‌లోడ్ చేయండి (ఆటో-ఫిల్ కోసం)" : language === "hi" ? "आधार कार्ड अपलोड करें (ऑटो-फिल के लिए)" : "Upload Aadhaar Card (for auto-fill)"}
+                  </span>
+                </div>
+                <p className="text-xs text-gray-500 mb-3">
+                  {language === "te" ? "మీ ఆధార్ ఫోటో/PDF అప్‌లోడ్ చేస్తే, పేరు, DOB, అడ్రస్ ఆటోమేటిక్‌గా ఫిల్ అవుతాయి." : language === "hi" ? "आधार फोटो/PDF अपलोड करने पर नाम, DOB, पता स्वचालित भर जाएगा।" : "Upload your Aadhaar photo/PDF to auto-fill name, DOB, and address fields."}
+                </p>
+                <div className="flex items-center gap-3">
+                  <label className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg cursor-pointer transition-colors ${uploading ? "bg-gray-300 text-gray-500" : "bg-[#1a3a5c] text-white hover:bg-[#0f2540]"}`}>
+                    <Upload size={14} />
+                    {uploading ? (language === "te" ? "ప్రాసెస్ అవుతోంది..." : language === "hi" ? "प्रोसेस हो रहा है..." : "Processing...") : (language === "te" ? "ఫైల్ ఎంచుకోండి" : language === "hi" ? "फ़ाइल चुनें" : "Choose File")}
+                    <input type="file" accept="image/*,.pdf" onChange={handleDocUpload} disabled={uploading} className="hidden" />
+                  </label>
+                  {uploadStatus === "success" && <CheckCircle2 size={18} className="text-green-500" />}
+                  {uploadStatus === "error" && <AlertCircle size={18} className="text-red-500" />}
+                </div>
+                {toast && (
+                  <p className={`mt-2 text-xs font-medium ${uploadStatus === "success" ? "text-green-600" : "text-red-600"}`}>{toast}</p>
+                )}
+              </div>
+            )}
 
             {/* Step content */}
             {renderStepContent()}
