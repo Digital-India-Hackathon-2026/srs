@@ -6,12 +6,24 @@ import { ArrowUp, Minus, RotateCcw, Trash2, X, Search } from "lucide-react";
 import QuickChips, { QUICK_CHIPS, SERVICE_SUGGESTIONS, EXAMPLE_QUESTIONS } from "./QuickChips";
 import VoiceInput from "./VoiceInput";
 
-// ── Detect user language from text ────────────────────────────────────────────
+// ── Language detection (client-side mirror of server) ─────────────────────────
+const TE_ROMAN = ["ela","cheyali","kavali","ekkada","enti","emiti","entha","enni","rojulu","marchali","update cheyali","documents enti","fee entha"];
+const HI_ROMAN = ["kaise","kare","karna","batao","chahiye","kahan","kya","kitna","kitne","din","milega","hota","process kya","fees kitni"];
+
 function detectLang(text) {
   if (/[\u0C00-\u0C7F]/.test(text)) return "te";
   if (/[\u0900-\u097F]/.test(text)) return "hi";
+  const lower = text.toLowerCase();
+  if (TE_ROMAN.some(w => lower.includes(w))) return "te";
+  if (HI_ROMAN.some(w => lower.includes(w))) return "hi";
   return "en";
 }
+
+const UI_LABELS = {
+  en: { placeholder: "Ask anything about Telangana services", listening: "Listening...", typing: "SevaSetu AI is typing...", error: "Connection error. Please try again." },
+  te: { placeholder: "తెలంగాణ సేవల గురించి ఏదైనా అడగండి", listening: "వింటున్నాను...", typing: "సేవాసేతు AI సమాధానం సిద్ధం చేస్తోంది...", error: "కనెక్షన్ సమస్య. మళ్లీ ప్రయత్నించండి." },
+  hi: { placeholder: "तेलंगाना सेवाओं के बारे में कुछ भी पूछें", listening: "सुन रहा हूँ...", typing: "सेवासेतु AI उत्तर तैयार कर रहा है...", error: "कनेक्शन एरर। कृपया दोबारा प्रयास करें।" },
+};
 
 // ── Format AI response text into structured JSX ───────────────────────────────
 function FormattedMessage({ text }) {
@@ -112,19 +124,25 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
   const [ttsEnabled, setTtsEnabled]     = useState(false);
   const [searchMode, setSearchMode]     = useState(false);
   const [searchQuery, setSearchQuery]   = useState("");
+  const [activeLang, setActiveLang]     = useState("en"); // tracks conversation language
   const bottomRef = useRef(null);
   const inputRef  = useRef(null);
   const searchRef = useRef(null);
+  const spokenIds = useRef(new Set());
 
   useEffect(() => { bottomRef.current?.scrollIntoView({ behavior: "smooth" }); }, [messages, loading]);
   useEffect(() => { setTimeout(() => inputRef.current?.focus(), 200); }, []);
   useEffect(() => { if (searchMode) setTimeout(() => searchRef.current?.focus(), 100); }, [searchMode]);
+
+  const labels = UI_LABELS[activeLang] || UI_LABELS.en;
 
   const sendMessage = useCallback(async (text) => {
     const rawQ = (text || input).trim();
     if (!rawQ || loading) return;
 
     const lang = detectLang(rawQ);
+    setActiveLang(lang); // update conversation language
+
     // Build conversation history (last 6 messages = 3 Q&A pairs)
     const history = messages.slice(-6).map(m => ({
       role: m.role === "user" ? "user" : "assistant",
@@ -133,7 +151,7 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
 
     setInput("");
     setLastQuestion(rawQ);
-    setMessages(prev => [...prev, { role: "user", text: rawQ }]);
+    setMessages(prev => [...prev, { role: "user", text: rawQ, id: Date.now() }]);
     setLoading(true);
     if (onStateChange) onStateChange("thinking");
 
@@ -141,29 +159,44 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: rawQ, serviceId: service || undefined, lang, history }),
+        body: JSON.stringify({
+          message: rawQ,
+          serviceId: service || undefined,
+          lang,
+          selectedLanguage: lang,
+          previousLanguage: activeLang,
+          history,
+        }),
       });
       const data = await res.json();
       const meta = data.metadata || {};
 
       if (meta.service && !service) setService(meta.service);
+      if (meta.detectedLanguage) setActiveLang(meta.detectedLanguage);
 
-      const answer = data.answer || "I don't have verified information for this yet. Please check the official portal or contact the nearest MeeSeva centre.";
+      const answer = data.answer || (UI_LABELS[lang] || UI_LABELS.en).error;
+      const msgId = Date.now() + 1;
 
       setMessages(prev => [...prev, {
         role: "assistant",
         text: answer,
         officialSource: meta.officialSource || null,
+        id: msgId,
+        lang: meta.detectedLanguage || lang,
       }]);
 
-      if (ttsEnabled) speakText(answer, lang);
+      // Auto-speak if enabled
+      if (ttsEnabled && !spokenIds.current.has(msgId)) {
+        spokenIds.current.add(msgId);
+        speakText(answer, meta.detectedLanguage || lang);
+      }
     } catch {
-      setMessages(prev => [...prev, { role: "assistant", text: "Connection error. Please try again.", isError: true }]);
+      setMessages(prev => [...prev, { role: "assistant", text: labels.error, isError: true, id: Date.now() + 2 }]);
     } finally {
       setLoading(false);
       if (onStateChange) { onStateChange("happy"); setTimeout(() => onStateChange("idle"), 2000); }
     }
-  }, [input, loading, service, messages, ttsEnabled, onStateChange]);
+  }, [input, loading, service, messages, ttsEnabled, onStateChange, activeLang, labels.error]);
 
   function handleKeyDown(e) {
     if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
@@ -388,7 +421,7 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
             ref={inputRef}
             rows={1}
             className="flex-1 bg-transparent text-[12.5px] text-gray-800 outline-none resize-none leading-relaxed placeholder:text-gray-400 min-w-0"
-            placeholder={service ? `Ask about ${service.replace(/-/g, " ")}…` : "Ask anything about Telangana Government Services…"}
+            placeholder={service ? `Ask about ${service.replace(/-/g, " ")}…` : labels.placeholder}
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
