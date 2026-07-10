@@ -9,17 +9,37 @@ export async function GET(req) {
 
   // PIN-first search
   if (pin) {
+    // Validate format
+    if (!/^\d{6}$/.test(pin)) {
+      return Response.json({ error: "Please enter a valid 6-digit PIN code.", offices: [], total: 0 });
+    }
+
     const pinInfo = lookupPin(pin);
 
     if (!pinInfo) {
-      return Response.json({ error: "Invalid PIN code", offices: [], total: 0 });
+      return Response.json({
+        error: "This PIN code is not in the Hyderabad metro directory. PIN-code search currently supports Hyderabad metropolitan areas.",
+        offices: [],
+        total: 0,
+      });
     }
 
     const { locality, mandal, district: pinDistrict, lat, lng } = pinInfo;
-    const offices = getOfficesByDistrict(pinDistrict);
 
-    // Calculate distance and sort
-    let results = offices.map(o => ({
+    // Get offices from PIN's district AND neighboring Hyderabad metro districts
+    const metroDistricts = ["Hyderabad", "Medchal-Malkajgiri", "Rangareddy"];
+    let allOffices = [];
+    for (const d of metroDistricts) {
+      const dOffices = getOfficesByDistrict(d);
+      allOffices.push(...dOffices);
+    }
+    // Also include the PIN's own district if not in metro list
+    if (!metroDistricts.includes(pinDistrict)) {
+      allOffices.push(...getOfficesByDistrict(pinDistrict));
+    }
+
+    // Calculate distance from PIN location and sort
+    let results = allOffices.map(o => ({
       ...o,
       distance: (o.lat && o.lng) ? haversine(lat, lng, o.lat, o.lng) : null,
     }));
@@ -53,21 +73,21 @@ export async function GET(req) {
       results.sort((a, b) => (a.distance || 999) - (b.distance || 999));
     }
 
-    // Group: exact PIN → nearby → others
+    // Group: exact PIN → nearby (within 10km) → others
     const exact = results.filter(o => o.pinCode === pin);
     const nearby = results.filter(o => o.pinCode !== pin && (o.distance || 999) < 10);
-    const others = results.filter(o => o.pinCode !== pin && (o.distance || 999) >= 10);
+    const others = results.filter(o => o.pinCode !== pin && (o.distance || 999) >= 10).slice(0, 10);
 
     // Mismatch check
     const mismatch = district && district !== pinDistrict;
 
     return Response.json({
       pinInfo: { locality, mandal, district: pinDistrict },
-      mismatch: mismatch ? `PIN ${pin} belongs to ${pinDistrict}, not ${district}.` : null,
+      mismatch: mismatch ? `PIN ${pin} belongs to ${pinDistrict}. District updated automatically.` : null,
       exact,
       nearby,
       others,
-      total: results.length,
+      total: exact.length + nearby.length + others.length,
     });
   }
 
