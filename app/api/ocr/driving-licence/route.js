@@ -6,8 +6,8 @@
  * Never returns hardcoded data — each upload produces fresh extraction.
  */
 
-import { extractDocumentText } from "../../../../lib/ocr/extractDocumentText";
-import { parseAadhaarFields } from "../../../../lib/ocr/parseAadhaarFields";
+import { extractStructuredFields } from "../../../../lib/ocr/extractDocumentText";
+import { parseAadhaarStructured, parseAadhaarFields } from "../../../../lib/ocr/parseAadhaarFields";
 import { parsePanFields } from "../../../../lib/ocr/parsePanFields";
 import { parseDrivingLicenceFields } from "../../../../lib/ocr/parseDrivingLicenceFields";
 import { mapDrivingLicenceFields } from "../../../../lib/ocr/mapDrivingLicenceFields";
@@ -44,13 +44,17 @@ export async function POST(req) {
       const buffer = Buffer.from(await aadhaarFile.arrayBuffer());
       const mimeType = aadhaarFile.type || "image/jpeg";
 
-      const { text, method } = await extractDocumentText(buffer, mimeType);
-      ocrMethod = method;
+      const result = await extractStructuredFields(buffer, mimeType, "aadhaar");
+      ocrMethod = result.method;
 
-      if (text && text.length > 10) {
-        progress.push("Parsing Aadhaar details...");
-        const result = parseAadhaarFields(text);
-        aadhaarParsed = { fields: result.fields, confidence: result.confidence };
+      if (result.fields) {
+        progress.push("Aadhaar details extracted (AI Vision).");
+        const parsed = parseAadhaarStructured(result.fields);
+        aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
+      } else if (result.raw && result.raw.length > 10) {
+        progress.push("Parsing Aadhaar from OCR text...");
+        const parsed = parseAadhaarFields(result.raw);
+        aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
       } else {
         progress.push("Could not read Aadhaar clearly.");
       }
@@ -62,13 +66,34 @@ export async function POST(req) {
       const buffer = Buffer.from(await panFile.arrayBuffer());
       const mimeType = panFile.type || "image/jpeg";
 
-      const { text, method } = await extractDocumentText(buffer, mimeType);
-      if (!ocrMethod || ocrMethod === "none") ocrMethod = method;
+      const result = await extractStructuredFields(buffer, mimeType, "pan");
+      if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      if (text && text.length > 10) {
-        progress.push("Parsing PAN details...");
-        const result = parsePanFields(text);
-        panParsed = { fields: result.fields, confidence: result.confidence };
+      if (result.fields) {
+        progress.push("PAN details extracted.");
+        const validFields = {};
+        const validConf = {};
+        if (result.fields.panNumber && /^[A-Z]{5}\d{4}[A-Z]$/.test(result.fields.panNumber.trim())) {
+          validFields.panNumber = result.fields.panNumber.trim();
+          validConf.panNumber = 0.95;
+        }
+        if (result.fields.fullName && result.fields.fullName.trim().length >= 2) {
+          validFields.fullName = result.fields.fullName.trim();
+          validConf.fullName = 0.85;
+        }
+        if (result.fields.fatherName && result.fields.fatherName.trim().length >= 2) {
+          validFields.fatherName = result.fields.fatherName.trim();
+          validConf.fatherName = 0.78;
+        }
+        if (result.fields.dateOfBirth && /^\d{2}[\/\-]\d{2}[\/\-]\d{4}$/.test(result.fields.dateOfBirth.trim())) {
+          validFields.dateOfBirth = result.fields.dateOfBirth.trim().replace(/-/g, "/");
+          validConf.dateOfBirth = 0.88;
+        }
+        panParsed = { fields: validFields, confidence: validConf };
+      } else if (result.raw && result.raw.length > 10) {
+        progress.push("Parsing PAN from OCR text...");
+        const parsed = parsePanFields(result.raw);
+        panParsed = { fields: parsed.fields, confidence: parsed.confidence };
       } else {
         progress.push("Could not read PAN clearly.");
       }
@@ -80,13 +105,14 @@ export async function POST(req) {
       const buffer = Buffer.from(await existingDLFile.arrayBuffer());
       const mimeType = existingDLFile.type || "image/jpeg";
 
-      const { text, method } = await extractDocumentText(buffer, mimeType);
-      if (!ocrMethod || ocrMethod === "none") ocrMethod = method;
+      const result = await extractStructuredFields(buffer, mimeType, "generic");
+      if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      if (text && text.length > 10) {
+      const rawText = result.raw || "";
+      if (rawText.length > 10) {
         progress.push("Parsing Driving Licence details...");
-        const result = parseDrivingLicenceFields(text);
-        dlParsed = { fields: result.fields, confidence: result.confidence };
+        const parsed = parseDrivingLicenceFields(rawText);
+        dlParsed = { fields: parsed.fields, confidence: parsed.confidence };
       } else {
         progress.push("Could not read existing licence clearly.");
       }
@@ -98,26 +124,24 @@ export async function POST(req) {
       const buffer = Buffer.from(await birthCertFile.arrayBuffer());
       const mimeType = birthCertFile.type || "image/jpeg";
 
-      const { text, method } = await extractDocumentText(buffer, mimeType);
-      if (!ocrMethod || ocrMethod === "none") ocrMethod = method;
+      const result = await extractStructuredFields(buffer, mimeType, "generic");
+      if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      if (text && text.length > 10) {
-        // Extract DOB from birth certificate
-        const dobMatch = text.match(/\b(\d{2}[\/\-]\d{2}[\/\-]\d{4})\b/);
+      const rawText = result.raw || "";
+      if (rawText.length > 10) {
+        const dobMatch = rawText.match(/\b(\d{2}[\/\-]\d{2}[\/\-]\d{4})\b/);
         if (dobMatch && !aadhaarParsed.fields.dateOfBirth) {
           aadhaarParsed.fields.dateOfBirth = dobMatch[1].replace(/-/g, "/");
           aadhaarParsed.confidence.dateOfBirth = 0.85;
           progress.push("DOB extracted from certificate.");
         }
-        // Extract name
-        const nameMatch = text.match(/(?:Name|Child'?s?\s*Name)\s*[:\-]?\s*([A-Za-z\s]{3,50})/i);
+        const nameMatch = rawText.match(/(?:Name|Child'?s?\s*Name)\s*[:\-]?\s*([A-Za-z\s]{3,50})/i);
         if (nameMatch && !aadhaarParsed.fields.fullName) {
           aadhaarParsed.fields.fullName = nameMatch[1].trim();
           aadhaarParsed.confidence.fullName = 0.7;
           progress.push("Name extracted from certificate.");
         }
-        // Extract father name
-        const fatherMatch = text.match(/(?:Father|S\/O|D\/O)\s*[:\-]?\s*([A-Za-z\s]{3,50})/i);
+        const fatherMatch = rawText.match(/(?:Father|S\/O|D\/O)\s*[:\-]?\s*([A-Za-z\s]{3,50})/i);
         if (fatherMatch && !aadhaarParsed.fields.fatherName) {
           aadhaarParsed.fields.fatherName = fatherMatch[1].trim();
           aadhaarParsed.confidence.fatherName = 0.7;
@@ -133,13 +157,13 @@ export async function POST(req) {
       const buffer = Buffer.from(await medicalCertFile.arrayBuffer());
       const mimeType = medicalCertFile.type || "image/jpeg";
 
-      const { text, method } = await extractDocumentText(buffer, mimeType);
-      if (!ocrMethod || ocrMethod === "none") ocrMethod = method;
+      const result = await extractStructuredFields(buffer, mimeType, "generic");
+      if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      if (text && text.length > 10) {
+      const rawText = result.raw || "";
+      if (rawText.length > 10) {
         progress.push("Medical certificate processed.");
-        // Extract blood group from medical cert
-        const bgMatch = text.match(/(?:Blood\s*(?:Group|Gr|Gp)|BG)\s*[:\-]?\s*((?:A|B|AB|O)[+-])/i);
+        const bgMatch = rawText.match(/(?:Blood\s*(?:Group|Gr|Gp)|BG)\s*[:\-]?\s*((?:A|B|AB|O)[+-])/i);
         if (bgMatch) {
           dlParsed.fields.bloodGroup = bgMatch[1].toUpperCase();
           dlParsed.confidence.bloodGroup = 0.85;
