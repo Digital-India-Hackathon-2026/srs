@@ -24,6 +24,52 @@ import { detectMultilingualService, detectMultilingualTopic } from "../../../lib
 const isDev = process.env.NODE_ENV === "development";
 const log   = (l, v) => { if (isDev) console.log(`[SevaSetu] ${l}:`, v); };
 
+// ── Basic conversational greetings ───────────────────────────────────────────
+const GREETINGS = [
+  {
+    patterns: [/^(hi|hello|hey|hii+|helo|hola)\b/i, /^(good\s*(morning|afternoon|evening|night))/i, /^(namaste|namaskar|namaskaram)\b/i, /^(నమస్కారం|నమస్తే|హలో|హాయ్)/i, /^(नमस्ते|नमस्कार|हेलो|हाय)/i],
+    response: {
+      en: "Hello! 👋 I'm SevaSetu AI — your guide for Telangana Government Services. I can help with Passport, Aadhaar, Driving Licence, Income Certificate, PAN Card, Voter ID, Ration Card, MeeSeva, and more.\n\nWhat service do you need help with?",
+      te: "నమస్కారం! 👋 నేను సేవాసేతు AI — తెలంగాణ ప్రభుత్వ సేవల గైడ్. పాస్‌పోర్ట్, ఆధార్, డ్రైవింగ్ లైసెన్స్, ఇన్‌కమ్ సర్టిఫికేట్, పాన్ కార్డ్, వోటర్ ఐడి, రేషన్ కార్డ్, మీసేవ మొదలైన సేవల్లో సహాయం చేయగలను.\n\nమీకు ఏ సేవ గురించి సహాయం కావాలి?",
+      hi: "नमस्ते! 👋 मैं सेवासेतु AI — तेलंगाना सरकारी सेवाओं का गाइड हूँ। पासपोर्ट, आधार, ड्राइविंग लाइसेंस, इनकम सर्टिफिकेट, पैन कार्ड, वोटर आईडी, राशन कार्ड, मीसेवा और अन्य सेवाओं में मदद कर सकता हूँ।\n\nआपको किस सेवा में मदद चाहिए?",
+    },
+  },
+  {
+    patterns: [/^(how are you|how r u|howdy|sup|what's up|whats up)/i, /^(ఎలా ఉన్నారు|ఎలా ఉన్నావు|బాగున్నారా)/i, /^(कैसे हो|कैसे हैं|क्या हाल)/i],
+    response: {
+      en: "I'm doing great, thank you! 😊 I'm SevaSetu AI — ready to help you with Telangana government services.\n\nAsk me about documents, fees, steps, eligibility for any service like Passport, Aadhaar, Driving Licence, Income Certificate, etc.",
+      te: "బాగున్నాను, ధన్యవాదాలు! 😊 నేను సేవాసేతు AI — తెలంగాణ ప్రభుత్వ సేవల్లో మీకు సహాయం చేయడానికి సిద్ధంగా ఉన్నాను.\n\nపాస్‌పోర్ట్, ఆధార్, డ్రైవింగ్ లైసెన్స్, ఇన్‌కమ్ సర్టిఫికేట్ వంటి ఏదైనా సేవ గురించి అడగండి.",
+      hi: "मैं अच्छा हूँ, धन्यवाद! 😊 मैं सेवासेतु AI — तेलंगाना सरकारी सेवाओं में आपकी मदद के लिए तैयार हूँ।\n\nपासपोर्ट, आधार, ड्राइविंग लाइसेंस, इनकम सर्टिफिकेट जैसी किसी भी सेवा के बारे में पूछें।",
+    },
+  },
+  {
+    patterns: [/^(thanks|thank you|thanku|tq|ty|dhanyavaad|dhanyawad)\b/i, /^(ధన్యవాదాలు|థాంక్స్|థాంక్యూ)/i, /^(धन्यवाद|शुक्रिया|थैंक्स)/i],
+    response: {
+      en: "You're welcome! 🙏 Happy to help. Ask me anything else about government services.",
+      te: "మీకు స్వాగతం! 🙏 సహాయం చేయడం సంతోషం. ప్రభుత్వ సేవల గురించి ఇంకేదైనా అడగండి.",
+      hi: "आपका स्वागत है! 🙏 मदद करके खुशी हुई। सरकारी सेवाओं के बारे में कुछ और पूछें।",
+    },
+  },
+  {
+    patterns: [/^(who are you|what are you|what can you do|what do you do)\b/i, /^(నీవు ఎవరు|నువ్వు ఎవరు|ఏం చేయగలవు)/i, /^(तुम कौन हो|आप कौन हो|क्या कर सकते हो)/i],
+    response: {
+      en: "I'm SevaSetu AI 🤖 — a multilingual government service assistant for Telangana. I can help you with:\n\n• Passport, Aadhaar, PAN Card, Voter ID\n• Income, Caste, Residence, Birth, Death Certificates\n• Driving Licence, Ration Card\n• MeeSeva Services, Telangana Government Schemes\n\nI provide verified information about documents, fees, steps, eligibility, and more. Ask me anything!",
+      te: "నేను సేవాసేతు AI 🤖 — తెలంగాణ ప్రభుత్వ సేవల కోసం బహుభాషా సహాయకుడిని. నేను సహాయం చేయగలను:\n\n• పాస్‌పోర్ట్, ఆధార్, పాన్ కార్డ్, వోటర్ ఐడి\n• ఆదాయ, కుల, నివాస, జనన, మరణ ధృవీకరణ పత్రాలు\n• డ్రైవింగ్ లైసెన్స్, రేషన్ కార్డ్\n• మీసేవ, తెలంగాణ ప్రభుత్వ పథకాలు\n\nడాక్యుమెంట్స్, ఫీజులు, స్టెప్స్, అర్హత గురించి అడగండి!",
+      hi: "मैं सेवासेतु AI 🤖 — तेलंगाना सरकारी सेवाओं के लिए बहुभाषी सहायक हूँ। मैं मदद कर सकता हूँ:\n\n• पासपोर्ट, आधार, पैन कार्ड, वोटर आईडी\n• आय, जाति, निवास, जन्म, मृत्यु प्रमाण पत्र\n• ड्राइविंग लाइसेंस, राशन कार्ड\n• मीसेवा सेवाएं, तेलंगाना सरकारी योजनाएं\n\nदस्तावेज, फीस, प्रक्रिया, पात्रता — कुछ भी पूछें!",
+    },
+  },
+];
+
+function handleGreeting(text) {
+  const trimmed = text.trim();
+  for (const greet of GREETINGS) {
+    for (const pattern of greet.patterns) {
+      if (pattern.test(trimmed)) return greet.response;
+    }
+  }
+  return null;
+}
+
 export async function POST(req) {
   const start = Date.now();
   try {
@@ -35,6 +81,16 @@ export async function POST(req) {
     }
 
     const q = message.trim();
+
+    // ── 0. Handle basic greetings / conversational messages ──────────────────
+    const greetingResponse = handleGreeting(q);
+    if (greetingResponse) {
+      const lang = detectLanguage(q, selectedLanguage || clientLang || null, previousLanguage || null);
+      return Response.json({
+        answer: greetingResponse[lang] || greetingResponse.en,
+        metadata: { service: "general", intent: "greeting", officialSource: "", detectedLanguage: lang },
+      });
+    }
 
     // ── 1. Detect language ───────────────────────────────────────────────────
     const detectedLang = detectLanguage(q, selectedLanguage || clientLang || null, previousLanguage || null);

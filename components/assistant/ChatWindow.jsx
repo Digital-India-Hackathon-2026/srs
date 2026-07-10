@@ -108,10 +108,43 @@ function FormattedMessage({ text }) {
 function speakText(text, lang = "en") {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
   window.speechSynthesis.cancel();
-  const utter = new SpeechSynthesisUtterance(text.slice(0, 500));
-  utter.lang = lang === "te" ? "te-IN" : lang === "hi" ? "hi-IN" : "en-IN";
-  utter.rate = 0.95;
+
+  // Clean text for speech — remove URLs, emojis, markdown
+  const cleaned = text
+    .replace(/https?:\/\/\S+/g, "")
+    .replace(/[*#_`>]/g, "")
+    .replace(/[🔗📄🏛👤📑💰⏳📝⚠📍☎✅❌⚡🔑🔊🔴▸•]/g, "")
+    .replace(/Official portal:?\s*/gi, "")
+    .replace(/Source:.*$/gm, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 600);
+
+  if (!cleaned) return;
+
+  const langCode = lang === "te" ? "te-IN" : lang === "hi" ? "hi-IN" : "en-IN";
+  const utter = new SpeechSynthesisUtterance(cleaned);
+  utter.lang = langCode;
+  utter.rate = 0.92;
+  utter.pitch = 1;
+  utter.volume = 1;
+
+  // Try to find matching voice
+  const voices = window.speechSynthesis.getVoices();
+  const matchVoice = voices.find(v => v.lang === langCode)
+    || voices.find(v => v.lang.startsWith(lang))
+    || null;
+  if (matchVoice) utter.voice = matchVoice;
+
   window.speechSynthesis.speak(utter);
+}
+
+// Ensure voices are loaded
+if (typeof window !== "undefined" && window.speechSynthesis) {
+  window.speechSynthesis.getVoices();
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+  }
 }
 
 // ── Main ChatWindow ───────────────────────────────────────────────────────────
