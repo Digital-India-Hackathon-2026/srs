@@ -103,21 +103,17 @@ export default function HomePage() {
             {/* Verified badge */}
             <div className="inline-flex items-center gap-2 bg-white/8 border border-white/20 rounded-full px-4 py-1.5 text-xs font-semibold text-white mb-6">
               <ShieldCheck size={13} className="text-[#4ade80]" />
-              Verified Official Source Data &nbsp;|&nbsp; Telangana Government Services
+              {t("landing.verifiedData")} &nbsp;|&nbsp; {t("header.govName")}
             </div>
 
             {/* Heading — large, matching reference proportions */}
             <h1 className="text-[2.6rem] sm:text-[3.2rem] lg:text-[3.5rem] font-black text-white leading-[1.08] mb-5">
-              Access Telangana<br />
-              Government Services<br />
-              Without <span className="text-[#e07b00]">Confusion</span>
+              {t("landing.heroTitle")}
             </h1>
 
             {/* Description */}
             <p className="text-gray-300 text-[15px] leading-relaxed mb-7 max-w-[460px]">
-              Find verified documents, eligibility, application steps, official links,
-              <strong className="text-white"> MeeSeva guidance</strong>, and multilingual AI support for
-              Telangana citizens.
+              {t("landing.heroSubtitle")}
             </p>
 
             {/* Search bar */}
@@ -127,7 +123,7 @@ export default function HomePage() {
                   <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
                   <input
                     className="w-full pl-10 pr-3 py-3.5 text-sm text-gray-800 outline-none placeholder:text-gray-400"
-                    placeholder="What service are you looking for? Example: Income Certificate"
+                    placeholder={t("landing.searchPlaceholder")}
                     value={query}
                     onChange={e => { setQuery(e.target.value); setNoMatch(false); setOpen(true); }}
                     onKeyDown={handleKeyDown}
@@ -135,7 +131,7 @@ export default function HomePage() {
                   />
                 </div>
                 <button onClick={handleSearch} className="bg-[#e07b00] hover:bg-[#c96e00] text-white font-bold px-5 text-sm transition-colors flex items-center gap-1.5">
-                  <Search size={14} /> Search
+                  <Search size={14} /> {t("landing.searchBtn")}
                 </button>
               </div>
 
@@ -157,19 +153,19 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-x-6 gap-y-3 mt-7">
               <div className="flex items-center gap-2">
                 <CheckCircle2 size={18} className="text-green-400" />
-                <div><span className="text-white font-bold text-sm block">13</span><span className="text-gray-400 text-[10px]">Services Available</span></div>
+                <div><span className="text-white font-bold text-sm block">13</span><span className="text-gray-400 text-[10px]">{t("landing.servicesAvailable")}</span></div>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin size={18} className="text-yellow-400" />
-                <div><span className="text-white font-bold text-sm block">33</span><span className="text-gray-400 text-[10px]">Districts Covered</span></div>
+                <div><span className="text-white font-bold text-sm block">33</span><span className="text-gray-400 text-[10px]">{t("landing.districtsCovered")}</span></div>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck size={18} className="text-blue-300" />
-                <div><span className="text-gray-300 text-xs block">Verified Official</span><span className="text-gray-400 text-[10px]">Data</span></div>
+                <div><span className="text-gray-300 text-xs block">{t("landing.verifiedData")}</span></div>
               </div>
               <div className="flex items-center gap-2">
                 <HelpCircle size={18} className="text-orange-300" />
-                <div><span className="text-gray-300 text-xs block">AI Help Desk</span><span className="text-gray-400 text-[10px]">Available</span></div>
+                <div><span className="text-gray-300 text-xs block">{t("landing.helpDeskAvailable")}</span></div>
               </div>
             </div>
           </div>
