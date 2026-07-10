@@ -69,7 +69,7 @@ export default function Header() {
                 pathname === "/" ? "text-white border-[#e07b00]" : "text-gray-300 border-transparent hover:text-white hover:border-[#e07b00]/50"
               }`}
             >
-              Home
+              {t("common.home")}
             </Link>
 
             {navLinks.map((link) => {
