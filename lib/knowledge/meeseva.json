@@ -1,0 +1,65 @@
+{
+  "id": "meeseva",
+  "name": "MeeSeva Services",
+  "officialPortal": "https://tg.meeseva.gov.in",
+  "helpline": "1800-599-4788",
+  "lastVerified": "2026-07-01",
+  "issuingAuthority": "Government of Telangana — IT & Electronics Department",
+
+  "sections": {
+    "purpose": "MeeSeva (meaning 'At Your Service') is the Government of Telangana's official citizen service delivery platform. It provides over 600+ government services through 3,500+ MeeSeva centres across Telangana. Services are available both online at tg.meeseva.gov.in and in person at centres. MeeSeva covers: Revenue certificates (Income, Caste, Residence, Birth, Death), Civil Supplies (Ration Card), Registration, Transport, Labour, Municipal services, Social welfare, Agriculture, Finance, and 30+ other departments.",
+    "eligibility": "Any citizen of Telangana can use MeeSeva services. Services are available to residents, NRIs with Telangana address, and businesses operating in Telangana. No special eligibility for using MeeSeva as a platform — eligibility for specific services depends on the service applied for.",
+    "fees": "MeeSeva service charges: ₹10–₹50 per service depending on the certificate type. Revenue certificates (Income, Caste, Residence): ₹35–₹45. Birth/Death certificates: ₹25–₹50. Civil Supplies: ₹10–₹35. Some services are free (e.g., Voter ID). Online services may have same or lower fee. Fee is paid at the centre or online.",
+    "processingTime": "Same-day to 45 days depending on the service. Revenue certificates: 7–30 days. Birth/Death certificates: 3–7 days. Caste certificates: 15–30 days. Online applications have the same processing time as physical. Track status using the Reference Number.",
+    "applicationSteps": [
+      "Step 1 — Visit nearest MeeSeva centre (find at tg.meeseva.gov.in → Locate Centre) or go online at tg.meeseva.gov.in",
+      "Step 2 — Select the required department and service",
+      "Step 3 — Fill the application form (available at centre or online)",
+      "Step 4 — Submit required documents (originals for verification, photocopies for submission)",
+      "Step 5 — Pay the service fee (online or at counter)",
+      "Step 6 — Collect the Acknowledgment Receipt / Reference Number",
+      "Step 7 — Track application status online using Reference Number",
+      "Step 8 — Collect certificate when ready (some deliverable via post or SMS)"
+    ],
+    "services": [
+      "Revenue Department: Income Certificate, Caste Certificate, Residence Certificate, Birth Certificate, Death Certificate, Agricultural Income Certificate, Family Member Certificate",
+      "Civil Supplies: Ration Card (new/modification/correction), Fair Price Shop services",
+      "Registration: Property registration certificates, Encumbrance Certificate",
+      "Transport: Driving Licence related, Vehicle Registration services",
+      "Labour: Labour Registration, Labour Card",
+      "Panchayat Raj: Various panchayat-level certificates",
+      "Municipal: Property tax, GHMC services",
+      "Social Welfare: Scholarship applications, Caste/Community certificates",
+      "Agriculture: Pahani/Record of Rights, Land records",
+      "Finance: Treasury-related certificates"
+    ],
+    "locateCentre": "Find the nearest MeeSeva centre at: tg.meeseva.gov.in → Locate Centre. Select your district, mandal, and village. MeeSeva centres operate in every mandal of Telangana. Timings: typically 9:00 AM to 5:00 PM, Monday to Saturday (closed on government holidays).",
+    "commonMistakes": [
+      "Not carrying original documents — centres require originals for verification even though photocopies are submitted",
+      "Visiting on government holidays — centres are closed",
+      "Not collecting the Acknowledgement Receipt — needed for status tracking and complaints",
+      "Applying at the wrong jurisdiction — apply at the MeeSeva centre in the mandal of your residential address",
+      "Using unofficial agents or websites claiming to be MeeSeva",
+      "Not having mobile number linked to Aadhaar — delays OTP-based verification"
+    ],
+    "edgeCases": [
+      {
+        "title": "MeeSeva application status not updating",
+        "problem": "Applied at MeeSeva but the application status hasn't changed after the expected processing time.",
+        "recommendedNextStep": "Call MeeSeva helpline 1800-599-4788 with your Reference Number. Alternatively, visit the MeeSeva centre where you applied. For Revenue certificates, the Tahsildar processes them — visit the Tahsildar office if online status shows 'Pending Verification' for too long.",
+        "officialPortal": "https://tg.meeseva.gov.in",
+        "notes": "Processing delays are common during peak periods or if field verification is required. Keep your Reference Number safe throughout."
+      }
+    ]
+  },
+
+  "faqs": [
+    {"id":"ms-faq-001","question":"What is MeeSeva?","intent":"purpose","keywords":["meeseva","what is","government services"],"difficulty":"basic","answer":"MeeSeva is the Government of Telangana's official citizen service platform with 600+ services across 3,500+ centres. Available online at tg.meeseva.gov.in or at physical centres.","relatedSections":["purpose"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"ms-faq-002","question":"What services are available at MeeSeva?","intent":"purpose","keywords":["services","list","available","what"],"difficulty":"basic","answer":"MeeSeva offers: Income/Caste/Residence/Birth/Death certificates, Ration Card, Registration, Transport, Labour, Panchayat Raj, Municipal, Social Welfare, Agriculture, Finance services and much more — over 600 services total.","relatedSections":["services"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"ms-faq-003","question":"What is the MeeSeva helpline number?","intent":"portal","keywords":["helpline","phone","contact","number"],"difficulty":"basic","answer":"MeeSeva Helpline: 1800-599-4788 (Toll-Free). Available Monday to Saturday. For online support visit tg.meeseva.gov.in.","relatedSections":["locateCentre"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"ms-faq-004","question":"How to find nearest MeeSeva centre?","intent":"portal","keywords":["nearest","centre","location","where"],"difficulty":"basic","answer":"Visit tg.meeseva.gov.in → Locate Centre. Select your district, mandal, and village. MeeSeva centres are available in every mandal across Telangana.","relatedSections":["locateCentre"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"ms-faq-005","question":"What are MeeSeva fees?","intent":"fees","keywords":["fee","cost","charge","how much"],"difficulty":"basic","answer":"MeeSeva service charges: ₹10–₹50 per service. Revenue certificates: ₹35–₹45. Birth/Death certificates: ₹25–₹50. Civil Supplies: ₹10–₹35. Some services are free.","relatedSections":["fees"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"ms-faq-006","question":"How to track MeeSeva application?","intent":"tracking","keywords":["track","status","check","reference number"],"difficulty":"basic","answer":"Track at tg.meeseva.gov.in using your Acknowledgement/Reference Number received at the time of application. You can also call 1800-599-4788 with your Reference Number.","relatedSections":["applicationSteps"],"officialSource":"https://tg.meeseva.gov.in"},
+    {"id":"ms-faq-007","question":"What are MeeSeva working hours?","intent":"general","keywords":["timings","working hours","open","closed"],"difficulty":"basic","answer":"MeeSeva centres are typically open 9:00 AM to 5:00 PM, Monday to Saturday. Closed on government holidays. Online services at tg.meeseva.gov.in are available 24/7.","relatedSections":["locateCentre"],"officialSource":"https://tg.meeseva.gov.in"}
+  ]
+}

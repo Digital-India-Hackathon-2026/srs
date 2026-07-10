@@ -1,0 +1,79 @@
+{
+  "id": "telangana-schemes",
+  "name": "Telangana Government Schemes",
+  "officialPortal": "https://telangana.gov.in",
+  "helpline": "1100",
+  "lastVerified": "2026-07-01",
+  "issuingAuthority": "Government of Telangana — Various Departments",
+  "dataSource": "telangana.gov.in — official Telangana government website",
+
+  "sections": {
+    "purpose": "The Government of Telangana runs multiple welfare and development schemes covering agriculture, education, healthcare, housing, social security, and financial assistance. These schemes target farmers, women, SC/ST/BC communities, students, senior citizens, and economically weaker sections. Most schemes are delivered through MeeSeva centres and respective department portals. Source: telangana.gov.in",
+
+    "eligibility": "Eligibility varies by scheme. General requirements: Must be a resident of Telangana with valid Aadhaar. Income and asset criteria apply for most welfare schemes. Category-specific schemes (SC/ST/BC/OBC) require valid caste certificate. Agricultural schemes require land records (Pattadar Passbook). Women-centric schemes require age and marital status proof. Source: telangana.gov.in",
+
+    "documents": [
+      "Aadhaar card (mandatory for all schemes — for Aadhaar-based DBT)",
+      "Income Certificate (for income-based schemes — issued by Revenue Department via MeeSeva)",
+      "Caste Certificate (for SC/ST/BC reserved schemes — issued by Tahsildar via MeeSeva)",
+      "Residence/Domicile Certificate (for Telangana residency proof)",
+      "Pattadar Passbook / Land Record (for agricultural schemes)",
+      "Bank account details (linked to Aadhaar for Direct Benefit Transfer — DBT)",
+      "Passport-size photograph",
+      "Source: telangana.gov.in / MeeSeva Citizen Charter"
+    ],
+
+    "applicationSteps": [
+      "Step 1 — Identify the relevant scheme through telangana.gov.in or by visiting MeeSeva",
+      "Step 2 — Check eligibility criteria for the specific scheme",
+      "Step 3 — Gather required documents (Aadhaar, income/caste certificate, bank details, etc.)",
+      "Step 4 — Visit the nearest MeeSeva centre or the respective department portal",
+      "Step 5 — Submit application with supporting documents",
+      "Step 6 — Track application status using Reference Number",
+      "Step 7 — Benefits/assistance credited directly to Aadhaar-linked bank account via DBT",
+      "Source: telangana.gov.in"
+    ],
+
+    "majorSchemes": [
+      "Rythu Bandhu (Farm Investment Support): Financial assistance of ₹5,000 per acre per season to farmers. Apply through Agriculture Department / MeeSeva. Requires Pattadar Passbook and Aadhaar-linked bank account. Portal: rythubandhu.telangana.gov.in",
+      "Kalyana Lakshmi / Shaadi Mubarak: One-time financial assistance for marriage of girls from SC/ST/BC/Minority communities. Apply through BC Welfare / SC Development dept. Requires income certificate, caste certificate, marriage invitation. Portal: klyblts.telangana.gov.in",
+      "Aasara Pension: Monthly pension for elderly (60+), widows, disabled persons, weavers, toddy tappers, and HIV/AIDS patients. Apply through MeeSeva → Social Welfare Department. Requires Aadhaar, age proof, bank account.",
+      "Arogyasri (Health Insurance): Free medical treatment up to ₹5 lakh per year for BPL/Ration Card holders at empanelled hospitals. Aadhaar and ration card required for registration. Portal: aarogyasri.telangana.gov.in",
+      "KCR Kits: Free baby kit for newborns delivered in government hospitals under the Telangana maternity scheme. No separate application — automatic on delivery at government hospital.",
+      "TS-iPass (Industrial): Investment promotion scheme for industries. For business/entrepreneurs — apply at ts-ipass.telangana.gov.in",
+      "Double Bedroom Housing (2BHK): Free 2BHK house for homeless poor families. Apply through GHMC/Municipal/Rural authorities with income proof and landlessness certificate.",
+      "Mission Bhagiratha: Tap water supply to every household. For complaints/connections contact District Collectorate / RWSS."
+    ],
+
+    "processingTime": "Processing time varies by scheme. Pension schemes: 30–60 days. Certificate-based schemes: 7–30 days after documents verification. DBT credits: 7–15 working days after approval. Track at telangana.gov.in or call 1100. Source: telangana.gov.in",
+
+    "commonMistakes": [
+      "Not having Aadhaar linked to bank account — DBT transfers fail",
+      "Applying without required income/caste certificate — application rejected",
+      "Not checking scheme-specific eligibility before applying",
+      "Using unofficial agents claiming to process government scheme applications",
+      "Not updating beneficiary details when moving to a new address"
+    ],
+
+    "edgeCases": [
+      {
+        "title": "How to find which scheme I am eligible for?",
+        "problem": "Citizen is not sure which government scheme applies to them.",
+        "recommendedNextStep": "Visit telangana.gov.in → Schemes or visit the nearest MeeSeva centre and ask the operator about applicable schemes based on your category (farmer/student/widow/SC/ST/BC/senior citizen). You can also call the government helpline 1100 for guidance.",
+        "officialPortal": "https://telangana.gov.in",
+        "source": "telangana.gov.in"
+      }
+    ]
+  },
+
+  "faqs": [
+    {"id":"ts-faq-001","question":"What are the main Telangana government schemes?","intent":"purpose","keywords":["schemes","telangana","government","welfare"],"difficulty":"basic","answer":"Key Telangana schemes: Rythu Bandhu (farmer support), Kalyana Lakshmi/Shaadi Mubarak (marriage assistance), Aasara Pension (elderly/widow), Arogyasri (health insurance), KCR Kits (maternity), 2BHK Housing. Apply via MeeSeva or respective department portals. Source: telangana.gov.in","relatedSections":["majorSchemes"],"officialSource":"https://telangana.gov.in"},
+    {"id":"ts-faq-002","question":"How to apply for government schemes in Telangana?","intent":"steps","keywords":["apply","how to","schemes","process"],"difficulty":"basic","answer":"Visit MeeSeva centre or telangana.gov.in. Check scheme eligibility. Gather Aadhaar, income/caste certificate, bank details. Submit application. Benefits credited via DBT to Aadhaar-linked bank account. Source: telangana.gov.in","relatedSections":["applicationSteps"],"officialSource":"https://telangana.gov.in"},
+    {"id":"ts-faq-003","question":"What documents are needed for Telangana schemes?","intent":"documents","keywords":["documents","required","aadhaar","bank"],"difficulty":"basic","answer":"Aadhaar, income certificate, caste certificate (for reserved category schemes), Pattadar Passbook (farming schemes), Aadhaar-linked bank account, residence proof. Varies by scheme. Source: telangana.gov.in","relatedSections":["documents"],"officialSource":"https://telangana.gov.in"},
+    {"id":"ts-faq-004","question":"What is Rythu Bandhu scheme?","intent":"purpose","keywords":["rythu bandhu","farmer","agriculture","land"],"difficulty":"basic","answer":"Rythu Bandhu provides ₹5,000 per acre per season as farm investment support to farmers in Telangana. Requires Pattadar Passbook and Aadhaar-linked bank account. Portal: rythubandhu.telangana.gov.in. Source: telangana.gov.in","relatedSections":["majorSchemes"],"officialSource":"https://rythubandhu.telangana.gov.in"},
+    {"id":"ts-faq-005","question":"What is Kalyana Lakshmi Shaadi Mubarak?","intent":"purpose","keywords":["kalyana lakshmi","shaadi mubarak","marriage","wedding"],"difficulty":"basic","answer":"One-time financial assistance for marriage of girls from SC/ST/BC/Minority communities. Apply through BC Welfare/SC Development dept via klyblts.telangana.gov.in. Requires income certificate, caste certificate. Source: telangana.gov.in","relatedSections":["majorSchemes"],"officialSource":"https://klyblts.telangana.gov.in"},
+    {"id":"ts-faq-006","question":"What is Aasara Pension?","intent":"purpose","keywords":["aasara","pension","elderly","widow","disabled"],"difficulty":"basic","answer":"Monthly pension for elderly (60+), widows, disabled, weavers, toddy tappers, and HIV/AIDS patients. Apply via MeeSeva → Social Welfare. Requires Aadhaar, age proof, bank account. Source: telangana.gov.in","relatedSections":["majorSchemes"],"officialSource":"https://telangana.gov.in"},
+    {"id":"ts-faq-007","question":"What is Arogyasri scheme?","intent":"purpose","keywords":["arogyasri","health","insurance","hospital","treatment"],"difficulty":"basic","answer":"Arogyasri provides free medical treatment up to ₹5 lakh per year for BPL/ration card holders at empanelled hospitals. Aadhaar and ration card required. Portal: aarogyasri.telangana.gov.in. Source: telangana.gov.in","relatedSections":["majorSchemes"],"officialSource":"https://aarogyasri.telangana.gov.in"},
+    {"id":"ts-faq-008","question":"Telangana government helpline number?","intent":"portal","keywords":["helpline","contact","number","1100"],"difficulty":"basic","answer":"Telangana Government helpline: 1100 (toll-free). For scheme-specific queries visit telangana.gov.in or the nearest MeeSeva centre. Source: telangana.gov.in","relatedSections":["edgeCases"],"officialSource":"https://telangana.gov.in"}
+  ]
+}
