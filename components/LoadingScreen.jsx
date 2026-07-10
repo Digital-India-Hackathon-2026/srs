@@ -1,7 +1,6 @@
 "use client";
 
 import "../app/loading-screen.css";
-import { useLanguage } from "../context/LanguageContext";
 
 const LOADER_TEXT = {
   en: { title: "SevaSetu", subtitle: "Telangana Public Service Navigator", status: "Loading government services..." },
@@ -10,13 +9,10 @@ const LOADER_TEXT = {
 };
 
 export default function LoadingScreen() {
-  let lang = "en";
-  try {
-    if (typeof window !== "undefined") {
-      lang = localStorage.getItem("sevasetu_lang") || "en";
-    }
-  } catch {}
-  const text = LOADER_TEXT[lang] || LOADER_TEXT.en;
+  // Always render English on initial mount to match server HTML (avoids hydration mismatch).
+  // The loading screen disappears after ~2.2s anyway, so localized text here is unnecessary.
+  const text = LOADER_TEXT.en;
+
   return (
     <div className="loading-screen">
       <div className="loader-emblem-glow" />

@@ -151,7 +151,7 @@ export default function PassportDraftPage() {
 
   function showToast(msg) { setToast(msg); setTimeout(() => setToast(""), 2500); }
 
-  // Run OCR extraction
+  // Run OCR extraction with timeout protection
   async function handleExtract() {
     setProcessing(true);
     setOcrError("");
@@ -161,18 +161,33 @@ export default function PassportDraftPage() {
     setPhase(PHASE_EXTRACTING);
     setProgressSteps(["Reading uploaded documents..."]);
 
+    // AbortController with 25-second timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 25000);
+
     try {
       const formData = new FormData();
       if (files.aadhaar) formData.append("aadhaar", files.aadhaar);
       if (files.pan) formData.append("pan", files.pan);
 
-      const res = await fetch("/api/ocr/passport", { method: "POST", body: formData });
+      const res = await fetch("/api/ocr/passport", {
+        method: "POST",
+        body: formData,
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!res.ok) {
+        throw new Error(`Server error: ${res.status}`);
+      }
+
       const data = await res.json();
 
       setProgressSteps(data.progress || ["Processing complete"]);
       setOcrMethod(data.ocrMethod || "unknown");
 
-      if (data.success && Object.keys(data.extractedFields).length > 0) {
+      if (data.success && data.extractedFields && Object.keys(data.extractedFields).length > 0) {
         setExtractedFields(data.extractedFields);
         setSources(data.sources || {});
         setConfidence(data.confidence || {});
@@ -181,8 +196,13 @@ export default function PassportDraftPage() {
         setOcrError(data.error || "Could not extract details. Please upload clearer images or enter manually.");
         setPhase(PHASE_QUESTIONS);
       }
-    } catch {
-      setOcrError("OCR processing failed. Please enter details manually.");
+    } catch (err) {
+      clearTimeout(timeoutId);
+      if (err.name === "AbortError") {
+        setOcrError("Document extraction took too long. Please retry or enter details manually.");
+      } else {
+        setOcrError("Automatic extraction is currently unavailable. Please enter the missing details manually.");
+      }
       setPhase(PHASE_QUESTIONS);
     } finally {
       setProcessing(false);
@@ -361,6 +381,10 @@ export default function PassportDraftPage() {
               <span>Processing...</span>
             </div>
           </div>
+          <button onClick={() => { setProcessing(false); setOcrError("Extraction cancelled. Enter details manually."); setPhase(PHASE_QUESTIONS); }}
+            className="mt-8 text-xs text-gray-400 hover:text-[#1a3a5c] underline">
+            Cancel — enter details manually
+          </button>
         </main>
         <Footer />
       </div>
