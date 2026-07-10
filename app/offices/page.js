@@ -81,13 +81,13 @@ export default function OfficesPage() {
       let msg = "";
       if (data.mismatch) msg += data.mismatch + " ";
       if (data.pinInfo) {
-        msg += `Showing offices near ${data.pinInfo.locality}, ${data.pinInfo.district} — PIN ${pin}`;
+        msg += `Showing government service centres near ${data.pinInfo.locality} — PIN ${pin}.`;
       }
       if ((data.exact || []).length === 0 && allResults.length > 0) {
-        msg += ` (No exact office at PIN ${pin}. Showing nearby.)`;
+        msg += ` No exact office found for PIN ${pin}. Showing nearby offices.`;
       }
       if (allResults.length === 0) {
-        msg = `No offices found for PIN ${pin}. Try a different PIN code.`;
+        msg = `No offices found near PIN ${pin}. Try a different PIN code.`;
       }
       setSearchMsg(msg);
       setFilterType("All");
@@ -190,9 +190,15 @@ export default function OfficesPage() {
                     <a href={office.mapsUrl || office.mapsLink || `https://www.google.com/maps/dir/?api=1&destination=${office.lat},${office.lng}`} target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-1 border border-[#1a3a5c] text-[#1a3a5c] hover:bg-[#1a3a5c] hover:text-white text-xs font-bold py-2 rounded-lg transition-colors">
                       <ExternalLink size={11} /> Get Directions
                     </a>
-                    <a href={`tel:${office.phone.replace(/[^0-9+]/g, "")}`} className="flex-1 inline-flex items-center justify-center gap-1 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold py-2 rounded-lg transition-colors">
-                      <Phone size={11} /> Call Office
-                    </a>
+                    {office.phone && office.phone !== "N/A" ? (
+                      <a href={`tel:${office.phone.replace(/[^0-9+]/g, "")}`} className="flex-1 inline-flex items-center justify-center gap-1 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold py-2 rounded-lg transition-colors">
+                        <Phone size={11} /> Call Office
+                      </a>
+                    ) : (
+                      <span className="flex-1 inline-flex items-center justify-center gap-1 bg-gray-200 text-gray-400 text-xs font-bold py-2 rounded-lg cursor-not-allowed">
+                        <Phone size={11} /> Phone unavailable
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -205,6 +211,11 @@ export default function OfficesPage() {
           <strong>MeeSeva Helpline:</strong> 1800-599-4788 (Toll Free, Mon–Sat 8AM–8PM) &nbsp;|&nbsp;
           Portal: <a href="https://meeseva.telangana.gov.in/" target="_blank" rel="noopener noreferrer" className="underline">meeseva.telangana.gov.in</a>
         </div>
+
+        {/* MVP Coverage Note */}
+        <p className="mt-3 text-xs text-gray-400 text-center italic">
+          PIN-code search currently supports Hyderabad metropolitan areas (Hyderabad, Medchal–Malkajgiri, Rangareddy). Telangana-wide coverage is being expanded.
+        </p>
       </main>
 
       <Footer />
