@@ -51,16 +51,47 @@ export default function OfficesPage() {
   }
 
   async function searchByPin() {
-    if (!pin || pin.length < 6) return;
+    if (!pin || pin.length !== 6 || !/^\d{6}$/.test(pin)) {
+      setSearchMsg("Please enter a valid 6-digit PIN code.");
+      return;
+    }
     setLoading(true);
+    setSearchMsg("");
     try {
-      const res = await fetch(`/api/offices?pin=${pin}`);
+      const res = await fetch(`/api/offices?pin=${pin}&district=${encodeURIComponent(district)}`);
       const data = await res.json();
-      setOffices(data.offices || []);
-      if (data.district) setDistrict(data.district);
-      setSearchMsg(data.approximate ? `Showing nearest offices near PIN ${pin}` : data.offices?.length ? `Found offices for PIN ${pin}` : `No offices found for PIN ${pin}`);
+
+      if (data.error) {
+        setOffices([]);
+        setSearchMsg(data.error);
+        setLoading(false);
+        return;
+      }
+
+      // PIN-first API returns { pinInfo, exact, nearby, others, mismatch }
+      const allResults = [...(data.exact || []), ...(data.nearby || []), ...(data.others || [])];
+      setOffices(allResults);
+
+      // Auto-update district to match PIN
+      if (data.pinInfo?.district) {
+        setDistrict(data.pinInfo.district);
+      }
+
+      // Build message
+      let msg = "";
+      if (data.mismatch) msg += data.mismatch + " ";
+      if (data.pinInfo) {
+        msg += `Showing offices near ${data.pinInfo.locality}, ${data.pinInfo.district} — PIN ${pin}`;
+      }
+      if ((data.exact || []).length === 0 && allResults.length > 0) {
+        msg += ` (No exact office at PIN ${pin}. Showing nearby.)`;
+      }
+      if (allResults.length === 0) {
+        msg = `No offices found for PIN ${pin}. Try a different PIN code.`;
+      }
+      setSearchMsg(msg);
       setFilterType("All");
-    } catch { setOffices([]); setSearchMsg("Search failed."); }
+    } catch { setOffices([]); setSearchMsg("Search failed. Please try again."); }
     setLoading(false);
   }
 
@@ -149,11 +180,14 @@ export default function OfficesPage() {
                   <p className="flex items-center gap-1.5 text-xs text-gray-500 mb-1">
                     <Phone size={11} className="text-[#2d7a4f]" />{office.phone}
                   </p>
+                  {office.distance != null && (
+                    <p className="text-[10px] text-blue-600 font-semibold mb-1">📍 {office.distance.toFixed(1)} km away</p>
+                  )}
                   <p className="flex items-center gap-1.5 text-xs text-gray-400 mb-3">
                     <Clock size={11} />{office.hours}
                   </p>
                   <div className="flex gap-2">
-                    <a href={office.mapsLink} target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-1 border border-[#1a3a5c] text-[#1a3a5c] hover:bg-[#1a3a5c] hover:text-white text-xs font-bold py-2 rounded-lg transition-colors">
+                    <a href={office.mapsUrl || office.mapsLink || `https://www.google.com/maps/dir/?api=1&destination=${office.lat},${office.lng}`} target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-1 border border-[#1a3a5c] text-[#1a3a5c] hover:bg-[#1a3a5c] hover:text-white text-xs font-bold py-2 rounded-lg transition-colors">
                       <ExternalLink size={11} /> Get Directions
                     </a>
                     <a href={`tel:${office.phone.replace(/[^0-9+]/g, "")}`} className="flex-1 inline-flex items-center justify-center gap-1 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold py-2 rounded-lg transition-colors">
