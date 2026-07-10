@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   Clock,
   ExternalLink,
+  FilePenLine,
   FileText,
   Info,
   MapPin,
@@ -41,6 +42,12 @@ export default function ServiceDetailPage() {
       </div>
     );
   }
+
+  // Draft generator routes for services that support it
+  const DRAFT_ROUTES = {
+    passport: "/application-draft/passport",
+  };
+  const draftRoute = DRAFT_ROUTES[service.id];
 
   // Get localized values with English fallback
   const name = getServiceField(service.id, "name", language) || service.name;
@@ -190,6 +197,19 @@ export default function ServiceDetailPage() {
 
           {/* Right sidebar */}
           <aside className="space-y-4">
+            {/* Draft Generator button — only for supported services */}
+            {draftRoute && (
+              <div className="bg-gradient-to-r from-[#e07b00] to-[#c96a00] border border-orange-300 rounded-lg p-4">
+                <div className="text-xs font-bold uppercase tracking-wide text-orange-100 mb-2 flex items-center gap-1.5">
+                  <FilePenLine size={12} /> Draft Generator
+                </div>
+                <p className="text-xs text-orange-50 mb-3">Auto-fill your application using uploaded documents.</p>
+                <Link href={draftRoute} className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-orange-50 text-[#c96a00] text-xs font-bold px-4 py-2.5 rounded transition-colors">
+                  <FilePenLine size={13} /> {t("serviceDetails.generateDraft")}
+                </Link>
+              </div>
+            )}
+
             <div className="bg-white border border-gray-200 rounded-lg p-4">
               <div className="text-xs font-bold uppercase tracking-wide text-gray-400 mb-3 flex items-center gap-1.5">
                 <ShieldCheck size={12} className="text-[#2d7a4f]" /> {t("serviceDetails.officialPortal")}
