@@ -1,7 +1,7 @@
 {
   "id": "voter-id",
   "name": "Voter ID (EPIC)",
-  "officialPortal": "https://voterportal.eci.gov.in",
+  "officialPortal": "https://voters.eci.gov.in",
   "helpline": "1950",
   "lastVerified": "2026-07-01",
   "issuingAuthority": "Election Commission of India (through Electoral Registration Officers)",
@@ -13,7 +13,7 @@
     "eligibility": "Must be an Indian citizen. Must be 18 years or above on the qualifying date (1st January of the year of electoral roll revision). Must be an ordinary resident of the constituency where applying. Must not be of unsound mind as declared by a competent court. Must not be otherwise disqualified under the Representation of the People Act 1950. NRIs who have not acquired citizenship of another country are also eligible to register as overseas electors. Source: eci.gov.in",
 
     "documents": [
-      "Form 6: Application for inclusion in electoral roll — fill online at voterportal.eci.gov.in or voters.eci.gov.in. Source: eci.gov.in",
+      "Form 6: Application for inclusion in electoral roll — fill online at voters.eci.gov.in or voters.eci.gov.in. Source: eci.gov.in",
       "Proof of Age (any one): Birth Certificate, Class 10/SSLC Certificate, Passport, Aadhaar card (with DOB)",
       "Proof of Address (any one): Aadhaar card, Passport, Driving Licence, Bank passbook with photo, Recent utility bill (electricity/water/telephone — not older than 3 months), Rent agreement",
       "Recent passport-size photograph",
@@ -27,64 +27,64 @@
     "validity": "Voter ID has no expiry date. Name will be deleted from electoral roll only if: person permanently moves to another constituency (must re-register at new address), person is deceased, person is disqualified under law. Keeping your address updated is essential to maintain voting eligibility. Source: eci.gov.in",
 
     "applicationSteps": [
-      "Step 1 — Visit voterportal.eci.gov.in or voters.eci.gov.in (ECI's official voter registration portal). Source: eci.gov.in",
+      "Step 1 — Visit voters.eci.gov.in or voters.eci.gov.in (ECI's official voter registration portal). Source: eci.gov.in",
       "Step 2 — Click 'Register as New Voter' → Fill Form 6",
       "Step 3 — Enter personal details: name, DOB, address, constituency",
       "Step 4 — Upload age proof, address proof, and recent photograph",
       "Step 5 — Submit the application and note the Application Reference Number",
       "Step 6 — BLO (Booth Level Officer) visits to verify your residence (be available at address)",
       "Step 7 — After successful verification, name added to electoral roll",
-      "Step 8 — Download e-EPIC immediately from voterportal.eci.gov.in after approval",
+      "Step 8 — Download e-EPIC immediately from voters.eci.gov.in after approval",
       "Step 9 — Physical EPIC card delivered to registered address within 15 days of electoral roll update (as per ECI SOP)",
       "Source: eci.gov.in"
     ],
 
-    "eEPIC": "e-EPIC is the digital/portable PDF version of Voter ID. Download free at voterportal.eci.gov.in → Download e-EPIC. Enter EPIC number → OTP verification. Can be stored on mobile, uploaded to DigiLocker, or self-printed. Accepted at polling booths. Also available via Voter Helpline App (Android/iOS). Source: eci.gov.in",
+    "eEPIC": "e-EPIC is the digital/portable PDF version of Voter ID. Download free at voters.eci.gov.in → Download e-EPIC. Enter EPIC number → OTP verification. Can be stored on mobile, uploaded to DigiLocker, or self-printed. Accepted at polling booths. Also available via Voter Helpline App (Android/iOS). Source: eci.gov.in",
 
-    "transfer": "Moved to a new constituency? Submit Form 8A online at voterportal.eci.gov.in for transfer. Name deleted from old constituency and added to new one after BLO verification. Processing: 30–45 days. Also submit Form 6 for new address registration if moved to a different state. Source: eci.gov.in",
+    "transfer": "Moved to a new constituency? Submit Form 8A online at voters.eci.gov.in for transfer. Name deleted from old constituency and added to new one after BLO verification. Processing: 30–45 days. Also submit Form 6 for new address registration if moved to a different state. Source: eci.gov.in",
 
-    "correction": "To correct name, DOB, address, or photograph: Submit Form 8 at voterportal.eci.gov.in with supporting document showing correct information. Processing: 15–30 days. New EPIC issued after correction. Source: eci.gov.in",
+    "correction": "To correct name, DOB, address, or photograph: Submit Form 8 at voters.eci.gov.in with supporting document showing correct information. Processing: 15–30 days. New EPIC issued after correction. Source: eci.gov.in",
 
-    "duplicateEpic": "If EPIC card is lost: Your voter registration remains active. Apply for duplicate EPIC free at voterportal.eci.gov.in or ERO/BLO office. Also download e-EPIC free from voterportal.eci.gov.in. Source: eci.gov.in",
+    "duplicateEpic": "If EPIC card is lost: Your voter registration remains active. Apply for duplicate EPIC free at voters.eci.gov.in or ERO/BLO office. Also download e-EPIC free from voters.eci.gov.in. Source: eci.gov.in",
 
-    "tracking": "Track voter registration status: Visit voterportal.eci.gov.in → Electoral Search. Enter name or EPIC number. Also: SMS EPIC number to 1950. Voter Helpline: 1950. Source: eci.gov.in",
+    "tracking": "Track voter registration status: Visit voters.eci.gov.in → Electoral Search. Enter name or EPIC number. Also: SMS EPIC number to 1950. Voter Helpline: 1950. Source: eci.gov.in",
 
     "commonMistakes": [
       "Not updating address after moving — leads to name deletion from rolls or voting in wrong constituency. Source: eci.gov.in",
       "Not being available at home during BLO verification — causes rejection without proper notice",
       "Not downloading e-EPIC as backup when physical card is lost or delayed",
       "Multiple registrations in different constituencies — this is illegal (electoral fraud)",
-      "Not verifying name in electoral roll before election day — check at voterportal.eci.gov.in or call 1950"
+      "Not verifying name in electoral roll before election day — check at voters.eci.gov.in or call 1950"
     ],
 
     "edgeCases": [
       {
         "title": "Name not found in electoral roll on election day",
         "problem": "Voter goes to polling booth but name is not on the electoral roll.",
-        "recommendedNextStep": "Always verify your name at voterportal.eci.gov.in or call 1950 at least 30 days before election day. If not found, register using Form 6 — but registration takes time. e-EPIC is not valid if name is not in electoral roll.",
-        "officialPortal": "https://voterportal.eci.gov.in",
+        "recommendedNextStep": "Always verify your name at voters.eci.gov.in or call 1950 at least 30 days before election day. If not found, register using Form 6 — but registration takes time. e-EPIC is not valid if name is not in electoral roll.",
+        "officialPortal": "https://voters.eci.gov.in",
         "source": "eci.gov.in"
       },
       {
         "title": "Name deleted from electoral roll",
         "problem": "Registered voter's name was removed during revision.",
-        "recommendedNextStep": "File an objection at voterportal.eci.gov.in using Form 7. Submit identity proof showing you still reside at the same address. ERO will reinstate if deletion was incorrect. Source: eci.gov.in",
-        "officialPortal": "https://voterportal.eci.gov.in",
+        "recommendedNextStep": "File an objection at voters.eci.gov.in using Form 7. Submit identity proof showing you still reside at the same address. ERO will reinstate if deletion was incorrect. Source: eci.gov.in",
+        "officialPortal": "https://voters.eci.gov.in",
         "source": "eci.gov.in"
       }
     ]
   },
 
   "faqs": [
-    {"id":"vi-faq-001","question":"What is Voter ID?","intent":"purpose","keywords":["voter id","EPIC","what is","election card"],"difficulty":"basic","answer":"Voter ID (EPIC) is issued by the Election Commission of India. It is the primary document for voting and is widely accepted as photo identity and address proof. Source: eci.gov.in","relatedSections":["purpose"],"officialSource":"https://voterportal.eci.gov.in"},
-    {"id":"vi-faq-002","question":"How to apply for Voter ID?","intent":"steps","keywords":["apply","register","Form 6","how to get"],"difficulty":"basic","answer":"Apply online at voterportal.eci.gov.in (Form 6). Upload age proof, address proof, photograph. BLO verifies your residence. e-EPIC downloadable after approval; physical card in 15 days. Free. Source: eci.gov.in","relatedSections":["applicationSteps"],"officialSource":"https://voterportal.eci.gov.in"},
-    {"id":"vi-faq-003","question":"Is Voter ID free?","intent":"fees","keywords":["fee","free","cost","charge"],"difficulty":"basic","answer":"Yes. Voter ID is completely free — no fee for registration, transfer, corrections, replacement, or e-EPIC download. Source: eci.gov.in","relatedSections":["fees"],"officialSource":"https://voterportal.eci.gov.in"},
-    {"id":"vi-faq-004","question":"What documents are needed for Voter ID?","intent":"documents","keywords":["documents","required","Form 6","papers"],"difficulty":"basic","answer":"Form 6, age proof (Aadhaar/birth certificate/passport), address proof (Aadhaar/utility bill), recent photograph. Source: eci.gov.in","relatedSections":["documents"],"officialSource":"https://voterportal.eci.gov.in"},
-    {"id":"vi-faq-005","question":"How to download Voter ID online?","intent":"general","keywords":["download","e-EPIC","digital","online","pdf"],"difficulty":"basic","answer":"Download e-EPIC free at voterportal.eci.gov.in → Download e-EPIC → Enter EPIC number → OTP. Also available via Voter Helpline App. Source: eci.gov.in","relatedSections":["eEPIC"],"officialSource":"https://voterportal.eci.gov.in"},
-    {"id":"vi-faq-006","question":"How long does Voter ID take?","intent":"processing_time","keywords":["how long","days","processing","time"],"difficulty":"basic","answer":"ECI delivers EPIC within 15 days of electoral roll update. New registration: 15–30 days after BLO verification. e-EPIC available immediately after approval. Source: eci.gov.in","relatedSections":["processingTime"],"officialSource":"https://voterportal.eci.gov.in"},
-    {"id":"vi-faq-007","question":"How to transfer Voter ID after moving?","intent":"address_change","keywords":["transfer","moved","new address","constituency"],"difficulty":"basic","answer":"Submit Form 8A at voterportal.eci.gov.in. Name deleted from old constituency and added to new after BLO verification. Takes 30–45 days. Source: eci.gov.in","relatedSections":["transfer"],"officialSource":"https://voterportal.eci.gov.in"},
-    {"id":"vi-faq-008","question":"How to get duplicate Voter ID?","intent":"lost_document","keywords":["lost","duplicate","replacement","missing"],"difficulty":"basic","answer":"Apply for duplicate at voterportal.eci.gov.in or ERO office. Free. Also download e-EPIC immediately. Your registration remains active even if card is lost. Source: eci.gov.in","relatedSections":["duplicateEpic"],"officialSource":"https://voterportal.eci.gov.in"},
-    {"id":"vi-faq-009","question":"How to check my name in voter list?","intent":"tracking","keywords":["check","name","electoral roll","search","1950"],"difficulty":"basic","answer":"Visit voterportal.eci.gov.in → Electoral Search. Enter name or EPIC number. SMS your EPIC number to 1950. Voter Helpline: 1950. Always check before election day. Source: eci.gov.in","relatedSections":["tracking"],"officialSource":"https://voterportal.eci.gov.in"},
-    {"id":"vi-faq-010","question":"What is the minimum age for Voter ID?","intent":"eligibility","keywords":["age","minimum","18","young voter"],"difficulty":"basic","answer":"Must be 18 years of age on 1st January of the year of electoral roll revision. Must be an Indian citizen and ordinary resident of the constituency. Source: eci.gov.in","relatedSections":["eligibility"],"officialSource":"https://voterportal.eci.gov.in"}
+    {"id":"vi-faq-001","question":"What is Voter ID?","intent":"purpose","keywords":["voter id","EPIC","what is","election card"],"difficulty":"basic","answer":"Voter ID (EPIC) is issued by the Election Commission of India. It is the primary document for voting and is widely accepted as photo identity and address proof. Source: eci.gov.in","relatedSections":["purpose"],"officialSource":"https://voters.eci.gov.in"},
+    {"id":"vi-faq-002","question":"How to apply for Voter ID?","intent":"steps","keywords":["apply","register","Form 6","how to get"],"difficulty":"basic","answer":"Apply online at voters.eci.gov.in (Form 6). Upload age proof, address proof, photograph. BLO verifies your residence. e-EPIC downloadable after approval; physical card in 15 days. Free. Source: eci.gov.in","relatedSections":["applicationSteps"],"officialSource":"https://voters.eci.gov.in"},
+    {"id":"vi-faq-003","question":"Is Voter ID free?","intent":"fees","keywords":["fee","free","cost","charge"],"difficulty":"basic","answer":"Yes. Voter ID is completely free — no fee for registration, transfer, corrections, replacement, or e-EPIC download. Source: eci.gov.in","relatedSections":["fees"],"officialSource":"https://voters.eci.gov.in"},
+    {"id":"vi-faq-004","question":"What documents are needed for Voter ID?","intent":"documents","keywords":["documents","required","Form 6","papers"],"difficulty":"basic","answer":"Form 6, age proof (Aadhaar/birth certificate/passport), address proof (Aadhaar/utility bill), recent photograph. Source: eci.gov.in","relatedSections":["documents"],"officialSource":"https://voters.eci.gov.in"},
+    {"id":"vi-faq-005","question":"How to download Voter ID online?","intent":"general","keywords":["download","e-EPIC","digital","online","pdf"],"difficulty":"basic","answer":"Download e-EPIC free at voters.eci.gov.in → Download e-EPIC → Enter EPIC number → OTP. Also available via Voter Helpline App. Source: eci.gov.in","relatedSections":["eEPIC"],"officialSource":"https://voters.eci.gov.in"},
+    {"id":"vi-faq-006","question":"How long does Voter ID take?","intent":"processing_time","keywords":["how long","days","processing","time"],"difficulty":"basic","answer":"ECI delivers EPIC within 15 days of electoral roll update. New registration: 15–30 days after BLO verification. e-EPIC available immediately after approval. Source: eci.gov.in","relatedSections":["processingTime"],"officialSource":"https://voters.eci.gov.in"},
+    {"id":"vi-faq-007","question":"How to transfer Voter ID after moving?","intent":"address_change","keywords":["transfer","moved","new address","constituency"],"difficulty":"basic","answer":"Submit Form 8A at voters.eci.gov.in. Name deleted from old constituency and added to new after BLO verification. Takes 30–45 days. Source: eci.gov.in","relatedSections":["transfer"],"officialSource":"https://voters.eci.gov.in"},
+    {"id":"vi-faq-008","question":"How to get duplicate Voter ID?","intent":"lost_document","keywords":["lost","duplicate","replacement","missing"],"difficulty":"basic","answer":"Apply for duplicate at voters.eci.gov.in or ERO office. Free. Also download e-EPIC immediately. Your registration remains active even if card is lost. Source: eci.gov.in","relatedSections":["duplicateEpic"],"officialSource":"https://voters.eci.gov.in"},
+    {"id":"vi-faq-009","question":"How to check my name in voter list?","intent":"tracking","keywords":["check","name","electoral roll","search","1950"],"difficulty":"basic","answer":"Visit voters.eci.gov.in → Electoral Search. Enter name or EPIC number. SMS your EPIC number to 1950. Voter Helpline: 1950. Always check before election day. Source: eci.gov.in","relatedSections":["tracking"],"officialSource":"https://voters.eci.gov.in"},
+    {"id":"vi-faq-010","question":"What is the minimum age for Voter ID?","intent":"eligibility","keywords":["age","minimum","18","young voter"],"difficulty":"basic","answer":"Must be 18 years of age on 1st January of the year of electoral roll revision. Must be an Indian citizen and ordinary resident of the constituency. Source: eci.gov.in","relatedSections":["eligibility"],"officialSource":"https://voters.eci.gov.in"}
   ]
 }
