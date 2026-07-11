@@ -19,12 +19,12 @@ const PHASE_REVIEW = 4;
 
 // Upload slots for driving licence
 const UPLOAD_SLOTS = [
-  { id: "aadhaar", label: "Aadhaar Card (front or both sides)", hint: "For name, DOB, gender, address extraction", required: true },
-  { id: "pan", label: "PAN Card (optional)", hint: "For PAN number and name verification", required: false },
-  { id: "birthCert", label: "Birth Certificate / SSC Memo (Age Proof)", hint: "For DOB verification", required: false },
-  { id: "existingDL", label: "Existing Licence (for Renewal / Additional Class)", hint: "For licence number and vehicle class extraction", required: false },
-  { id: "medicalCert", label: "Medical Certificate (Form 1A)", hint: "For medical fitness details and blood group", required: false },
-  { id: "photo", label: "Passport-size Photograph", hint: "Used as application photo preview", required: false },
+  { id: "aadhaar", label: "Aadhaar Card", hint: "Mandatory — for name, DOB, gender, address extraction", required: true },
+  { id: "photo", label: "Passport-size Photograph", hint: "Mandatory — used as application photo preview", required: true },
+  { id: "learnerLicence", label: "Learner's Licence", hint: "Mandatory — for LL number and class extraction", required: true },
+  { id: "medicalCert", label: "Medical Certificate (Form 1A)", hint: "Mandatory — for medical fitness and blood group", required: true },
+  { id: "rcCard", label: "RC Card / Registration Certificate", hint: "Mandatory — for vehicle registration details", required: true },
+  { id: "existingDL", label: "Existing Driving Licence (if applicable)", hint: "Only if you already hold a licence", required: false, conditional: true },
 ];
 
 // Questions grouped by section — only asked if not extracted
@@ -90,17 +90,18 @@ const QUESTION_GROUPS = [
     ],
   },
   {
-    title: "Existing Licence Details",
-    id: "existing-licence",
+    title: "Vehicle Registration Details",
+    id: "vehicle-registration",
     fields: [
-      { id: "hasExistingLicence", label: "Do you have an existing Driving Licence?", type: "radio", options: ["Yes", "No"], required: true },
+      { id: "rcNumber", label: "RC Number", type: "text", required: true },
+      { id: "chassisNumber", label: "Chassis Number", type: "text", required: true },
+      { id: "vehicleNumber", label: "Vehicle Number", type: "vehicle-number", required: true },
     ],
   },
   {
     title: "Medical Details (Form 1A)",
     id: "medical",
     fields: [
-      { id: "medicalCertificateAvailable", label: "Do you have a Medical Certificate (Form 1A)?", type: "radio", options: ["Yes", "No"], required: true },
       { id: "eyesightRight", label: "Right Eye Vision", type: "text", required: false },
       { id: "eyesightLeft", label: "Left Eye Vision", type: "text", required: false },
       { id: "wearsGlasses", label: "Do you wear corrective lenses?", type: "radio", options: ["Yes", "No"], required: false },
@@ -121,6 +122,13 @@ const QUESTION_GROUPS = [
     ],
   },
 ];
+
+const VEHICLE_NUMBER_REGEX = /^(TS|TG)\d{2}[A-Z]{1,2}\d{4}$/;
+
+function validateVehicleNumber(val) {
+  if (!val || !val.trim()) return "";
+  return VEHICLE_NUMBER_REGEX.test(val.trim().toUpperCase()) ? "" : "Invalid Telangana format (e.g., TS08GS1247, TG09AB1234)";
+}
 
 const EXISTING_LICENCE_FIELDS = [
   { id: "existingLicenceNumber", label: "Existing Licence Number", type: "text" },
@@ -166,6 +174,7 @@ export default function DrivingLicenceDraftPage() {
   const [toast, setToast] = useState("");
   const [editingField, setEditingField] = useState(null);
   const [photoPreview, setPhotoPreview] = useState(null);
+  const [showExistingDLUpload, setShowExistingDLUpload] = useState(false);
 
   function resetDraft() {
     setPhase(PHASE_UPLOAD);
@@ -181,6 +190,7 @@ export default function DrivingLicenceDraftPage() {
     setProgressSteps([]);
     setPhotoPreview(null);
     setEditingField(null);
+    setShowExistingDLUpload(false);
   }
 
   function handleFile(slotId, e) {
@@ -216,10 +226,10 @@ export default function DrivingLicenceDraftPage() {
     try {
       const formData = new FormData();
       if (files.aadhaar) formData.append("aadhaar", files.aadhaar);
-      if (files.pan) formData.append("pan", files.pan);
-      if (files.existingDL) formData.append("existingDL", files.existingDL);
-      if (files.birthCert) formData.append("birthCert", files.birthCert);
+      if (files.learnerLicence) formData.append("learnerLicence", files.learnerLicence);
       if (files.medicalCert) formData.append("medicalCert", files.medicalCert);
+      if (files.rcCard) formData.append("rcCard", files.rcCard);
+      if (files.existingDL) formData.append("existingDL", files.existingDL);
 
       const res = await fetch("/api/ocr/driving-licence", {
         method: "POST",
@@ -271,6 +281,8 @@ export default function DrivingLicenceDraftPage() {
 
   function getFullDraft() {
     const draft = { ...extractedFields, ...answers };
+    draft.hasExistingLicence = showExistingDLUpload ? "Yes" : "No";
+    draft.medicalCertificateAvailable = "Yes";
     if (selectedVehicleClasses.length > 0) {
       draft.vehicleClass = selectedVehicleClasses.join(", ");
     }
@@ -285,6 +297,7 @@ export default function DrivingLicenceDraftPage() {
       "commHouseStreet", "commPinCode", "commDistrict", "commState",
       "applicationType", "rtoOffice", "vehicleClass",
       "emergencyContactName", "emergencyContactMobile",
+      "rcNumber", "chassisNumber", "vehicleNumber",
     ];
     const filled = required.filter(f => draft[f] && draft[f].trim());
     const pct = Math.round((filled.length / required.length) * 100);
@@ -334,6 +347,11 @@ export default function DrivingLicenceDraftPage() {
       "── COMMUNICATION ADDRESS ──",
       `${draft.commHouseStreet || ""}`,
       `${draft.commCity || ""}, ${draft.commDistrict || ""}, ${draft.commState || ""} - ${draft.commPinCode || ""}`,
+      "",
+      "── VEHICLE REGISTRATION DETAILS ──",
+      `RC Number: ${draft.rcNumber || ""}`,
+      `Chassis Number: ${draft.chassisNumber || ""}`,
+      `Vehicle Number: ${draft.vehicleNumber || ""}`,
       "",
       "── VEHICLE CLASS ──",
       `Applied For: ${draft.vehicleClass || "Not selected"}`,
@@ -387,7 +405,20 @@ export default function DrivingLicenceDraftPage() {
 
           <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
             <h2 className="text-sm font-bold text-[#1a3a5c] mb-4 flex items-center gap-2"><Upload size={15} /> Upload Your Documents</h2>
-            {UPLOAD_SLOTS.map(slot => (
+
+            {/* Existing Licence question */}
+            <div className="mb-4 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+              <label className="text-xs font-semibold text-gray-700 mb-2 block">Do you already have a Driving Licence?</label>
+              <div className="flex gap-3">
+                {["Yes", "No"].map(opt => (
+                  <label key={opt} className={`text-xs px-4 py-2 rounded-lg border cursor-pointer transition-colors ${showExistingDLUpload === (opt === "Yes") ? "bg-[#1a3a5c] text-white border-[#1a3a5c]" : "bg-white text-gray-600 border-gray-200 hover:border-[#1a3a5c]"}`}>
+                    <input type="radio" className="hidden" checked={showExistingDLUpload === (opt === "Yes")} onChange={() => setShowExistingDLUpload(opt === "Yes")} />{opt}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {UPLOAD_SLOTS.filter(slot => !slot.conditional || showExistingDLUpload).map(slot => (
               <div key={slot.id} className="flex items-center gap-3 p-3 mb-2 border border-gray-100 rounded-lg hover:border-gray-300 transition-colors">
                 <div className="flex-1">
                   <span className="text-sm font-medium text-gray-700">{slot.label}</span>
@@ -409,7 +440,7 @@ export default function DrivingLicenceDraftPage() {
           <button onClick={handleExtract} disabled={processing || !files.aadhaar} className="w-full bg-[#1a3a5c] hover:bg-[#0f2540] disabled:opacity-40 text-white font-bold py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 transition-colors">
             <Sparkles size={16} /> Extract Details & Generate Draft
           </button>
-          {!files.aadhaar && <p className="text-xs text-gray-400 text-center">Upload at least Aadhaar to begin extraction.</p>}
+          {!files.aadhaar && <p className="text-xs text-gray-400 text-center">Upload at least Aadhaar Card to begin extraction.</p>}
 
           <button onClick={() => { setPhase(PHASE_QUESTIONS); }} className="w-full text-center text-xs text-gray-400 hover:text-[#1a3a5c] underline">
             Skip — enter all details manually
@@ -591,6 +622,15 @@ export default function DrivingLicenceDraftPage() {
                               <p className="text-[10px] text-green-600 mt-1">Auto-filled from document: {extractedFields[q.id]}</p>
                             )}
                           </div>
+                        ) : q.type === "vehicle-number" ? (
+                          <div>
+                            <input type="text" value={answers[q.id] || ""} onChange={e => { setAnswer(q.id, e.target.value); }}
+                              className={`w-full border ${answers[q.id] && validateVehicleNumber(answers[q.id]) ? "border-red-400 bg-red-50" : "border-gray-300"} rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]`}
+                              placeholder="e.g., TS08GS1247 or TG09AB1234" />
+                            {answers[q.id] && validateVehicleNumber(answers[q.id]) && (
+                              <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1"><AlertCircle size={10} /> {validateVehicleNumber(answers[q.id])}</p>
+                            )}
+                          </div>
                         ) : q.type === "multi-select" ? (
                           <div className="flex flex-wrap gap-2">
                             {q.options.map(opt => (
@@ -612,7 +652,7 @@ export default function DrivingLicenceDraftPage() {
           })}
 
           {/* Existing Licence expansion */}
-          {(answers.hasExistingLicence === "Yes" || extractedFields.hasExistingLicence === "Yes") && (
+          {(showExistingDLUpload || answers.hasExistingLicence === "Yes" || extractedFields.hasExistingLicence === "Yes") && (
             <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
               <h3 className="text-sm font-bold text-[#1a3a5c] mb-3">Existing Licence Details</h3>
               <div className="space-y-3">
@@ -636,20 +676,18 @@ export default function DrivingLicenceDraftPage() {
           )}
 
           {/* Medical Certificate expansion */}
-          {(answers.medicalCertificateAvailable === "Yes") && (
-            <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-              <h3 className="text-sm font-bold text-[#1a3a5c] mb-3">Medical Certificate Details</h3>
-              <div className="space-y-3">
-                {MEDICAL_CERT_FIELDS.map(f => (
-                  <div key={f.id}>
-                    <label className="text-xs font-semibold text-gray-700 mb-1 block">{f.label}</label>
-                    <input type="text" value={answers[f.id] || ""} onChange={e => setAnswer(f.id, e.target.value)}
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" />
-                  </div>
-                ))}
-              </div>
+          <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+            <h3 className="text-sm font-bold text-[#1a3a5c] mb-3">Medical Certificate Details</h3>
+            <div className="space-y-3">
+              {MEDICAL_CERT_FIELDS.map(f => (
+                <div key={f.id}>
+                  <label className="text-xs font-semibold text-gray-700 mb-1 block">{f.label}</label>
+                  <input type="text" value={answers[f.id] || ""} onChange={e => setAnswer(f.id, e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" />
+                </div>
+              ))}
             </div>
-          )}
+          </div>
 
           {/* Declarations */}
           <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
@@ -734,6 +772,14 @@ export default function DrivingLicenceDraftPage() {
       ],
     }] : []),
     {
+      title: "Vehicle Registration Details",
+      fields: [
+        { label: "RC Number", id: "rcNumber" },
+        { label: "Chassis Number", id: "chassisNumber" },
+        { label: "Vehicle Number", id: "vehicleNumber" },
+      ],
+    },
+    {
       title: "Vehicle Class",
       fields: [
         { label: "Vehicle Class(es) Applied For", id: "vehicleClass" },
@@ -743,7 +789,7 @@ export default function DrivingLicenceDraftPage() {
       title: "Existing Licence",
       fields: [
         { label: "Has Existing Licence?", id: "hasExistingLicence" },
-        ...(draft.hasExistingLicence === "Yes" ? [
+        ...(showExistingDLUpload || draft.hasExistingLicence === "Yes" ? [
           { label: "Licence Number", id: "existingLicenceNumber" },
           { label: "Date of Issue", id: "existingLicenceDateOfIssue" },
           { label: "Date of Expiry", id: "existingLicenceDateOfExpiry" },
@@ -929,7 +975,7 @@ export default function DrivingLicenceDraftPage() {
         </div>
       )}
       <Footer />
-      <style>{`@media print{header,footer,nav,.print\\:hidden{display:none!important}.sticky{position:static!important}}`}</style>
+      <style>{`@media print{header,footer,nav,.print\\:hidden,.no-print,.fixed.z-50{display:none!important}.sticky{position:static!important}}`}</style>
     </div>
   );
 }

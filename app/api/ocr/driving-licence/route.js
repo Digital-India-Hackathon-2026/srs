@@ -1,27 +1,19 @@
-/**
- * OCR API for Driving Licence Draft Generator
- * Accepts uploaded document images (Aadhaar, PAN, existing DL, medical cert),
- * runs OCR (Gemini → OpenAI → Tesseract → fail),
- * extracts and parses fields based on document type.
- * Never returns hardcoded data — each upload produces fresh extraction.
- */
-
 import { extractStructuredFields } from "../../../../lib/ocr/extractDocumentText";
 import { parseAadhaarStructured, parseAadhaarFields } from "../../../../lib/ocr/parseAadhaarFields";
-import { parsePanFields } from "../../../../lib/ocr/parsePanFields";
 import { parseDrivingLicenceFields } from "../../../../lib/ocr/parseDrivingLicenceFields";
+import { parseRCFields } from "../../../../lib/ocr/parseRCFields";
 import { mapDrivingLicenceFields } from "../../../../lib/ocr/mapDrivingLicenceFields";
 
 export async function POST(req) {
   try {
     const formData = await req.formData();
     const aadhaarFile = formData.get("aadhaar");
-    const panFile = formData.get("pan");
-    const existingDLFile = formData.get("existingDL");
-    const birthCertFile = formData.get("birthCert");
+    const learnerLicenceFile = formData.get("learnerLicence");
     const medicalCertFile = formData.get("medicalCert");
+    const rcCardFile = formData.get("rcCard");
+    const existingDLFile = formData.get("existingDL");
 
-    if (!aadhaarFile && !panFile && !existingDLFile && !birthCertFile && !medicalCertFile) {
+    if (!aadhaarFile && !learnerLicenceFile && !medicalCertFile && !rcCardFile && !existingDLFile) {
       return Response.json({
         success: false,
         error: "No documents uploaded.",
@@ -33,12 +25,15 @@ export async function POST(req) {
     }
 
     let aadhaarParsed = { fields: {}, confidence: {} };
-    let panParsed = { fields: {}, confidence: {} };
     let dlParsed = { fields: {}, confidence: {} };
+    let rcParsed = { fields: {}, confidence: {} };
+    let medicalFields = {};
+    let medicalConf = {};
+    let llFields = {};
+    let llConf = {};
     let ocrMethod = "none";
     const progress = [];
 
-    // Process Aadhaar
     if (aadhaarFile) {
       progress.push("Reading Aadhaar card...");
       const buffer = Buffer.from(await aadhaarFile.arrayBuffer());
@@ -60,46 +55,25 @@ export async function POST(req) {
       }
     }
 
-    // Process PAN
-    if (panFile) {
-      progress.push("Reading PAN card...");
-      const buffer = Buffer.from(await panFile.arrayBuffer());
-      const mimeType = panFile.type || "image/jpeg";
+    if (learnerLicenceFile) {
+      progress.push("Reading Learner's Licence...");
+      const buffer = Buffer.from(await learnerLicenceFile.arrayBuffer());
+      const mimeType = learnerLicenceFile.type || "image/jpeg";
 
-      const result = await extractStructuredFields(buffer, mimeType, "pan");
+      const result = await extractStructuredFields(buffer, mimeType, "generic");
       if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      if (result.fields) {
-        progress.push("PAN details extracted.");
-        const validFields = {};
-        const validConf = {};
-        if (result.fields.panNumber && /^[A-Z]{5}\d{4}[A-Z]$/.test(result.fields.panNumber.trim())) {
-          validFields.panNumber = result.fields.panNumber.trim();
-          validConf.panNumber = 0.95;
-        }
-        if (result.fields.fullName && result.fields.fullName.trim().length >= 2) {
-          validFields.fullName = result.fields.fullName.trim();
-          validConf.fullName = 0.85;
-        }
-        if (result.fields.fatherName && result.fields.fatherName.trim().length >= 2) {
-          validFields.fatherName = result.fields.fatherName.trim();
-          validConf.fatherName = 0.78;
-        }
-        if (result.fields.dateOfBirth && /^\d{2}[\/\-]\d{2}[\/\-]\d{4}$/.test(result.fields.dateOfBirth.trim())) {
-          validFields.dateOfBirth = result.fields.dateOfBirth.trim().replace(/-/g, "/");
-          validConf.dateOfBirth = 0.88;
-        }
-        panParsed = { fields: validFields, confidence: validConf };
-      } else if (result.raw && result.raw.length > 10) {
-        progress.push("Parsing PAN from OCR text...");
-        const parsed = parsePanFields(result.raw);
-        panParsed = { fields: parsed.fields, confidence: parsed.confidence };
+      const rawText = result.raw || "";
+      if (rawText.length > 10) {
+        progress.push("Parsing Learner's Licence details...");
+        const parsed = parseDrivingLicenceFields(rawText);
+        llFields = parsed.fields;
+        llConf = parsed.confidence;
       } else {
-        progress.push("Could not read PAN clearly.");
+        progress.push("Could not read Learner's Licence clearly.");
       }
     }
 
-    // Process Existing Driving Licence
     if (existingDLFile) {
       progress.push("Reading existing Driving Licence...");
       const buffer = Buffer.from(await existingDLFile.arrayBuffer());
@@ -118,40 +92,33 @@ export async function POST(req) {
       }
     }
 
-    // Process Birth Certificate (for DOB extraction)
-    if (birthCertFile) {
-      progress.push("Reading Birth Certificate / SSC Memo...");
-      const buffer = Buffer.from(await birthCertFile.arrayBuffer());
-      const mimeType = birthCertFile.type || "image/jpeg";
+    if (rcCardFile) {
+      progress.push("Reading RC Card...");
+      const buffer = Buffer.from(await rcCardFile.arrayBuffer());
+      const mimeType = rcCardFile.type || "image/jpeg";
 
-      const result = await extractStructuredFields(buffer, mimeType, "generic");
+      const result = await extractStructuredFields(buffer, mimeType, "rc");
       if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      const rawText = result.raw || "";
-      if (rawText.length > 10) {
-        const dobMatch = rawText.match(/\b(\d{2}[\/\-]\d{2}[\/\-]\d{4})\b/);
-        if (dobMatch && !aadhaarParsed.fields.dateOfBirth) {
-          aadhaarParsed.fields.dateOfBirth = dobMatch[1].replace(/-/g, "/");
-          aadhaarParsed.confidence.dateOfBirth = 0.85;
-          progress.push("DOB extracted from certificate.");
+      if (result.fields) {
+        progress.push("RC Card details extracted (AI Vision).");
+        const parsed = parseRCFields(result.raw || JSON.stringify(result.fields));
+        if (parsed.success) {
+          rcParsed = { fields: parsed.fields, confidence: parsed.confidence };
+        } else {
+          rcParsed.fields = result.fields;
+          rcParsed.confidence = {};
+          Object.keys(result.fields).forEach(k => { rcParsed.confidence[k] = 0.85; });
         }
-        const nameMatch = rawText.match(/(?:Name|Child'?s?\s*Name)\s*[:\-]?\s*([A-Za-z\s]{3,50})/i);
-        if (nameMatch && !aadhaarParsed.fields.fullName) {
-          aadhaarParsed.fields.fullName = nameMatch[1].trim();
-          aadhaarParsed.confidence.fullName = 0.7;
-          progress.push("Name extracted from certificate.");
-        }
-        const fatherMatch = rawText.match(/(?:Father|S\/O|D\/O)\s*[:\-]?\s*([A-Za-z\s]{3,50})/i);
-        if (fatherMatch && !aadhaarParsed.fields.fatherName) {
-          aadhaarParsed.fields.fatherName = fatherMatch[1].trim();
-          aadhaarParsed.confidence.fatherName = 0.7;
-        }
+      } else if (result.raw && result.raw.length > 10) {
+        progress.push("Parsing RC Card from OCR text...");
+        const parsed = parseRCFields(result.raw);
+        rcParsed = { fields: parsed.fields, confidence: parsed.confidence };
       } else {
-        progress.push("Could not read certificate clearly.");
+        progress.push("Could not read RC Card clearly.");
       }
     }
 
-    // Process Medical Certificate (Form 1A)
     if (medicalCertFile) {
       progress.push("Reading Medical Certificate (Form 1A)...");
       const buffer = Buffer.from(await medicalCertFile.arrayBuffer());
@@ -165,27 +132,38 @@ export async function POST(req) {
         progress.push("Medical certificate processed.");
         const bgMatch = rawText.match(/(?:Blood\s*(?:Group|Gr|Gp)|BG)\s*[:\-]?\s*((?:A|B|AB|O)[+-])/i);
         if (bgMatch) {
-          dlParsed.fields.bloodGroup = bgMatch[1].toUpperCase();
-          dlParsed.confidence.bloodGroup = 0.85;
+          medicalFields.bloodGroup = bgMatch[1].toUpperCase();
+          medicalConf.bloodGroup = 0.85;
         }
       } else {
         progress.push("Could not read medical certificate clearly.");
       }
     }
 
-    // Map to Driving Licence schema fields
     progress.push("Mapping details to Driving Licence form...");
     const { fields, sources, confidence } = mapDrivingLicenceFields(
       aadhaarParsed.fields,
-      panParsed.fields,
-      dlParsed.fields
+      {},
+      dlParsed.fields,
+      rcParsed.fields
     );
 
-    // Identify missing required fields
+    if (medicalFields.bloodGroup && !fields.bloodGroup) {
+      fields.bloodGroup = medicalFields.bloodGroup;
+      sources.bloodGroup = "Medical Certificate";
+      confidence.bloodGroup = medicalConf.bloodGroup;
+    }
+
+    if (llFields.licenceNumber && !fields.learnerLicenceNumber) {
+      fields.learnerLicenceNumber = llFields.licenceNumber;
+      sources.learnerLicenceNumber = "Learner's Licence";
+      confidence.learnerLicenceNumber = llConf.licenceNumber || 0.8;
+    }
+
     progress.push("Identifying missing information...");
     const requiredFields = [
       "fullName", "fatherHusbandName", "dateOfBirth", "gender",
-      "bloodGroup", "qualification", "mobileNumber", "aadhaarNumber",
+      "bloodGroup", "mobileNumber", "aadhaarNumber",
       "commHouseStreet", "commPinCode", "commDistrict", "commState",
       "applicationType", "rtoOffice", "emergencyContactName", "emergencyContactMobile",
     ];

@@ -188,7 +188,7 @@ export default function DeathCertificateDraftPage() {
         <div className="text-center pt-2 print:hidden"><a href="https://crsorgi.gov.in" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 bg-[#1a3a5c] text-white text-sm font-semibold px-5 py-2.5 rounded-xl hover:bg-[#0f2540]"><ExternalLink size={14} /> Open Official CRS Portal</a></div>
       </main>
       {toast && <div className="fixed bottom-20 left-1/2 -translate-x-1/2 bg-[#1a3a5c] text-white text-xs font-semibold px-4 py-2 rounded-lg shadow-xl z-50"><Check size={12} className="inline mr-1" />{toast}</div>}
-      <Footer /><style>{`@media print{header,footer,nav,.print\\:hidden{display:none!important}.sticky{position:static!important}}`}</style>
+      <Footer /><style>{`@media print{header,footer,nav,.print\\:hidden,.no-print,.fixed.z-50{display:none!important}.sticky{position:static!important}}`}</style>
     </div>
   );
 }

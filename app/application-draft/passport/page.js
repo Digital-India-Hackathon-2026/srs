@@ -908,7 +908,7 @@ export default function PassportDraftPage() {
         </div>
       )}
       <Footer />
-      <style>{`@media print{header,footer,nav,.print\\:hidden{display:none!important}.sticky{position:static!important}}`}</style>
+      <style>{`@media print{header,footer,nav,.print\\:hidden,.no-print,.fixed.z-50{display:none!important}.sticky{position:static!important}}`}</style>
     </div>
   );
 }

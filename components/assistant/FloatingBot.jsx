@@ -73,13 +73,13 @@ export default function FloatingBot() {
     <>
       {/* Chat window */}
       {isOpen && (
-        <div className="fixed z-50 shadow-2xl rounded-xl overflow-hidden flex flex-col border border-gray-200/80" style={{ bottom: "108px", right: "16px", width: "min(380px, calc(100vw - 32px))", height: "min(560px, calc(100dvh - 140px))" }}>
+        <div className="fixed z-50 shadow-2xl rounded-xl overflow-hidden flex flex-col border border-gray-200/80 no-print" style={{ bottom: "108px", right: "16px", width: "min(380px, calc(100vw - 32px))", height: "min(560px, calc(100dvh - 140px))" }}>
           <ChatWindow onMinimize={handleMinimize} onClose={handleClose} onStateChange={handleChatState} initialService={selectedService} />
         </div>
       )}
 
       {/* Floating area */}
-      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2">
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end gap-2 no-print">
         {showBubble && !isOpen && (
           <div className="speech-bubble bg-white text-[#163A63] text-xs font-medium px-3 py-2 rounded-xl shadow-lg border border-gray-100 relative max-w-[180px] leading-relaxed cursor-pointer" onClick={handleOpen}>
             {speechBubble}
