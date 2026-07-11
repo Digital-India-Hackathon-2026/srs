@@ -22,7 +22,7 @@ import Footer from "../../../components/Footer";
 import PassportGuidanceSection from "../../../components/PassportGuidance";
 import ApplicationSuccessTips from "../../../components/service/ApplicationSuccessTips";
 import OfficeVisitCard from "../../../components/service/OfficeVisitCard";
-import DownloadChecklist from "../../../components/service/DownloadChecklist";
+import ApplicationChecklist from "../../../components/service/ApplicationChecklist";
 import DocumentTooltip from "../../../components/service/DocumentTooltip";
 import { getServiceById } from "../../../lib/telanganaServices";
 import { getServiceField, loc } from "../../../lib/serviceData";
@@ -254,21 +254,15 @@ export default function ServiceDetailPage() {
             {/* Office Visit Recommendations */}
             <OfficeVisitCard />
 
-            {/* Download Checklist */}
-            <div className="bg-white border border-gray-200 rounded-lg p-4">
-              <div className="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">
-                Application Checklist
-              </div>
-              <p className="text-[11px] text-gray-400 mb-2">Download a printable checklist for this service.</p>
-              <DownloadChecklist
-                service={service}
-                docs={docs}
-                elig={elig}
-                processingTime={processingTime}
-                fees={fees}
-                whereToApply={whereToApply}
-              />
-            </div>
+            {/* Application Checklist (interactive + download) */}
+            <ApplicationChecklist
+              service={service}
+              docs={docs}
+              elig={elig}
+              processingTime={processingTime}
+              fees={fees}
+              whereToApply={whereToApply}
+            />
 
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-500 space-y-1.5">
               <div className="flex justify-between"><span className="font-semibold text-gray-600">{t("serviceDetails.whereToApply")}</span><span className="text-right max-w-[150px]">{whereToApply}</span></div>
