@@ -54,6 +54,7 @@ export default function ServiceDetailPage() {
     "birth-certificate": "/application-draft/birth-certificate",
     "death-certificate": "/application-draft/death-certificate",
     "caste-certificate": "/application-draft/caste-certificate",
+    "pan-card": "/application-draft/pan-card",
   };
   const draftRoute = DRAFT_ROUTES[service.id];
 
