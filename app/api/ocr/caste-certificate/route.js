@@ -3,6 +3,8 @@ import { parseAadhaarStructured, parseAadhaarFields } from "../../../../lib/ocr/
 import { parseCasteCertificateFields } from "../../../../lib/ocr/parseCasteFields";
 
 export async function POST(req) {
+  const progress = [];
+
   try {
     const formData = await req.formData();
     const aadhaarFile = formData.get("aadhaar");
@@ -28,33 +30,36 @@ export async function POST(req) {
     const allSources = {};
     const allConfidence = {};
     let ocrMethod = "none";
-    const progress = [];
 
     if (aadhaarFile) {
-      progress.push("Reading Aadhaar card...");
-      const buffer = Buffer.from(await aadhaarFile.arrayBuffer());
-      const mimeType = aadhaarFile.type || "image/jpeg";
+      try {
+        progress.push("Reading Aadhaar card...");
+        const buffer = Buffer.from(await aadhaarFile.arrayBuffer());
+        const mimeType = aadhaarFile.type || "image/jpeg";
 
-      const result = await extractStructuredFields(buffer, mimeType, "aadhaar");
-      ocrMethod = result.method;
+        const result = await extractStructuredFields(buffer, mimeType, "aadhaar");
+        ocrMethod = result.method;
 
-      if (result.fields) {
-        progress.push("Aadhaar details extracted (AI Vision).");
-        const parsed = parseAadhaarStructured(result.fields);
-        aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
-      } else if (result.raw && result.raw.length > 10) {
-        progress.push("Parsing Aadhaar from OCR text...");
-        const parsed = parseAadhaarFields(result.raw);
-        aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
-      } else {
-        progress.push("Could not read Aadhaar clearly.");
+        if (result.fields) {
+          progress.push("Aadhaar details extracted (AI Vision).");
+          const parsed = parseAadhaarStructured(result.fields);
+          aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
+        } else if (result.raw && result.raw.length > 10) {
+          progress.push("Parsing Aadhaar from OCR text...");
+          const parsed = parseAadhaarFields(result.raw);
+          aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
+        } else {
+          progress.push("Could not read Aadhaar clearly.");
+        }
+
+        Object.entries(aadhaarParsed.fields).forEach(([k, v]) => {
+          allFields[k] = v;
+          allSources[k] = "Aadhaar";
+          allConfidence[k] = aadhaarParsed.confidence[k] || 0.8;
+        });
+      } catch (e) {
+        progress.push("Error processing Aadhaar: " + e.message);
       }
-
-      Object.entries(aadhaarParsed.fields).forEach(([k, v]) => {
-        allFields[k] = v;
-        allSources[k] = "Aadhaar";
-        allConfidence[k] = aadhaarParsed.confidence[k] || 0.8;
-      });
     }
 
     const docsToProcess = [
@@ -67,28 +72,32 @@ export async function POST(req) {
 
     for (const doc of docsToProcess) {
       if (!doc.file) continue;
-      progress.push(`Reading ${doc.label}...`);
-      const buffer = Buffer.from(await doc.file.arrayBuffer());
-      const mimeType = doc.file.type || "image/jpeg";
+      try {
+        progress.push(`Reading ${doc.label}...`);
+        const buffer = Buffer.from(await doc.file.arrayBuffer());
+        const mimeType = doc.file.type || "image/jpeg";
 
-      const result = await extractStructuredFields(buffer, mimeType, doc.type);
-      if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
+        const result = await extractStructuredFields(buffer, mimeType, doc.type);
+        if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      const rawText = result.raw || "";
-      if (rawText.length > 10) {
-        progress.push(`${doc.label} processed.`);
-        const parsed = parseCasteCertificateFields(rawText);
-        if (parsed.success) {
-          Object.entries(parsed.fields).forEach(([k, v]) => {
-            if (!allFields[k]) {
-              allFields[k] = v;
-              allSources[k] = doc.label;
-              allConfidence[k] = parsed.confidence[k] || 0.7;
-            }
-          });
+        const rawText = result.raw || "";
+        if (rawText.length > 10) {
+          progress.push(`${doc.label} processed.`);
+          const parsed = parseCasteCertificateFields(rawText);
+          if (parsed.success) {
+            Object.entries(parsed.fields).forEach(([k, v]) => {
+              if (!allFields[k]) {
+                allFields[k] = v;
+                allSources[k] = doc.label;
+                allConfidence[k] = parsed.confidence[k] || 0.7;
+              }
+            });
+          }
+        } else {
+          progress.push(`Could not read ${doc.label} clearly.`);
         }
-      } else {
-        progress.push(`Could not read ${doc.label} clearly.`);
+      } catch (e) {
+        progress.push(`Error processing ${doc.label}: ${e.message}`);
       }
     }
 
@@ -125,7 +134,7 @@ export async function POST(req) {
       confidence: {},
       missingFields: [],
       ocrMethod: "error",
-      progress: [],
+      progress,
     });
   }
 }

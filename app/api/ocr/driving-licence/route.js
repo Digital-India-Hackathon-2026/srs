@@ -5,6 +5,8 @@ import { parseRCFields } from "../../../../lib/ocr/parseRCFields";
 import { mapDrivingLicenceFields } from "../../../../lib/ocr/mapDrivingLicenceFields";
 
 export async function POST(req) {
+  const progress = [];
+
   try {
     const formData = await req.formData();
     const aadhaarFile = formData.get("aadhaar");
@@ -32,111 +34,130 @@ export async function POST(req) {
     let llFields = {};
     let llConf = {};
     let ocrMethod = "none";
-    const progress = [];
 
     if (aadhaarFile) {
-      progress.push("Reading Aadhaar card...");
-      const buffer = Buffer.from(await aadhaarFile.arrayBuffer());
-      const mimeType = aadhaarFile.type || "image/jpeg";
+      try {
+        progress.push("Reading Aadhaar card...");
+        const buffer = Buffer.from(await aadhaarFile.arrayBuffer());
+        const mimeType = aadhaarFile.type || "image/jpeg";
 
-      const result = await extractStructuredFields(buffer, mimeType, "aadhaar");
-      ocrMethod = result.method;
+        const result = await extractStructuredFields(buffer, mimeType, "aadhaar");
+        ocrMethod = result.method;
 
-      if (result.fields) {
-        progress.push("Aadhaar details extracted (AI Vision).");
-        const parsed = parseAadhaarStructured(result.fields);
-        aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
-      } else if (result.raw && result.raw.length > 10) {
-        progress.push("Parsing Aadhaar from OCR text...");
-        const parsed = parseAadhaarFields(result.raw);
-        aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
-      } else {
-        progress.push("Could not read Aadhaar clearly.");
+        if (result.fields) {
+          progress.push("Aadhaar details extracted (AI Vision).");
+          const parsed = parseAadhaarStructured(result.fields);
+          aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
+        } else if (result.raw && result.raw.length > 10) {
+          progress.push("Parsing Aadhaar from OCR text...");
+          const parsed = parseAadhaarFields(result.raw);
+          aadhaarParsed = { fields: parsed.fields, confidence: parsed.confidence };
+        } else {
+          progress.push("Could not read Aadhaar clearly.");
+        }
+      } catch (e) {
+        progress.push("Error processing Aadhaar: " + e.message);
       }
     }
 
     if (learnerLicenceFile) {
-      progress.push("Reading Learner's Licence...");
-      const buffer = Buffer.from(await learnerLicenceFile.arrayBuffer());
-      const mimeType = learnerLicenceFile.type || "image/jpeg";
+      try {
+        progress.push("Reading Learner's Licence...");
+        const buffer = Buffer.from(await learnerLicenceFile.arrayBuffer());
+        const mimeType = learnerLicenceFile.type || "image/jpeg";
 
-      const result = await extractStructuredFields(buffer, mimeType, "generic");
-      if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
+        const result = await extractStructuredFields(buffer, mimeType, "generic");
+        if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      const rawText = result.raw || "";
-      if (rawText.length > 10) {
-        progress.push("Parsing Learner's Licence details...");
-        const parsed = parseDrivingLicenceFields(rawText);
-        llFields = parsed.fields;
-        llConf = parsed.confidence;
-      } else {
-        progress.push("Could not read Learner's Licence clearly.");
+        const rawText = result.raw || "";
+        if (rawText.length > 10) {
+          progress.push("Parsing Learner's Licence details...");
+          const parsed = parseDrivingLicenceFields(rawText);
+          llFields = parsed.fields;
+          llConf = parsed.confidence;
+        } else {
+          progress.push("Could not read Learner's Licence clearly.");
+        }
+      } catch (e) {
+        progress.push("Error processing Learner's Licence: " + e.message);
       }
     }
 
     if (existingDLFile) {
-      progress.push("Reading existing Driving Licence...");
-      const buffer = Buffer.from(await existingDLFile.arrayBuffer());
-      const mimeType = existingDLFile.type || "image/jpeg";
+      try {
+        progress.push("Reading existing Driving Licence...");
+        const buffer = Buffer.from(await existingDLFile.arrayBuffer());
+        const mimeType = existingDLFile.type || "image/jpeg";
 
-      const result = await extractStructuredFields(buffer, mimeType, "generic");
-      if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
+        const result = await extractStructuredFields(buffer, mimeType, "generic");
+        if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      const rawText = result.raw || "";
-      if (rawText.length > 10) {
-        progress.push("Parsing Driving Licence details...");
-        const parsed = parseDrivingLicenceFields(rawText);
-        dlParsed = { fields: parsed.fields, confidence: parsed.confidence };
-      } else {
-        progress.push("Could not read existing licence clearly.");
+        const rawText = result.raw || "";
+        if (rawText.length > 10) {
+          progress.push("Parsing Driving Licence details...");
+          const parsed = parseDrivingLicenceFields(rawText);
+          dlParsed = { fields: parsed.fields, confidence: parsed.confidence };
+        } else {
+          progress.push("Could not read existing licence clearly.");
+        }
+      } catch (e) {
+        progress.push("Error processing existing DL: " + e.message);
       }
     }
 
     if (rcCardFile) {
-      progress.push("Reading RC Card...");
-      const buffer = Buffer.from(await rcCardFile.arrayBuffer());
-      const mimeType = rcCardFile.type || "image/jpeg";
+      try {
+        progress.push("Reading RC Card...");
+        const buffer = Buffer.from(await rcCardFile.arrayBuffer());
+        const mimeType = rcCardFile.type || "image/jpeg";
 
-      const result = await extractStructuredFields(buffer, mimeType, "rc");
-      if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
+        const result = await extractStructuredFields(buffer, mimeType, "rc");
+        if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      if (result.fields) {
-        progress.push("RC Card details extracted (AI Vision).");
-        const parsed = parseRCFields(result.raw || JSON.stringify(result.fields));
-        if (parsed.success) {
+        if (result.fields) {
+          progress.push("RC Card details extracted (AI Vision).");
+          const parsed = parseRCFields(result.raw || JSON.stringify(result.fields));
+          if (parsed.success) {
+            rcParsed = { fields: parsed.fields, confidence: parsed.confidence };
+          } else {
+            rcParsed.fields = result.fields;
+            rcParsed.confidence = {};
+            Object.keys(result.fields).forEach(k => { rcParsed.confidence[k] = 0.85; });
+          }
+        } else if (result.raw && result.raw.length > 10) {
+          progress.push("Parsing RC Card from OCR text...");
+          const parsed = parseRCFields(result.raw);
           rcParsed = { fields: parsed.fields, confidence: parsed.confidence };
         } else {
-          rcParsed.fields = result.fields;
-          rcParsed.confidence = {};
-          Object.keys(result.fields).forEach(k => { rcParsed.confidence[k] = 0.85; });
+          progress.push("Could not read RC Card clearly.");
         }
-      } else if (result.raw && result.raw.length > 10) {
-        progress.push("Parsing RC Card from OCR text...");
-        const parsed = parseRCFields(result.raw);
-        rcParsed = { fields: parsed.fields, confidence: parsed.confidence };
-      } else {
-        progress.push("Could not read RC Card clearly.");
+      } catch (e) {
+        progress.push("Error processing RC Card: " + e.message);
       }
     }
 
     if (medicalCertFile) {
-      progress.push("Reading Medical Certificate (Form 1A)...");
-      const buffer = Buffer.from(await medicalCertFile.arrayBuffer());
-      const mimeType = medicalCertFile.type || "image/jpeg";
+      try {
+        progress.push("Reading Medical Certificate (Form 1A)...");
+        const buffer = Buffer.from(await medicalCertFile.arrayBuffer());
+        const mimeType = medicalCertFile.type || "image/jpeg";
 
-      const result = await extractStructuredFields(buffer, mimeType, "generic");
-      if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
+        const result = await extractStructuredFields(buffer, mimeType, "generic");
+        if (!ocrMethod || ocrMethod === "none") ocrMethod = result.method;
 
-      const rawText = result.raw || "";
-      if (rawText.length > 10) {
-        progress.push("Medical certificate processed.");
-        const bgMatch = rawText.match(/(?:Blood\s*(?:Group|Gr|Gp)|BG)\s*[:\-]?\s*((?:A|B|AB|O)[+-])/i);
-        if (bgMatch) {
-          medicalFields.bloodGroup = bgMatch[1].toUpperCase();
-          medicalConf.bloodGroup = 0.85;
+        const rawText = result.raw || "";
+        if (rawText.length > 10) {
+          progress.push("Medical certificate processed.");
+          const bgMatch = rawText.match(/(?:Blood\s*(?:Group|Gr|Gp)|BG)\s*[:\-]?\s*((?:A|B|AB|O)[+-])/i);
+          if (bgMatch) {
+            medicalFields.bloodGroup = bgMatch[1].toUpperCase();
+            medicalConf.bloodGroup = 0.85;
+          }
+        } else {
+          progress.push("Could not read medical certificate clearly.");
         }
-      } else {
-        progress.push("Could not read medical certificate clearly.");
+      } catch (e) {
+        progress.push("Error processing medical certificate: " + e.message);
       }
     }
 
@@ -194,7 +215,7 @@ export async function POST(req) {
       confidence: {},
       missingFields: [],
       ocrMethod: "error",
-      progress: [],
+      progress,
     });
   }
 }

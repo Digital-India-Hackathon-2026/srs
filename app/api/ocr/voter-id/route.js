@@ -1,9 +1,3 @@
-/**
- * OCR API for Voter ID Draft Generator
- * Extracts fields from Aadhaar card to auto-fill voter registration form.
- * Uses: Gemini Vision → OpenAI Vision → fallback error
- */
-
 import { extractStructuredFields } from "../../../../lib/ocr/extractDocumentText";
 import { parseAadhaarStructured } from "../../../../lib/ocr/parseAadhaarFields";
 
@@ -20,7 +14,6 @@ export async function POST(req) {
     const buffer = Buffer.from(await file.arrayBuffer());
     const mimeType = file.type || "image/jpeg";
 
-    // Extract structured fields using Vision AI
     const extracted = await extractStructuredFields(buffer, mimeType, docType);
 
     if (!extracted || extracted.error) {
@@ -31,38 +24,37 @@ export async function POST(req) {
       });
     }
 
-    // Map to voter-id form fields
     const fields = {};
+    const parsedFields = extracted.fields || {};
 
     if (docType === "aadhaar") {
-      const parsed = typeof extracted === "string" ? parseAadhaarStructured(extracted) : extracted;
+      const parsed = parseAadhaarStructured(parsedFields);
+      const pf = parsed && parsed.fields ? parsed.fields : parsedFields;
 
-      if (parsed.fullName) {
-        const nameParts = parsed.fullName.trim().split(/\s+/);
+      if (pf.fullName) {
+        const nameParts = pf.fullName.trim().split(/\s+/);
         fields.firstName = nameParts[0] || "";
         fields.lastName = nameParts.slice(1).join(" ") || "";
       }
-      if (parsed.fatherName) fields.relativeName = parsed.fatherName;
-      if (parsed.dateOfBirth) {
-        // Convert DD/MM/YYYY to YYYY-MM-DD for input[type=date]
-        const parts = parsed.dateOfBirth.split("/");
+      if (pf.fatherName) fields.relativeName = pf.fatherName;
+      if (pf.dateOfBirth) {
+        const parts = pf.dateOfBirth.split("/");
         if (parts.length === 3) {
           fields.dob = `${parts[2]}-${parts[1].padStart(2,"0")}-${parts[0].padStart(2,"0")}`;
         }
       }
-      if (parsed.gender) fields.gender = parsed.gender;
-      if (parsed.houseNumber) fields.houseNo = parsed.houseNumber;
-      if (parsed.street || parsed.locality) fields.street = [parsed.street, parsed.locality].filter(Boolean).join(", ");
-      if (parsed.city) fields.town = parsed.city;
-      if (parsed.district) fields.district = parsed.district;
-      if (parsed.state) fields.state = parsed.state;
-      if (parsed.pinCode) fields.pinCode = parsed.pinCode;
-      // Also fill India address fields for Form 6A
-      if (parsed.houseNumber) fields.indiaHouseNo = parsed.houseNumber;
-      if (parsed.street || parsed.locality) fields.indiaStreet = [parsed.street, parsed.locality].filter(Boolean).join(", ");
-      if (parsed.city) fields.indiaTown = parsed.city;
-      if (parsed.district) fields.indiaDistrict = parsed.district;
-      if (parsed.pinCode) fields.indiaPinCode = parsed.pinCode;
+      if (pf.gender) fields.gender = pf.gender;
+      if (pf.houseNumber) fields.houseNo = pf.houseNumber;
+      if (pf.street || pf.locality) fields.street = [pf.street, pf.locality].filter(Boolean).join(", ");
+      if (pf.city) fields.town = pf.city;
+      if (pf.district) fields.district = pf.district;
+      if (pf.state) fields.state = pf.state;
+      if (pf.pinCode) fields.pinCode = pf.pinCode;
+      if (pf.houseNumber) fields.indiaHouseNo = pf.houseNumber;
+      if (pf.street || pf.locality) fields.indiaStreet = [pf.street, pf.locality].filter(Boolean).join(", ");
+      if (pf.city) fields.indiaTown = pf.city;
+      if (pf.district) fields.indiaDistrict = pf.district;
+      if (pf.pinCode) fields.indiaPinCode = pf.pinCode;
     }
 
     return Response.json({
