@@ -271,11 +271,11 @@ export default function ApplicationDraftPage() {
         </div>
       </div>
 
-      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-8">
+      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-6 sm:py-8">
         <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
 
           {/* ── Left: Form ── */}
-          <div className="space-y-6">
+          <div className="space-y-6 min-w-0">
 
             {/* Service selector */}
             <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">

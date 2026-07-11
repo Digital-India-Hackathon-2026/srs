@@ -392,13 +392,13 @@ export default function AadhaarUpdateDraftPage() {
   return (
     <div className="min-h-screen flex flex-col print:block"><Header />
       <div className="bg-white border-b border-gray-200 px-4 py-3 print:hidden sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto flex items-center justify-between flex-wrap gap-2">
+        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <div><span className="text-sm font-bold text-[#1a3a5c]">Aadhaar Update Draft</span><span className={`ml-2 text-[10px] font-bold px-2 py-0.5 rounded ${readiness.pct >= 90 ? "bg-green-100 text-green-700" : readiness.pct >= 60 ? "bg-yellow-100 text-yellow-700" : "bg-red-100 text-red-700"}`}>{readiness.status} ({readiness.pct}%)</span></div>
-          <div className="flex gap-2">
-            <button onClick={resetDraft} className="flex items-center gap-1 text-xs font-semibold text-gray-500 border border-gray-300 px-3 py-1.5 rounded-lg hover:bg-gray-50"><RefreshCw size={11} /> Start Over</button>
-            <button onClick={() => setPhase(PHASE_QUESTIONS)} className="flex items-center gap-1 text-xs font-semibold text-gray-500 border border-gray-300 px-3 py-1.5 rounded-lg hover:bg-gray-50"><Edit3 size={11} /> Edit</button>
-            <button onClick={copyFullDraft} className="flex items-center gap-1 text-xs font-semibold text-[#1a3a5c] border border-[#1a3a5c] px-3 py-1.5 rounded-lg hover:bg-[#1a3a5c] hover:text-white"><ClipboardCopy size={11} /> Copy All</button>
-            <button onClick={() => window.print()} className="flex items-center gap-1 text-xs font-semibold bg-[#1a3a5c] text-white px-3 py-1.5 rounded-lg hover:bg-[#0f2540]"><Printer size={11} /> Print / PDF</button>
+          <div className="flex flex-wrap gap-1.5">
+            <button onClick={resetDraft} className="flex items-center gap-1 text-xs font-semibold text-gray-500 border border-gray-300 px-3 py-2 rounded-lg hover:bg-gray-50 min-h-[44px]"><RefreshCw size={11} /> Start Over</button>
+            <button onClick={() => setPhase(PHASE_QUESTIONS)} className="flex items-center gap-1 text-xs font-semibold text-gray-500 border border-gray-300 px-3 py-2 rounded-lg hover:bg-gray-50 min-h-[44px]"><Edit3 size={11} /> Edit</button>
+            <button onClick={copyFullDraft} className="flex items-center gap-1 text-xs font-semibold text-[#1a3a5c] border border-[#1a3a5c] px-3 py-2 rounded-lg hover:bg-[#1a3a5c] hover:text-white min-h-[44px]"><ClipboardCopy size={11} /> Copy All</button>
+            <button onClick={() => window.print()} className="flex items-center gap-1 text-xs font-semibold bg-[#1a3a5c] text-white px-3 py-2 rounded-lg hover:bg-[#0f2540] min-h-[44px]"><Printer size={11} /> Print / PDF</button>
           </div>
         </div>
       </div>

@@ -98,28 +98,28 @@ export default function HomePage() {
         </div>
 
         {/* Left side content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-14 lg:py-16 flex items-center" style={{ minHeight: "580px" }}>
-          <div className="max-w-[540px]">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16 flex items-center" style={{ minHeight: "580px" }}>
+          <div className="w-full max-w-[540px]">
             {/* Verified badge */}
-            <div className="inline-flex items-center gap-2 bg-white/8 border border-white/20 rounded-full px-4 py-1.5 text-xs font-semibold text-white mb-6">
+            <div className="inline-flex items-center gap-2 bg-white/8 border border-white/20 rounded-full px-4 py-1.5 text-xs font-semibold text-white mb-5">
               <ShieldCheck size={13} className="text-[#4ade80]" />
               {t("landing.verifiedData")} &nbsp;|&nbsp; {t("header.govName")}
             </div>
 
-            {/* Heading — large, matching reference proportions */}
-            <h1 className="text-[2.6rem] sm:text-[3.2rem] lg:text-[3.5rem] font-black text-white leading-[1.08] mb-5">
+            {/* Heading */}
+            <h1 className="text-[2rem] sm:text-[2.8rem] lg:text-[3.5rem] font-black text-white leading-[1.08] mb-4 sm:mb-5">
               {t("landing.heroTitle")}
             </h1>
 
             {/* Description */}
-            <p className="text-gray-300 text-[15px] leading-relaxed mb-7 max-w-[460px]">
+            <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-[460px]">
               {t("landing.heroSubtitle")}
             </p>
 
             {/* Search bar */}
-            <div className="max-w-[480px] relative" ref={wrapperRef}>
+            <div className="w-full max-w-[480px] relative" ref={wrapperRef}>
               <div className="flex bg-white rounded-md overflow-hidden shadow-xl">
-                <div className="relative flex-1">
+                <div className="relative flex-1 min-w-0">
                   <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
                   <input
                     className="w-full pl-10 pr-3 py-3.5 text-sm text-gray-800 outline-none placeholder:text-gray-400"
@@ -130,8 +130,8 @@ export default function HomePage() {
                     onFocus={() => query.trim() && setOpen(true)}
                   />
                 </div>
-                <button onClick={handleSearch} className="bg-[#e07b00] hover:bg-[#c96e00] text-white font-bold px-5 text-sm transition-colors flex items-center gap-1.5">
-                  <Search size={14} /> {t("landing.searchBtn")}
+                <button onClick={handleSearch} className="bg-[#e07b00] hover:bg-[#c96e00] text-white font-bold px-4 sm:px-5 text-sm transition-colors flex items-center gap-1.5 flex-shrink-0 min-h-[44px]">
+                  <Search size={14} className="sm:inline" /> <span className="hidden xs:inline sm:inline">{t("landing.searchBtn")}</span>
                 </button>
               </div>
 
@@ -139,9 +139,9 @@ export default function HomePage() {
               {open && suggestions.length > 0 && (
                 <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl z-30 overflow-hidden">
                   {suggestions.slice(0, 5).map(s => (
-                    <button key={s.id} onClick={() => { setOpen(false); router.push(`/services/${s.id}`); }} className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-blue-50 text-sm text-gray-800 border-b border-gray-50 last:border-0 text-left">
+                    <button key={s.id} onClick={() => { setOpen(false); router.push(`/services/${s.id}`); }} className="w-full flex items-center justify-between px-4 py-2.5 hover:bg-blue-50 text-sm text-gray-800 border-b border-gray-50 last:border-0 text-left min-h-[44px]">
                       <span className="font-medium">{getServiceField(s.id, "name", language) || s.name}</span>
-                      <ArrowRight size={12} className="text-gray-400" />
+                      <ArrowRight size={12} className="text-gray-400 flex-shrink-0 ml-2" />
                     </button>
                   ))}
                 </div>
@@ -149,30 +149,35 @@ export default function HomePage() {
               {noMatch && <p className="mt-2 text-yellow-200 text-xs">{t("landing.serviceNotFound")}</p>}
             </div>
 
-            {/* Statistics row — four items */}
-            <div className="flex flex-wrap gap-x-6 gap-y-3 mt-7">
+            {/* Statistics row */}
+            <div className="flex flex-wrap gap-x-5 gap-y-3 mt-6">
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={18} className="text-green-400" />
+                <CheckCircle2 size={18} className="text-green-400 flex-shrink-0" />
                 <div><span className="text-white font-bold text-sm block">13</span><span className="text-gray-400 text-[10px]">{t("landing.servicesAvailable")}</span></div>
               </div>
               <div className="flex items-center gap-2">
-                <MapPin size={18} className="text-yellow-400" />
+                <MapPin size={18} className="text-yellow-400 flex-shrink-0" />
                 <div><span className="text-white font-bold text-sm block">33</span><span className="text-gray-400 text-[10px]">{t("landing.districtsCovered")}</span></div>
               </div>
               <div className="flex items-center gap-2">
-                <ShieldCheck size={18} className="text-blue-300" />
+                <ShieldCheck size={18} className="text-blue-300 flex-shrink-0" />
                 <div><span className="text-gray-300 text-xs block">{t("landing.verifiedData")}</span></div>
               </div>
               <div className="flex items-center gap-2">
-                <HelpCircle size={18} className="text-orange-300" />
+                <HelpCircle size={18} className="text-orange-300 flex-shrink-0" />
                 <div><span className="text-gray-300 text-xs block">{t("landing.helpDeskAvailable")}</span></div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Mobile/tablet: show image below */}
-        <img src="/images/telangana-secretariat.webp" alt="Telangana Secretariat" className="lg:hidden w-full h-48 object-cover object-center" />
+        {/* Mobile/tablet: show image below — full width, fixed height, no cropping */}
+        <img
+          src="/images/telangana-secretariat.webp"
+          alt="Telangana Secretariat"
+          className="lg:hidden w-full object-cover object-center"
+          style={{ maxHeight: "220px" }}
+        />
       </section>
 
       {/* ══════════ POPULAR SERVICES ══════════ */}
@@ -238,13 +243,13 @@ export default function HomePage() {
 
       {/* ══════════ CTA ══════════ */}
       <section className="bg-[#0f2540] py-10 text-center text-white">
-        <h3 className="text-lg font-black mb-2">{t("landing.needHelp")}</h3>
-        <p className="text-gray-300 text-sm mb-5 max-w-md mx-auto">{t("landing.needHelpDesc")}</p>
-        <div className="flex flex-wrap gap-3 justify-center">
-          <button onClick={() => openChatbot()} className="inline-flex items-center gap-2 bg-[#e07b00] hover:bg-[#c96e00] text-white font-bold px-6 py-2.5 rounded text-sm transition-colors" aria-label="Open SevaSetu AI Assistant">
+        <h3 className="text-lg font-black mb-2 px-4">{t("landing.needHelp")}</h3>
+        <p className="text-gray-300 text-sm mb-5 max-w-md mx-auto px-4">{t("landing.needHelpDesc")}</p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center px-4 max-w-xs sm:max-w-none mx-auto">
+          <button onClick={() => openChatbot()} className="inline-flex items-center justify-center gap-2 bg-[#e07b00] hover:bg-[#c96e00] text-white font-bold px-6 py-3 sm:py-2.5 rounded text-sm transition-colors min-h-[44px]" aria-label="Open SevaSetu AI Assistant">
             <Bot size={15} /> {t("landing.openHelpDesk")}
           </button>
-          <Link href="/services" className="inline-flex items-center gap-2 border border-white/30 hover:border-white text-white font-bold px-6 py-2.5 rounded text-sm transition-colors">
+          <Link href="/services" className="inline-flex items-center justify-center gap-2 border border-white/30 hover:border-white text-white font-bold px-6 py-3 sm:py-2.5 rounded text-sm transition-colors min-h-[44px]">
             <FileText size={15} /> {t("landing.browseServices")}
           </Link>
         </div>

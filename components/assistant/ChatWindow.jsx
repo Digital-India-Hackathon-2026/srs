@@ -174,12 +174,16 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
     if (!rawQ || loading) return;
 
     const lang = detectLang(rawQ);
-    setActiveLang(lang); // update conversation language
+    setActiveLang(lang);
 
-    // Build conversation history (last 6 messages = 3 Q&A pairs)
+    // Build conversation history for follow-up awareness.
+    // IMPORTANT: assistant messages are truncated to 120 chars to prevent
+    // stale retrieved knowledge from bleeding into the next request.
     const history = messages.slice(-6).map(m => ({
       role: m.role === "user" ? "user" : "assistant",
-      content: m.text,
+      content: m.role === "user"
+        ? m.text
+        : (m.text || "").slice(0, 120) + ((m.text || "").length > 120 ? "…" : ""),
     }));
 
     setInput("");
@@ -194,6 +198,8 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: rawQ,
+          // Send the UI-selected tab as 'serviceId' — backend uses this ONLY
+          // as a last-resort fallback when the question has no service signal.
           serviceId: service || undefined,
           lang,
           selectedLanguage: lang,
@@ -204,6 +210,9 @@ export default function ChatWindow({ onMinimize, onClose, onStateChange }) {
       const data = await res.json();
       const meta = data.metadata || {};
 
+      // Only set service from the response if the user explicitly selected a
+      // service tab themselves (service state is non-empty). This prevents the
+      // auto-detected service from one question hijacking future questions.
       if (meta.service && !service) setService(meta.service);
       if (meta.detectedLanguage) setActiveLang(meta.detectedLanguage);
 

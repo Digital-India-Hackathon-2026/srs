@@ -36,6 +36,178 @@ html, body {
   overflow-x: hidden;
 }
 
+/* ═══════════════════════════════════════════════
+   RESPONSIVE UTILITIES
+═══════════════════════════════════════════════ */
+
+/* ── Responsive typography via clamp() ── */
+.text-hero {
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
+  line-height: 1.08;
+}
+.text-section-heading {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+}
+.text-card-title {
+  font-size: clamp(0.8rem, 2vw, 0.875rem);
+}
+
+/* ── Minimum touch target: 44×44px ── */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── md breakpoint responsive helpers (768px) ── */
+@media (max-width: 768px) {
+  /* Full-width buttons on mobile */
+  .btn-mobile-full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Horizontal scrollable tables / large blocks */
+  .overflow-x-auto-mobile {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ── Responsive container for content pages ── */
+.page-container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .page-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+@media (min-width: 1024px) {
+  .page-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   MOBILE RESPONSIVE OVERRIDES (≤ 640px)
+   Applied globally — desktop stays untouched
+═══════════════════════════════════════════════ */
+
+/* ── Draft page sticky action bar: wrap buttons on mobile ── */
+@media (max-width: 640px) {
+  /* Sticky top toolbar on review phase */
+  .draft-action-bar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .draft-action-bar > div:first-child {
+    width: 100%;
+  }
+  .draft-action-bar > div:last-child {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+  .draft-action-bar button {
+    flex: 1 1 auto;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  /* File upload slot: stack label + button vertically */
+  .upload-slot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .upload-slot > label.upload-btn,
+  .upload-slot > button.remove-btn {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  /* Offices page: search controls stack */
+  .offices-search-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Hero section: remove fixed minHeight on small screens ── */
+@media (max-width: 1024px) {
+  .hero-min-height {
+    min-height: unset !important;
+  }
+}
+
+/* ── Service detail sidebar: show after main on mobile ── */
+@media (max-width: 1024px) {
+  .service-detail-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Application draft two-column: stack on mobile ── */
+@media (max-width: 1024px) {
+  .draft-two-col {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Chatbot: ensure it doesn't overflow on very small screens ── */
+@media (max-width: 400px) {
+  .chatbot-window {
+    right: 8px !important;
+    left: 8px !important;
+    width: auto !important;
+    bottom: 90px !important;
+  }
+}
+
+/* ── Tables: horizontally scrollable on mobile ── */
+@media (max-width: 640px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* ── Offices filter chips: wrap naturally ── */
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.filter-chips button {
+  min-height: 44px;
+}
+
+/* ── Minimum touch targets for all interactive elements ── */
+@media (max-width: 992px) {
+  button,
+  a[href],
+  select,
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+  }
+  /* Exceptions: icon-only small buttons inside cards */
+  button.icon-btn {
+    min-height: unset;
+  }
+}
+
 /* ── Hide floating UI during print/PDF ── */
 @media print {
   /* Reliably hide chatbot via utility class */

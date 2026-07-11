@@ -4,6 +4,13 @@ module.exports = {
     "./components/**/*.{js,jsx}",
     "./lib/**/*.{js,jsx}",
   ],
-  theme: { extend: {} },
+  theme: {
+    extend: {
+      screens: {
+        // Custom nav breakpoint: hamburger collapses at 992px
+        nav: "992px",
+      },
+    },
+  },
   plugins: [],
 };

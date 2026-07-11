@@ -81,7 +81,7 @@ export default function ServiceDetailPage() {
       <Header />
 
       {/* Breadcrumb + title */}
-      <div className="bg-[#1a3a5c] px-4 py-6 text-white">
+      <div className="bg-[#1a3a5c] px-4 py-5 sm:py-6 text-white">
         <div className="max-w-7xl mx-auto">
           <nav className="text-xs text-gray-400 mb-2 flex items-center gap-1 flex-wrap">
             <Link href="/" className="hover:text-white">{t("common.home")}</Link>
@@ -90,23 +90,23 @@ export default function ServiceDetailPage() {
             <span>/</span>
             <span className="text-gray-200">{name}</span>
           </nav>
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div>
-              <h1 className="text-2xl font-black">{name}</h1>
+          <div className="flex items-start justify-between gap-3 flex-wrap">
+            <div className="min-w-0 flex-1">
+              <h1 className="text-xl sm:text-2xl font-black break-words">{name}</h1>
               <p className="text-gray-300 text-sm mt-0.5">{dept}</p>
             </div>
-            <span className="bg-green-500/20 border border-green-400/30 text-green-300 text-xs font-bold px-3 py-1 rounded flex items-center gap-1.5">
+            <span className="bg-green-500/20 border border-green-400/30 text-green-300 text-xs font-bold px-3 py-1 rounded flex items-center gap-1.5 flex-shrink-0">
               <ShieldCheck size={12} /> {t("serviceDetails.verified")} — {service.lastVerified}
             </span>
           </div>
         </div>
       </div>
 
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-8">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6 sm:py-8">
         <div className="grid lg:grid-cols-[1fr_300px] gap-6">
           {/* Left column */}
-          <div className="space-y-5">
-            <Link href="/services" className="inline-flex items-center gap-1.5 text-sm text-[#1a3a5c] font-semibold hover:text-[#e07b00]">
+          <div className="space-y-5 min-w-0">
+            <Link href="/services" className="inline-flex items-center gap-1.5 text-sm text-[#1a3a5c] font-semibold hover:text-[#e07b00] min-h-[44px]">
               <ArrowLeft size={14} /> {t("serviceDetails.backToServices")}
             </Link>
 
@@ -117,7 +117,7 @@ export default function ServiceDetailPage() {
               </div>
               <div className="p-5">
                 <p className="text-sm text-gray-700 leading-relaxed">{overview}</p>
-                <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="mt-4 grid grid-cols-2 lg:grid-cols-4 gap-3">
                   {[
                     { label: t("serviceDetails.whereToApply"), value: whereToApply },
                     { label: t("serviceDetails.processingTime"), value: processingTime, icon: <Clock size={12} className="text-[#e07b00]" /> },
@@ -224,7 +224,7 @@ export default function ServiceDetailPage() {
                   <FilePenLine size={12} /> {t("serviceDetails.draftGeneratorTitle")}
                 </div>
                 <p className="text-xs text-orange-50 mb-3">{t("serviceDetails.draftGeneratorDesc")}</p>
-                <Link href={draftRoute} className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-orange-50 text-[#c96a00] text-xs font-bold px-4 py-2.5 rounded transition-colors">
+                <Link href={draftRoute} className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-orange-50 text-[#c96a00] text-xs font-bold px-4 py-2.5 rounded transition-colors min-h-[44px]">
                   <FilePenLine size={13} /> {t("serviceDetails.generateDraft")}
                 </Link>
               </div>
@@ -235,7 +235,7 @@ export default function ServiceDetailPage() {
                 <ShieldCheck size={12} className="text-[#2d7a4f]" /> {t("serviceDetails.officialPortal")}
               </div>
               <p className="text-xs text-gray-500 mb-3 break-all">{service.officialLink}</p>
-              <a href={service.officialLink} target="_blank" rel="noopener noreferrer" className="w-full inline-flex items-center justify-center gap-2 bg-[#1a3a5c] hover:bg-[#0f2540] text-white text-xs font-bold px-4 py-2.5 rounded transition-colors">
+              <a href={service.officialLink} target="_blank" rel="noopener noreferrer" className="w-full inline-flex items-center justify-center gap-2 bg-[#1a3a5c] hover:bg-[#0f2540] text-white text-xs font-bold px-4 py-2.5 rounded transition-colors min-h-[44px]">
                 <ExternalLink size={13} /> {t("serviceDetails.visitPortal")}
               </a>
             </div>
@@ -244,7 +244,7 @@ export default function ServiceDetailPage() {
               <div className="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2 flex items-center gap-1.5">
                 <MapPin size={12} className="text-[#1a3a5c]" /> {t("serviceDetails.applyInPerson")}
               </div>
-              <Link href="/offices" className="w-full inline-flex items-center justify-center gap-2 border border-[#1a3a5c] text-[#1a3a5c] hover:bg-[#1a3a5c] hover:text-white text-xs font-bold px-4 py-2.5 rounded transition-colors">
+              <Link href="/offices" className="w-full inline-flex items-center justify-center gap-2 border border-[#1a3a5c] text-[#1a3a5c] hover:bg-[#1a3a5c] hover:text-white text-xs font-bold px-4 py-2.5 rounded transition-colors min-h-[44px]">
                 <MapPin size={13} /> {t("serviceDetails.findOffice")}
               </Link>
             </div>
@@ -253,7 +253,7 @@ export default function ServiceDetailPage() {
               <div className="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2 flex items-center gap-1.5">
                 <Bot size={12} className="text-[#2d7a4f]" /> {t("serviceDetails.haveQuestions")}
               </div>
-              <button onClick={() => openChatbot(service.id)} className="w-full inline-flex items-center justify-center gap-2 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold px-4 py-2.5 rounded transition-colors" aria-label="Open SevaSetu AI Assistant">
+              <button onClick={() => openChatbot(service.id)} className="w-full inline-flex items-center justify-center gap-2 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold px-4 py-2.5 rounded transition-colors min-h-[44px]" aria-label="Open SevaSetu AI Assistant">
                 <Bot size={13} /> {t("serviceDetails.askHelpDesk")}
               </button>
             </div>

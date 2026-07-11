@@ -116,25 +116,25 @@ export default function OfficesPage() {
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-6">
         {/* Search controls */}
-        <div className="bg-white border border-gray-200 rounded-xl p-5 mb-5 shadow-sm">
-          <div className="grid sm:grid-cols-4 gap-3 items-end">
+        <div className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 mb-5 shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
             <div className="sm:col-span-2">
               <label className="block text-xs font-bold uppercase text-gray-500 mb-1">Select District</label>
-              <select value={district} onChange={e => fetchOffices(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]">
+              <select value={district} onChange={e => fetchOffices(e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c] min-h-[44px]">
                 {DISTRICTS.map(d => <option key={d} value={d}>{d}</option>)}
               </select>
             </div>
             <div>
               <label className="block text-xs font-bold uppercase text-gray-500 mb-1">PIN Code</label>
-              <input value={pin} onChange={e => setPin(e.target.value)} placeholder="e.g. 500029" maxLength={6} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" />
+              <input value={pin} onChange={e => setPin(e.target.value)} placeholder="e.g. 500029" maxLength={6} className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c] min-h-[44px]" />
             </div>
-            <button onClick={searchByPin} className="bg-[#1a3a5c] hover:bg-[#0f2540] text-white font-bold px-4 py-2 rounded-lg text-sm flex items-center justify-center gap-1.5 transition-colors">
+            <button onClick={searchByPin} className="bg-[#1a3a5c] hover:bg-[#0f2540] text-white font-bold px-4 py-2.5 rounded-lg text-sm flex items-center justify-center gap-1.5 transition-colors min-h-[44px]">
               <Search size={14} /> Search
             </button>
           </div>
           {/* Text search */}
           <div className="mt-3">
-            <input value={searchText} onChange={e => setSearchText(e.target.value)} placeholder="Search by office name or area..." className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" />
+            <input value={searchText} onChange={e => setSearchText(e.target.value)} placeholder="Search by office name or area..." className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c] min-h-[44px]" />
           </div>
         </div>
 
@@ -144,7 +144,7 @@ export default function OfficesPage() {
         {/* Type filter */}
         <div className="flex flex-wrap gap-2 mb-4">
           {types.map(t => (
-            <button key={t} onClick={() => setFilterType(t)} className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors ${filterType === t ? "bg-[#1a3a5c] text-white border-[#1a3a5c]" : "bg-white text-gray-600 border-gray-200 hover:border-[#1a3a5c]"}`}>
+            <button key={t} onClick={() => setFilterType(t)} className={`text-xs font-semibold px-3 py-2 rounded-lg border transition-colors min-h-[44px] ${filterType === t ? "bg-[#1a3a5c] text-white border-[#1a3a5c]" : "bg-white text-gray-600 border-gray-200 hover:border-[#1a3a5c]"}`}>
               {t}
             </button>
           ))}
@@ -161,7 +161,7 @@ export default function OfficesPage() {
         ) : filtered.length === 0 ? (
           <div className="text-center py-12 text-gray-400">No offices found. Try a different district or PIN code.</div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filtered.map(office => (
               <div key={office.name} className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md transition-shadow">
                 <div className="border-l-4 border-[#1a3a5c] p-4">
@@ -175,7 +175,7 @@ export default function OfficesPage() {
                     <MapPin size={11} className="flex-shrink-0 mt-0.5 text-[#1a3a5c]" />{office.address}
                   </p>
                   <p className="flex items-center gap-1.5 text-xs text-gray-500 mb-1">
-                    <Phone size={11} className="text-[#2d7a4f]" />{office.phone}
+                    <Phone size={11} className="text-[#2d7a4f] flex-shrink-0" />{office.phone}
                   </p>
                   {office.distance != null && (
                     <p className="text-[10px] text-blue-600 font-semibold mb-1">📍 {office.distance.toFixed(1)} km away</p>
@@ -184,16 +184,16 @@ export default function OfficesPage() {
                     <Clock size={11} />{office.hours}
                   </p>
                   <div className="flex gap-2">
-                    <a href={office.mapsUrl || office.mapsLink || `https://www.google.com/maps/dir/?api=1&destination=${office.lat},${office.lng}`} target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-1 border border-[#1a3a5c] text-[#1a3a5c] hover:bg-[#1a3a5c] hover:text-white text-xs font-bold py-2 rounded-lg transition-colors">
-                      <ExternalLink size={11} /> Get Directions
+                    <a href={office.mapsUrl || office.mapsLink || `https://www.google.com/maps/dir/?api=1&destination=${office.lat},${office.lng}`} target="_blank" rel="noopener noreferrer" className="flex-1 inline-flex items-center justify-center gap-1 border border-[#1a3a5c] text-[#1a3a5c] hover:bg-[#1a3a5c] hover:text-white text-xs font-bold py-2.5 rounded-lg transition-colors min-h-[44px]">
+                      <ExternalLink size={11} /> Directions
                     </a>
                     {office.phone && office.phone !== "N/A" ? (
-                      <a href={`tel:${office.phone.replace(/[^0-9+]/g, "")}`} className="flex-1 inline-flex items-center justify-center gap-1 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold py-2 rounded-lg transition-colors">
-                        <Phone size={11} /> Call Office
+                      <a href={`tel:${office.phone.replace(/[^0-9+]/g, "")}`} className="flex-1 inline-flex items-center justify-center gap-1 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold py-2.5 rounded-lg transition-colors min-h-[44px]">
+                        <Phone size={11} /> Call
                       </a>
                     ) : (
-                      <span className="flex-1 inline-flex items-center justify-center gap-1 bg-gray-200 text-gray-400 text-xs font-bold py-2 rounded-lg cursor-not-allowed">
-                        <Phone size={11} /> Phone unavailable
+                      <span className="flex-1 inline-flex items-center justify-center gap-1 bg-gray-200 text-gray-400 text-xs font-bold py-2.5 rounded-lg cursor-not-allowed">
+                        <Phone size={11} /> No Phone
                       </span>
                     )}
                   </div>
