@@ -201,6 +201,7 @@ export default function VoterIdDraftPage() {
 
   const handlePrev = () => {
     if (currentStep > 0) setCurrentStep(s => s - 1);
+    else setFormType(null);
   };
 
   function copyFullDraft() {
@@ -570,9 +571,12 @@ export default function VoterIdDraftPage() {
         {/* Form type selection */}
         {!formType && (
           <div className="space-y-3">
+            <button onClick={() => window.location.href = "/application-draft"} className="flex items-center gap-1 text-xs font-semibold text-gray-500 hover:text-[#1a3a5c] mb-4 transition-colors">
+              <ChevronLeft size={12} /> Back to service selection
+            </button>
             <h2 className="text-lg font-bold text-[#1a3a5c] mb-3">{L.selectForm}</h2>
             {FORM_TYPES.map(ft => (
-              <button key={ft.id} onClick={() => setFormType(ft.id)} className="w-full text-left p-4 border border-gray-200 rounded-lg hover:border-[#1a3a5c] hover:shadow-sm transition-all flex items-center gap-3">
+              <button key={ft.id} onClick={() => { setFormType(ft.id); setCurrentStep(0); }} className="w-full text-left p-4 border border-gray-200 rounded-lg hover:border-[#1a3a5c] hover:shadow-sm transition-all flex items-center gap-3">
                 <User size={20} className="text-[#1a3a5c]" />
                 <span className="font-semibold text-sm text-[#1a3a5c]">{getLabel(ft.label)}</span>
                 <ChevronRight size={14} className="ml-auto text-gray-400" />
@@ -625,7 +629,7 @@ export default function VoterIdDraftPage() {
 
             {/* Navigation */}
             <div className="flex justify-between mt-6">
-              <button onClick={handlePrev} disabled={currentStep === 0} className="flex items-center gap-1 px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-30">
+              <button onClick={handlePrev} className="flex items-center gap-1 px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
                 <ChevronLeft size={14} /> {L.prev}
               </button>
               <button onClick={handleNext} disabled={currentStepDef.id === "declaration" && !declared} className="flex items-center gap-1 px-4 py-2 text-sm bg-[#1a3a5c] text-white rounded-lg hover:bg-[#0f2540] disabled:opacity-30">
