@@ -51,9 +51,12 @@ export default function ServiceDetailPage() {
   const DRAFT_ROUTES = {
     passport: "/application-draft/passport",
     "driving-licence": "/application-draft/driving-licence",
+    "voter-id": "/application-draft/voter-id",
     "birth-certificate": "/application-draft/birth-certificate",
     "death-certificate": "/application-draft/death-certificate",
+    "aadhaar-update": "/application-draft/aadhaar-update",
     "caste-certificate": "/application-draft/caste-certificate",
+    "ration-card": "/application-draft/ration-card",
     "pan-card": "/application-draft/pan-card",
   };
   const draftRoute = DRAFT_ROUTES[service.id];
