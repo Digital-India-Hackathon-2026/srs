@@ -28,8 +28,7 @@ export default function Header() {
             {t("header.govName")} &nbsp;|&nbsp; {t("header.portalName")}
           </span>
           <span className="hidden sm:flex items-center gap-1 flex-shrink-0">
-            {t("header.helpline")}:&nbsp;<strong className="text-white">1800-599-4788</strong>
-            <span className="ml-4 text-gray-400">{t("header.language")}:</span>
+            <span className="text-gray-400">{t("header.language")}:</span>
             <select
               className="bg-white/10 border border-white/20 text-white text-xs rounded px-1.5 py-0.5 outline-none cursor-pointer ml-1"
               value={language}
