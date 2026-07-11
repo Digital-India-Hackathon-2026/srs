@@ -53,6 +53,7 @@ export default function ServiceDetailPage() {
     "driving-licence": "/application-draft/driving-licence",
     "birth-certificate": "/application-draft/birth-certificate",
     "death-certificate": "/application-draft/death-certificate",
+    "caste-certificate": "/application-draft/caste-certificate",
   };
   const draftRoute = DRAFT_ROUTES[service.id];
 
