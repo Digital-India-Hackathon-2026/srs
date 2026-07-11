@@ -68,8 +68,8 @@ export default function OfficesPage() {
         return;
       }
 
-      // PIN-first API returns { pinInfo, exact, nearby, others, mismatch }
-      const allResults = [...(data.exact || []), ...(data.nearby || []), ...(data.others || [])];
+      // PIN-first API returns { pinInfo, offices, mismatch }
+      const allResults = data.offices || [];
       setOffices(allResults);
 
       // Auto-update district to match PIN
@@ -80,14 +80,11 @@ export default function OfficesPage() {
       // Build message
       let msg = "";
       if (data.mismatch) msg += data.mismatch + " ";
-      if (data.pinInfo) {
+      if (allResults.length > 0 && data.pinInfo) {
         msg += `Showing government service centres near ${data.pinInfo.locality} — PIN ${pin}.`;
       }
-      if ((data.exact || []).length === 0 && allResults.length > 0) {
-        msg += ` No exact office found for PIN ${pin}. Showing nearby offices.`;
-      }
       if (allResults.length === 0) {
-        msg = `No offices found near PIN ${pin}. Try a different PIN code.`;
+        msg = `No matching offices found within 10 km.`;
       }
       setSearchMsg(msg);
       setFilterType("All");

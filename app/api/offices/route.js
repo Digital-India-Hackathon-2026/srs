@@ -38,13 +38,13 @@ export async function GET(req) {
       allOffices.push(...getOfficesByDistrict(pinDistrict));
     }
 
-    // Calculate distance from PIN location and sort
+    // Calculate distance from PIN location
     let results = allOffices.map(o => ({
       ...o,
       distance: (o.lat && o.lng) ? haversine(lat, lng, o.lat, o.lng) : null,
     }));
 
-    // Filter by service if provided
+    // Filter by service type if provided
     if (service) {
       const serviceTypeMap = {
         "income-certificate": ["MeeSeva", "Revenue Office"],
@@ -60,23 +60,13 @@ export async function GET(req) {
       };
       const preferredTypes = serviceTypeMap[service] || [];
       if (preferredTypes.length > 0) {
-        results.sort((a, b) => {
-          const aPref = preferredTypes.some(t => a.type.includes(t)) ? 0 : 1;
-          const bPref = preferredTypes.some(t => b.type.includes(t)) ? 0 : 1;
-          if (aPref !== bPref) return aPref - bPref;
-          return (a.distance || 999) - (b.distance || 999);
-        });
-      } else {
-        results.sort((a, b) => (a.distance || 999) - (b.distance || 999));
+        results = results.filter(o => preferredTypes.some(t => o.type.includes(t)));
       }
-    } else {
-      results.sort((a, b) => (a.distance || 999) - (b.distance || 999));
     }
 
-    // Group: exact PIN → nearby (within 10km) → others
-    const exact = results.filter(o => o.pinCode === pin);
-    const nearby = results.filter(o => o.pinCode !== pin && (o.distance || 999) < 10);
-    const others = results.filter(o => o.pinCode !== pin && (o.distance || 999) >= 10).slice(0, 10);
+    // Filter to within 10 km and sort nearest first
+    results = results.filter(o => o.distance != null && o.distance < 10);
+    results.sort((a, b) => (a.distance || 999) - (b.distance || 999));
 
     // Mismatch check
     const mismatch = district && district !== pinDistrict;
@@ -84,10 +74,8 @@ export async function GET(req) {
     return Response.json({
       pinInfo: { locality, mandal, district: pinDistrict },
       mismatch: mismatch ? `PIN ${pin} belongs to ${pinDistrict}. District updated automatically.` : null,
-      exact,
-      nearby,
-      others,
-      total: exact.length + nearby.length + others.length,
+      offices: results,
+      total: results.length,
     });
   }
 

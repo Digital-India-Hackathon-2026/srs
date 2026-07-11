@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   AlertCircle, Check, CheckCircle2, ChevronRight, ClipboardCopy,
@@ -104,6 +104,14 @@ const PREV_PASSPORT_FIELDS = [
   { id: "oldPassportFileNumber", label: "File Number", type: "text" },
 ];
 
+const PERMANENT_ADDRESS_FIELDS = [
+  { id: "permanentHouseStreet", label: "Permanent House No. & Street", type: "text", required: true },
+  { id: "permanentCity", label: "Permanent City/Town", type: "text", required: true },
+  { id: "permanentDistrict", label: "Permanent District", type: "district-select", required: true },
+  { id: "permanentState", label: "Permanent State", type: "text", required: true },
+  { id: "permanentPinCode", label: "Permanent PIN Code", type: "text", required: true },
+];
+
 export default function PassportDraftPage() {
   const [phase, setPhase] = useState(PHASE_UPLOAD);
   const [files, setFiles] = useState({});
@@ -119,6 +127,29 @@ export default function PassportDraftPage() {
   const [toast, setToast] = useState("");
   const [editingField, setEditingField] = useState(null);
   const [photoPreview, setPhotoPreview] = useState(null);
+
+  // Restore pre-extracted data from landing page (if coming from draft generator)
+  useEffect(() => {
+    try {
+      const stored = sessionStorage.getItem("sv_draft");
+      if (stored) {
+        const data = JSON.parse(stored);
+        if (data.serviceId === "passport") {
+          if (data.error) setOcrError(data.error);
+          if (data.ocr && data.ocr.extractedFields && Object.keys(data.ocr.extractedFields).length > 0) {
+            setExtractedFields(data.ocr.extractedFields);
+            setSources(data.ocr.sources || {});
+            setConfidence(data.ocr.confidence || {});
+            setPhase(PHASE_CONFIRM);
+          } else {
+            setOcrError(prev => prev || "Could not extract details from documents. Please enter details manually.");
+            setPhase(PHASE_QUESTIONS);
+          }
+        }
+        sessionStorage.removeItem("sv_draft");
+      }
+    } catch {}
+  }, []);
 
   // Reset for new user
   function resetDraft() {
@@ -217,7 +248,18 @@ export default function PassportDraftPage() {
   }
 
   function setAnswer(id, value) {
-    setAnswers(prev => ({ ...prev, [id]: value }));
+    setAnswers(prev => {
+      const next = { ...prev, [id]: value };
+      if (id === "permanentSameAsPresent" && value === "Yes") {
+        const all = { ...extractedFields, ...next };
+        next.permanentHouseStreet = all.houseStreet || "";
+        next.permanentCity = all.city || "";
+        next.permanentDistrict = all.district || "";
+        next.permanentState = all.state || "";
+        next.permanentPinCode = all.pinCode || "";
+      }
+      return next;
+    });
   }
 
   // Get final merged draft
@@ -282,6 +324,11 @@ export default function PassportDraftPage() {
       `${draft.city || ""}, ${draft.district || ""}, ${draft.state || ""} - ${draft.pinCode || ""}`,
       `Mobile: ${draft.mobileNumber || ""}`,
       `Email: ${draft.emailId || ""}`,
+      "",
+      "── PERMANENT ADDRESS ──",
+      draft.permanentSameAsPresent === "Yes" ? "Same as present address" :
+      draft.permanentSameAsPresent === "No" ? `${draft.permanentHouseStreet || ""}\n${draft.permanentCity || ""}, ${draft.permanentDistrict || ""}, ${draft.permanentState || ""} - ${draft.permanentPinCode || ""}` :
+      "Not specified",
       "",
       "── EMERGENCY CONTACT ──",
       `Name: ${draft.emergencyName || ""}`,
@@ -560,6 +607,36 @@ export default function PassportDraftPage() {
             );
           })}
 
+          {/* Permanent Address fields — shown only when "No" selected */}
+          {answers.permanentSameAsPresent === "No" && (
+            <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+              <h3 className="text-sm font-bold text-[#1a3a5c] mb-3">Permanent Address</h3>
+              <div className="space-y-4">
+                {PERMANENT_ADDRESS_FIELDS.map(f => {
+                  const val = answers[f.id] || "";
+                  return (
+                    <div key={f.id}>
+                      <label className="text-xs font-semibold text-gray-700 mb-1 flex items-center gap-1.5">
+                        {f.label} <span className="text-red-500">*</span>
+                        {val && <CheckCircle2 size={11} className="text-green-500" />}
+                      </label>
+                      {f.type === "district-select" ? (
+                        <select value={val} onChange={e => setAnswer(f.id, e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]">
+                          <option value="">Select District...</option>
+                          {telanganaDistricts.map(d => <option key={d} value={d}>{d}</option>)}
+                        </select>
+                      ) : (
+                        <input type="text" value={val} onChange={e => setAnswer(f.id, e.target.value)}
+                          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" placeholder={f.label} />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Previous passport expansion */}
           {answers.heldPassportBefore === "Yes" && (
             <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
@@ -660,6 +737,21 @@ export default function PassportDraftPage() {
         { label: "Permanent = Present?", id: "permanentSameAsPresent" },
       ],
     },
+    ...(draft.permanentSameAsPresent === "Yes" ? [{
+      title: "Permanent Address",
+      fields: [
+        { label: "Status", id: "permanentSameAsPresent", displaySame: true },
+      ],
+    }] : draft.permanentSameAsPresent === "No" ? [{
+      title: "Permanent Address",
+      fields: [
+        { label: "House No. & Street", id: "permanentHouseStreet" },
+        { label: "City/Town", id: "permanentCity" },
+        { label: "District", id: "permanentDistrict" },
+        { label: "State", id: "permanentState" },
+        { label: "PIN Code", id: "permanentPinCode" },
+      ],
+    }] : []),
     {
       title: "Emergency Contact",
       fields: [

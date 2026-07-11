@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import {
   AlertCircle, Check, CheckCircle2, ChevronLeft, ChevronRight,
@@ -127,6 +127,30 @@ export default function VoterIdDraftPage() {
   const [toast, setToast] = useState("");
   const [uploading, setUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState(""); // "" | "success" | "error"
+
+  useEffect(() => {
+    try {
+      const stored = sessionStorage.getItem("sv_draft");
+      if (stored) {
+        const data = JSON.parse(stored);
+        if (data.serviceId === "voter-id" && data.ocr && data.ocr.extractedFields) {
+          const fields = data.ocr.extractedFields;
+          if (Object.keys(fields).length > 0) {
+            setFormData(prev => ({ ...prev, ...fields }));
+            const lang = language === "te" ? "పత్రం నుండి డేటా విజయవంతంగా సేకరించబడింది!" : language === "hi" ? "दस्तावेज़ से डेटा सफलतापूर्वक निकाला गया!" : "Data extracted successfully from document!";
+            setToast(lang);
+            setTimeout(() => setToast(""), 3000);
+          }
+          if (data.error) {
+            const errMsg = language === "te" ? "పత్రం నుండి డేటా సేకరించలేకపోయాము" : language === "hi" ? "दस्तावेज़ से डेटा नहीं निकल सका" : "Could not extract data from document";
+            setToast(data.error || errMsg);
+            setTimeout(() => setToast(""), 4000);
+          }
+        }
+        sessionStorage.removeItem("sv_draft");
+      }
+    } catch {}
+  }, []);
 
   const steps = formType ? STEPS[formType] : [];
   const currentStepDef = steps[currentStep];

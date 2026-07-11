@@ -84,14 +84,20 @@ export async function POST(req) {
 
     const q = message.trim();
 
-    // ── 0. Handle basic greetings / conversational messages ──────────────────
-    const greetingResponse = handleGreeting(q);
-    if (greetingResponse) {
-      const lang = detectLanguage(q, selectedLanguage || clientLang || null, previousLanguage || null);
-      return Response.json({
-        answer: greetingResponse[lang] || greetingResponse.en,
-        metadata: { service: "general", intent: "greeting", officialSource: "", detectedLanguage: lang },
-      });
+    // ── 0. Handle greetings ONLY on first message & only when purely conversational ──
+    if (history.length === 0) {
+      const greetingResponse = handleGreeting(q);
+      if (greetingResponse) {
+        // If the message also contains service-specific content, skip greeting
+        const hasServiceContent = !!(detectMultilingualService(q) || detectService(q, null));
+        if (!hasServiceContent) {
+          const lang = detectLanguage(q, selectedLanguage || clientLang || null, previousLanguage || null);
+          return Response.json({
+            answer: greetingResponse[lang] || greetingResponse.en,
+            metadata: { service: "general", intent: "greeting", officialSource: "", detectedLanguage: lang },
+          });
+        }
+      }
     }
 
     // ── 1. Detect language ───────────────────────────────────────────────────

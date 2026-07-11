@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { AlertCircle, Check, CheckCircle2, ChevronRight, ClipboardCopy, Edit3, ExternalLink, Loader2, Lock, Printer, RefreshCw, Sparkles, Upload, X } from "lucide-react";
 import Header from "../../../components/Header";
@@ -66,6 +66,28 @@ export default function BirthCertificateDraftPage() {
   const [ocrMethod, setOcrMethod] = useState("");
   const [toast, setToast] = useState("");
   const [editingField, setEditingField] = useState(null);
+
+  useEffect(() => {
+    try {
+      const stored = sessionStorage.getItem("sv_draft");
+      if (stored) {
+        const data = JSON.parse(stored);
+        if (data.serviceId === "birth-certificate") {
+          if (data.error) setOcrError(data.error);
+          if (data.ocr && data.ocr.extractedFields && Object.keys(data.ocr.extractedFields).length > 0) {
+            setExtractedFields(data.ocr.extractedFields);
+            setSources(data.ocr.sources || {});
+            setConfidence(data.ocr.confidence || {});
+            setPhase(PHASE_CONFIRM);
+          } else {
+            setOcrError(prev => prev || "Could not extract details from documents. Please enter details manually.");
+            setPhase(PHASE_QUESTIONS);
+          }
+        }
+        sessionStorage.removeItem("sv_draft");
+      }
+    } catch {}
+  }, []);
 
   function resetDraft() { setPhase(PHASE_UPLOAD); setFiles({}); setExtractedFields({}); setSources({}); setConfidence({}); setAnswers({}); setOcrError(""); setOcrMethod(""); setProgressSteps([]); setEditingField(null); }
   function handleFile(slotId, e) { const file = e.target.files?.[0]; if (file) { setFiles(prev => ({ ...prev, [slotId]: file })); setOcrError(""); } }

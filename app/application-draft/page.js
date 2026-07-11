@@ -17,6 +17,17 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { SERVICE_DOCUMENTS, getAvailableServices, getServiceDocuments } from "../../lib/constants/serviceDocuments";
 
+const INLINE_SERVICES = ["passport", "voter-id", "birth-certificate"];
+
+function getOcrApiRoute(serviceId) {
+  const map = {
+    passport: "/api/ocr/passport",
+    "voter-id": "/api/ocr/voter-id",
+    "birth-certificate": "/api/ocr/birth-certificate",
+  };
+  return map[serviceId] || null;
+}
+
 const ACCEPTED_TYPES = ["application/pdf", "image/png", "image/jpeg", "image/jpg"];
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
@@ -28,6 +39,7 @@ export default function ApplicationDraftPage() {
   const [generating, setGenerating] = useState(false);
   const [draft, setDraft] = useState(null);
   const [showOptional, setShowOptional] = useState(false);
+  const [searchMsg, setSearchMsg] = useState("");
   const fileInputRefs = useRef({});
 
   const services = getAvailableServices();
@@ -40,6 +52,7 @@ export default function ApplicationDraftPage() {
     setFileErrors({});
     setDraft(null);
     setShowOptional(false);
+    setSearchMsg("");
     // Clear all file input refs
     Object.values(fileInputRefs.current).forEach(ref => {
       if (ref) ref.value = "";
@@ -76,7 +89,7 @@ export default function ApplicationDraftPage() {
     if (fileInputRefs.current[slotId]) fileInputRefs.current[slotId].value = "";
   }
 
-  function handleGenerate() {
+  async function handleGenerate() {
     if (!selectedService || !serviceConfig) return;
 
     // Check required documents
@@ -88,7 +101,57 @@ export default function ApplicationDraftPage() {
       return;
     }
 
-    // If service has a dedicated draft route, redirect
+    // For passport, voter-id, birth-certificate: call OCR first, then redirect to dedicated page
+    if (INLINE_SERVICES.includes(selectedService)) {
+      setGenerating(true);
+      setSearchMsg("Processing documents...");
+      try {
+        const formData = new FormData();
+        Object.entries(files).forEach(([id, file]) => {
+          formData.append(id, file);
+        });
+
+        if (selectedService === "voter-id") {
+          formData.append("docType", "aadhaar");
+        }
+
+        const apiRoute = getOcrApiRoute(selectedService);
+        const res = await fetch(apiRoute, { method: "POST", body: formData });
+
+        if (res.ok) {
+          const data = await res.json();
+          sessionStorage.setItem("sv_draft", JSON.stringify({
+            serviceId: selectedService,
+            ocr: data.success ? {
+              extractedFields: data.extractedFields || data.fields || {},
+              sources: data.sources || {},
+              confidence: data.confidence || {},
+            } : null,
+            error: data.success ? null : (data.error || "Could not extract details"),
+            timestamp: Date.now(),
+          }));
+        } else {
+          sessionStorage.setItem("sv_draft", JSON.stringify({
+            serviceId: selectedService,
+            ocr: null,
+            error: "OCR service unavailable",
+            timestamp: Date.now(),
+          }));
+        }
+      } catch {
+        sessionStorage.setItem("sv_draft", JSON.stringify({
+          serviceId: selectedService,
+          ocr: null,
+          error: "Extraction failed",
+          timestamp: Date.now(),
+        }));
+      }
+
+      window.location.href = serviceConfig.draftRoute;
+      return;
+    }
+
+    // For other services with a dedicated draft route, redirect directly
     if (serviceConfig.draftRoute) {
       window.location.href = serviceConfig.draftRoute;
       return;
@@ -330,6 +393,11 @@ export default function ApplicationDraftPage() {
                 <h3 className="text-sm font-bold text-[#1a3a5c]">Draft Preview</h3>
               </div>
 
+              {searchMsg && !draft && (
+                <div className="mb-3 bg-blue-50 border border-blue-200 rounded-lg p-2 text-xs text-blue-700 flex items-center gap-1.5">
+                  <Loader2 size={12} className="animate-spin" /> {searchMsg}
+                </div>
+              )}
               {!draft ? (
                 <div className="flex-1 flex items-center justify-center text-center px-4">
                   <div>
