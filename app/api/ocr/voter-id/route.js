@@ -25,7 +25,8 @@ export async function POST(req) {
 
     if (!extracted || extracted.error) {
       return Response.json({
-        error: extracted?.error || "Could not extract text from document",
+        success: false,
+        error: "Could not read your document automatically. Please enter the details manually.",
         fields: {},
       });
     }
