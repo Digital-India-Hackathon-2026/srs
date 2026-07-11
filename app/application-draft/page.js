@@ -17,13 +17,20 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { SERVICE_DOCUMENTS, getAvailableServices, getServiceDocuments } from "../../lib/constants/serviceDocuments";
 
-const INLINE_SERVICES = ["passport", "voter-id", "birth-certificate"];
+const INLINE_SERVICES = [
+  "passport", "voter-id", "birth-certificate",
+  "aadhaar-update", "caste-certificate", "ration-card", "pan-card",
+];
 
 function getOcrApiRoute(serviceId) {
   const map = {
     passport: "/api/ocr/passport",
     "voter-id": "/api/ocr/voter-id",
     "birth-certificate": "/api/ocr/birth-certificate",
+    "aadhaar-update": "/api/ocr/aadhaar-update",
+    "caste-certificate": "/api/ocr/caste-certificate",
+    "ration-card": "/api/ocr/ration-card",
+    "pan-card": "/api/ocr/pan-card",
   };
   return map[serviceId] || null;
 }
@@ -101,7 +108,7 @@ export default function ApplicationDraftPage() {
       return;
     }
 
-    // For passport, voter-id, birth-certificate: call OCR first, then redirect to dedicated page
+    // For services with dedicated draft pages: call OCR first, then redirect
     if (INLINE_SERVICES.includes(selectedService)) {
       setGenerating(true);
       setSearchMsg("Processing documents...");

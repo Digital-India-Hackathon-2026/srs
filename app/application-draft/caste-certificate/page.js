@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   AlertCircle, Check, CheckCircle2, ChevronRight, ClipboardCopy,
@@ -112,6 +112,27 @@ export default function CasteCertificateDraftPage() {
   const [toast, setToast] = useState("");
   const [editingField, setEditingField] = useState(null);
   const [photoPreview, setPhotoPreview] = useState(null);
+
+  useEffect(() => {
+    try {
+      const stored = sessionStorage.getItem("sv_draft");
+      if (stored) {
+        const data = JSON.parse(stored);
+        if (data.serviceId === "caste-certificate") {
+          if (data.ocr && data.ocr.extractedFields && Object.keys(data.ocr.extractedFields).length > 0) {
+            setExtractedFields(data.ocr.extractedFields);
+            setSources(data.ocr.sources || {});
+            setConfidence(data.ocr.confidence || {});
+            setPhase(PHASE_CONFIRM);
+          } else {
+            setOcrError(data.error || "Could not extract details from documents. Please enter details manually.");
+            setPhase(PHASE_QUESTIONS);
+          }
+        }
+        sessionStorage.removeItem("sv_draft");
+      }
+    } catch {}
+  }, []);
 
   function resetDraft() {
     setPhase(PHASE_UPLOAD);
