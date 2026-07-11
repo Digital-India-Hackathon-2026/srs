@@ -214,9 +214,9 @@ export default function ServiceDetailPage() {
             {draftRoute && (
               <div className="bg-gradient-to-r from-[#e07b00] to-[#c96a00] border border-orange-300 rounded-lg p-4">
                 <div className="text-xs font-bold uppercase tracking-wide text-orange-100 mb-2 flex items-center gap-1.5">
-                  <FilePenLine size={12} /> Draft Generator
+                  <FilePenLine size={12} /> {t("serviceDetails.draftGeneratorTitle")}
                 </div>
-                <p className="text-xs text-orange-50 mb-3">Auto-fill your application using uploaded documents.</p>
+                <p className="text-xs text-orange-50 mb-3">{t("serviceDetails.draftGeneratorDesc")}</p>
                 <Link href={draftRoute} className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-orange-50 text-[#c96a00] text-xs font-bold px-4 py-2.5 rounded transition-colors">
                   <FilePenLine size={13} /> {t("serviceDetails.generateDraft")}
                 </Link>
