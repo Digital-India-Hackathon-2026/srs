@@ -23,7 +23,6 @@ const UPLOAD_SLOTS = [
   { id: "photo", label: "Passport-size Photograph", hint: "Mandatory — used as application photo preview", required: true },
   { id: "learnerLicence", label: "Learner's Licence", hint: "Mandatory — for LL number and class extraction", required: true },
   { id: "medicalCert", label: "Medical Certificate (Form 1A)", hint: "Mandatory — for medical fitness and blood group", required: true },
-  { id: "rcCard", label: "RC Card / Registration Certificate", hint: "Mandatory — for vehicle registration details", required: true },
   { id: "existingDL", label: "Existing Driving Licence (if applicable)", hint: "Only if you already hold a licence", required: false, conditional: true },
 ];
 
@@ -87,15 +86,6 @@ const QUESTION_GROUPS = [
     id: "vehicle-class",
     fields: [
       { id: "vehicleClass", label: "Vehicle Class(es) Applied For", type: "multi-select", options: ["MC 50CC (Motorcycle ≤50cc)", "MCWOG (Motorcycle Without Gear)", "MCWG (Motorcycle With Gear)", "LMV-NT (Light Motor Vehicle Non-Transport / Car)", "LMV (Light Motor Vehicle)", "HMV (Heavy Motor Vehicle)", "HGMV (Heavy Goods Motor Vehicle)", "HPMV (Heavy Passenger Motor Vehicle)", "Trailer", "Others"], required: true },
-    ],
-  },
-  {
-    title: "Vehicle Registration Details",
-    id: "vehicle-registration",
-    fields: [
-      { id: "rcNumber", label: "RC Number", type: "text", required: true },
-      { id: "chassisNumber", label: "Chassis Number", type: "text", required: true },
-      { id: "vehicleNumber", label: "Vehicle Number", type: "vehicle-number", required: true },
     ],
   },
   {
@@ -175,6 +165,16 @@ export default function DrivingLicenceDraftPage() {
   const [editingField, setEditingField] = useState(null);
   const [photoPreview, setPhotoPreview] = useState(null);
   const [showExistingDLUpload, setShowExistingDLUpload] = useState(false);
+  const [vehicleRegFields, setVehicleRegFields] = useState({ rcNumber: "", chassisNumber: "", vehicleNumber: "" });
+  const [vehicleRegErrors, setVehicleRegErrors] = useState({});
+
+  function setVehicleRegField(id, value) {
+    setVehicleRegFields(prev => ({ ...prev, [id]: value }));
+    if (id === "vehicleNumber") {
+      const err = validateVehicleNumber(value);
+      setVehicleRegErrors(prev => ({ ...prev, vehicleNumber: err }));
+    }
+  }
 
   function resetDraft() {
     setPhase(PHASE_UPLOAD);
@@ -191,6 +191,8 @@ export default function DrivingLicenceDraftPage() {
     setPhotoPreview(null);
     setEditingField(null);
     setShowExistingDLUpload(false);
+    setVehicleRegFields({ rcNumber: "", chassisNumber: "", vehicleNumber: "" });
+    setVehicleRegErrors({});
   }
 
   function handleFile(slotId, e) {
@@ -224,11 +226,16 @@ export default function DrivingLicenceDraftPage() {
     const timeoutId = setTimeout(() => controller.abort(), 30000);
 
     try {
+      const vehicleAnswers = {};
+      if (vehicleRegFields.rcNumber.trim()) vehicleAnswers.rcNumber = vehicleRegFields.rcNumber.trim();
+      if (vehicleRegFields.chassisNumber.trim()) vehicleAnswers.chassisNumber = vehicleRegFields.chassisNumber.trim();
+      if (vehicleRegFields.vehicleNumber.trim()) vehicleAnswers.vehicleNumber = vehicleRegFields.vehicleNumber.trim().toUpperCase();
+      setAnswers(vehicleAnswers);
+
       const formData = new FormData();
       if (files.aadhaar) formData.append("aadhaar", files.aadhaar);
       if (files.learnerLicence) formData.append("learnerLicence", files.learnerLicence);
       if (files.medicalCert) formData.append("medicalCert", files.medicalCert);
-      if (files.rcCard) formData.append("rcCard", files.rcCard);
       if (files.existingDL) formData.append("existingDL", files.existingDL);
 
       const res = await fetch("/api/ocr/driving-licence", {
@@ -437,12 +444,52 @@ export default function DrivingLicenceDraftPage() {
             ))}
           </div>
 
+          {/* Vehicle Registration Details */}
+          <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+            <h2 className="text-sm font-bold text-[#1a3a5c] mb-4">Vehicle Registration Details</h2>
+            <div className="space-y-4">
+              <div>
+                <label className="text-xs font-semibold text-gray-700 mb-1 flex items-center gap-1.5">
+                  RC Number <span className="text-red-500">*</span>
+                </label>
+                <input type="text" value={vehicleRegFields.rcNumber} onChange={e => setVehicleRegField("rcNumber", e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" placeholder="e.g., TS0120200012345" />
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-gray-700 mb-1 flex items-center gap-1.5">
+                  Chassis Number <span className="text-red-500">*</span>
+                </label>
+                <input type="text" value={vehicleRegFields.chassisNumber} onChange={e => setVehicleRegField("chassisNumber", e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" placeholder="e.g., 17-character VIN" />
+              </div>
+              <div>
+                <label className="text-xs font-semibold text-gray-700 mb-1 flex items-center gap-1.5">
+                  Vehicle Number <span className="text-red-500">*</span>
+                </label>
+                <input type="text" value={vehicleRegFields.vehicleNumber} onChange={e => setVehicleRegField("vehicleNumber", e.target.value)}
+                  className={`w-full border ${vehicleRegErrors.vehicleNumber ? "border-red-400 bg-red-50" : "border-gray-300"} rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]`}
+                  placeholder="e.g., TS08GS1247 or TG09AB1234" />
+                {vehicleRegErrors.vehicleNumber && (
+                  <p className="text-[10px] text-red-500 mt-1 flex items-center gap-1"><AlertCircle size={10} /> {vehicleRegErrors.vehicleNumber}</p>
+                )}
+              </div>
+            </div>
+          </div>
+
           <button onClick={handleExtract} disabled={processing || !files.aadhaar} className="w-full bg-[#1a3a5c] hover:bg-[#0f2540] disabled:opacity-40 text-white font-bold py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 transition-colors">
             <Sparkles size={16} /> Extract Details & Generate Draft
           </button>
           {!files.aadhaar && <p className="text-xs text-gray-400 text-center">Upload at least Aadhaar Card to begin extraction.</p>}
 
-          <button onClick={() => { setPhase(PHASE_QUESTIONS); }} className="w-full text-center text-xs text-gray-400 hover:text-[#1a3a5c] underline">
+          <button onClick={() => {
+            const v = vehicleRegFields;
+            const va = {};
+            if (v.rcNumber.trim()) va.rcNumber = v.rcNumber.trim();
+            if (v.chassisNumber.trim()) va.chassisNumber = v.chassisNumber.trim();
+            if (v.vehicleNumber.trim()) va.vehicleNumber = v.vehicleNumber.trim().toUpperCase();
+            setAnswers(prev => ({ ...prev, ...va }));
+            setPhase(PHASE_QUESTIONS);
+          }} className="w-full text-center text-xs text-gray-400 hover:text-[#1a3a5c] underline">
             Skip — enter all details manually
           </button>
         </main>
