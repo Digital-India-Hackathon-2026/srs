@@ -626,33 +626,6 @@ export default function VoterIdDraftPage() {
             <p className="text-xs text-gray-500 mb-1">{L.step} {currentStep + 1} {L.of} {steps.length}</p>
             <h2 className="text-lg font-bold text-[#1a3a5c] mb-4">{getLabel(currentStepDef.title)}</h2>
 
-            {/* Document Upload for auto-fill (show on personal/address steps) */}
-            {(currentStepDef.id === "personal" || currentStepDef.id === "address" || currentStepDef.id === "indiaAddress") && (
-              <div className="mb-6 p-4 border-2 border-dashed border-[#C89A2B]/40 rounded-lg bg-[#fffbf0]">
-                <div className="flex items-center gap-2 mb-2">
-                  <Upload size={16} className="text-[#C89A2B]" />
-                  <span className="text-sm font-semibold text-[#1a3a5c]">
-                    {language === "te" ? "ఆధార్ కార్డ్ అప్‌లోడ్ చేయండి (ఆటో-ఫిల్ కోసం)" : language === "hi" ? "आधार कार्ड अपलोड करें (ऑटो-फिल के लिए)" : "Upload Aadhaar Card (for auto-fill)"}
-                  </span>
-                </div>
-                <p className="text-xs text-gray-500 mb-3">
-                  {language === "te" ? "మీ ఆధార్ ఫోటో/PDF అప్‌లోడ్ చేస్తే, పేరు, DOB, అడ్రస్ ఆటోమేటిక్‌గా ఫిల్ అవుతాయి." : language === "hi" ? "आधार फोटो/PDF अपलोड करने पर नाम, DOB, पता स्वचालित भर जाएगा।" : "Upload your Aadhaar photo/PDF to auto-fill name, DOB, and address fields."}
-                </p>
-                <div className="flex items-center gap-3">
-                  <label className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg cursor-pointer transition-colors ${uploading ? "bg-gray-300 text-gray-500" : "bg-[#1a3a5c] text-white hover:bg-[#0f2540]"}`}>
-                    <Upload size={14} />
-                    {uploading ? (language === "te" ? "ప్రాసెస్ అవుతోంది..." : language === "hi" ? "प्रोसेस हो रहा है..." : "Processing...") : (language === "te" ? "ఫైల్ ఎంచుకోండి" : language === "hi" ? "फ़ाइल चुनें" : "Choose File")}
-                    <input type="file" accept="image/*,.pdf" onChange={handleDocUpload} disabled={uploading} className="hidden" />
-                  </label>
-                  {uploadStatus === "success" && <CheckCircle2 size={18} className="text-green-500" />}
-                  {uploadStatus === "error" && <AlertCircle size={18} className="text-red-500" />}
-                </div>
-                {toast && (
-                  <p className={`mt-2 text-xs font-medium ${uploadStatus === "success" ? "text-green-600" : "text-red-600"}`}>{toast}</p>
-                )}
-              </div>
-            )}
-
             {/* Step content */}
             {renderStepContent()}
 
