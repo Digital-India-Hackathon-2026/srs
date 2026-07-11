@@ -20,6 +20,7 @@ import { SERVICE_DOCUMENTS, getAvailableServices, getServiceDocuments } from "..
 const INLINE_SERVICES = [
   "passport", "voter-id", "birth-certificate",
   "aadhaar-update", "caste-certificate", "ration-card", "pan-card",
+  "income-certificate", "residence-certificate",
 ];
 
 function getOcrApiRoute(serviceId) {
@@ -31,6 +32,8 @@ function getOcrApiRoute(serviceId) {
     "caste-certificate": "/api/ocr/caste-certificate",
     "ration-card": "/api/ocr/ration-card",
     "pan-card": "/api/ocr/pan-card",
+    "income-certificate": "/api/ocr/income-certificate",
+    "residence-certificate": "/api/ocr/residence-certificate",
   };
   return map[serviceId] || null;
 }

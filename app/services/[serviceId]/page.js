@@ -58,6 +58,8 @@ export default function ServiceDetailPage() {
     "caste-certificate": "/application-draft/caste-certificate",
     "ration-card": "/application-draft/ration-card",
     "pan-card": "/application-draft/pan-card",
+    "income-certificate": "/application-draft/income-certificate",
+    "residence-certificate": "/application-draft/residence-certificate",
   };
   const draftRoute = DRAFT_ROUTES[service.id];
 
