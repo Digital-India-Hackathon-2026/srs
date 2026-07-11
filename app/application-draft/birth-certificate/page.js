@@ -17,7 +17,7 @@ const UPLOAD_SLOTS = [
 const QUESTION_GROUPS = [
   { title: "Child Details", id: "child", fields: [
     { id: "childName", label: "Child's Full Name", type: "text", required: true },
-    { id: "dateOfBirth", label: "Date of Birth (DD/MM/YYYY)", type: "text", required: true },
+    { id: "dateOfBirth", label: "Date of Birth", type: "date", required: true },
     { id: "timeOfBirth", label: "Time of Birth", type: "text", required: false },
     { id: "gender", label: "Gender", type: "radio", options: ["Male", "Female"], required: true },
     { id: "placeOfBirth", label: "Place of Birth (Hospital/Home)", type: "text", required: true },
@@ -93,6 +93,17 @@ export default function BirthCertificateDraftPage() {
   function handleFile(slotId, e) { const file = e.target.files?.[0]; if (file) { setFiles(prev => ({ ...prev, [slotId]: file })); setOcrError(""); } }
   function removeFile(slotId) { setFiles(prev => { const n = { ...prev }; delete n[slotId]; return n; }); }
   function showToast(msg) { setToast(msg); setTimeout(() => setToast(""), 2500); }
+  function toDateInputValue(v) {
+    if (!v) return "";
+    if (/^\d{2}\/\d{2}\/\d{4}$/.test(v)) { const [d, m, y] = v.split("/"); return `${y}-${m}-${d}`; }
+    if (/^\d{4}-\d{2}-\d{2}$/.test(v)) return v;
+    return "";
+  }
+  function toStoredValue(v) {
+    if (!v) return "";
+    if (/^\d{4}-\d{2}-\d{2}$/.test(v)) { const [y, m, d] = v.split("-"); return `${d}/${m}/${y}`; }
+    return v;
+  }
   function setAnswer(id, value) { setAnswers(prev => ({ ...prev, [id]: value })); }
   function getFullDraft() { return { ...extractedFields, ...answers, nationality: answers.nationality || extractedFields.nationality || "Indian" }; }
 
@@ -170,7 +181,7 @@ export default function BirthCertificateDraftPage() {
   if (phase === PHASE_CONFIRM) return (
     <div className="min-h-screen flex flex-col"><Header /><div className="bg-[#1a3a5c] px-4 py-5 text-white"><div className="max-w-2xl mx-auto"><p className="text-xs text-gray-400 mb-1">Step 2 of 4 — Verify</p><h2 className="text-lg font-black">Extracted Details</h2></div></div>
       <main className="flex-1 max-w-2xl mx-auto w-full px-4 py-6 space-y-4">
-        <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm space-y-3">{Object.entries(extractedFields).map(([key, val]) => { const conf = confidence[key] || 0; const lowConf = conf > 0 && conf < 0.7; return (<div key={key} className={`p-3 rounded-lg border ${lowConf ? "border-yellow-300 bg-yellow-50" : "border-green-200 bg-green-50"}`}><div className="flex items-center justify-between mb-1"><span className="text-xs font-bold text-gray-600 uppercase">{key.replace(/([A-Z])/g, " $1").trim()}</span><span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${lowConf ? "bg-yellow-200 text-yellow-800" : "bg-green-200 text-green-800"}`}>{conf > 0 ? `${Math.round(conf * 100)}%` : "✓"}</span></div><input type="text" value={val || ""} onChange={e => setExtractedFields(prev => ({ ...prev, [key]: e.target.value }))} className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" />{lowConf && <p className="text-[10px] text-yellow-700 mt-1">⚠ Low confidence — please verify.</p>}</div>); })}</div>
+        <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm space-y-3">{Object.entries(extractedFields).map(([key, val]) => { const conf = confidence[key] || 0; const lowConf = conf > 0 && conf < 0.7; return (<div key={key} className={`p-3 rounded-lg border ${lowConf ? "border-yellow-300 bg-yellow-50" : "border-green-200 bg-green-50"}`}><div className="flex items-center justify-between mb-1"><span className="text-xs font-bold text-gray-600 uppercase">{key.replace(/([A-Z])/g, " $1").trim()}</span><span className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${lowConf ? "bg-yellow-200 text-yellow-800" : "bg-green-200 text-green-800"}`}>{conf > 0 ? `${Math.round(conf * 100)}%` : "✓"}</span></div><input type={key === "dateOfBirth" ? "date" : "text"} value={key === "dateOfBirth" ? toDateInputValue(val) : (val || "")} onChange={e => setExtractedFields(prev => ({ ...prev, [key]: key === "dateOfBirth" ? toStoredValue(e.target.value) : e.target.value }))} className="w-full border border-gray-300 rounded px-2 py-1.5 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" />{lowConf && <p className="text-[10px] text-yellow-700 mt-1">⚠ Low confidence — please verify.</p>}</div>); })}</div>
         <button onClick={() => setPhase(PHASE_QUESTIONS)} className="w-full bg-[#1a3a5c] hover:bg-[#0f2540] text-white font-bold py-3 rounded-xl text-sm flex items-center justify-center gap-2">Confirm & Fill Remaining <ChevronRight size={14} /></button>
       </main><Footer /></div>
   );
@@ -187,7 +198,8 @@ export default function BirthCertificateDraftPage() {
           return (<div key={group.id} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm"><h3 className="text-sm font-bold text-[#1a3a5c] mb-3">{group.title}</h3><div className="space-y-4">{group.fields.filter(f => !extractedFields[f.id]).map(q => (<div key={q.id}><label className="text-xs font-semibold text-gray-700 mb-1 flex items-center gap-1.5">{q.label} {q.required && <span className="text-red-500">*</span>}{answers[q.id] && <CheckCircle2 size={11} className="text-green-500" />}</label>
             {q.type === "radio" ? <div className="flex flex-wrap gap-2">{q.options.map(opt => <label key={opt} className={`text-xs px-3 py-1.5 rounded-lg border cursor-pointer ${answers[q.id] === opt ? "bg-[#1a3a5c] text-white border-[#1a3a5c]" : "bg-white text-gray-600 border-gray-200 hover:border-[#1a3a5c]"}`}><input type="radio" className="hidden" checked={answers[q.id] === opt} onChange={() => setAnswer(q.id, opt)} />{opt}</label>)}</div>
             : q.type === "select" ? <select value={answers[q.id] || ""} onChange={e => setAnswer(q.id, e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]"><option value="">Select...</option>{q.options.map(o => <option key={o} value={o}>{o}</option>)}</select>
-            : <input type="text" value={answers[q.id] || ""} onChange={e => setAnswer(q.id, e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" placeholder={q.label} />}
+            : q.type === "date" ? <input type="date" value={toDateInputValue(answers[q.id] || "")} onChange={e => setAnswer(q.id, toStoredValue(e.target.value))} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" />
+: <input type="text" value={answers[q.id] || ""} onChange={e => setAnswer(q.id, e.target.value)} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#1a3a5c]" placeholder={q.label} />}
           </div>))}</div></div>);
         })}
         <button onClick={() => setPhase(PHASE_REVIEW)} className="w-full bg-[#1a3a5c] hover:bg-[#0f2540] text-white font-bold py-3.5 rounded-xl text-sm flex items-center justify-center gap-2">Generate Final Draft <ChevronRight size={14} /></button>
