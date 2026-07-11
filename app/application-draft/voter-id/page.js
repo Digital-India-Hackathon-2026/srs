@@ -127,6 +127,7 @@ export default function VoterIdDraftPage() {
   const [toast, setToast] = useState("");
   const [uploading, setUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState(""); // "" | "success" | "error"
+  const [docError, setDocError] = useState("");
 
   useEffect(() => {
     try {
@@ -195,6 +196,27 @@ export default function VoterIdDraftPage() {
   };
 
   const handleNext = () => {
+    setDocError("");
+
+    // Sync fields before moving to next step
+    if (currentStepDef?.id === "address" && formType === "form6") {
+      setFormData(prev => ({
+        ...prev,
+        constituencyState: prev.constituencyState || prev.state || "",
+        constituencyDistrict: prev.constituencyDistrict || prev.district || "",
+      }));
+    }
+
+    // Validate document checklist
+    if (currentStepDef?.id === "documents") {
+      const docs = formType === "form6" ? DOCS_FORM6 : DOCS_FORM6A;
+      const allChecked = docs.every((_, i) => docChecks[i]);
+      if (!allChecked) {
+        setDocError("Please confirm all required documents before continuing.");
+        return;
+      }
+    }
+
     if (currentStep < steps.length - 1) setCurrentStep(s => s + 1);
     else setShowPreview(true);
   };
@@ -319,11 +341,18 @@ export default function VoterIdDraftPage() {
     // Document checklist step
     if (stepId === "documents") {
       const docs = formType === "form6" ? DOCS_FORM6 : DOCS_FORM6A;
+      const allChecked = docs.every((_, i) => docChecks[i]);
       return (
         <div className="space-y-3">
+          {docError && (
+            <div className="flex items-start gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
+              <AlertCircle size={14} className="text-red-500 flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-red-700">{docError}</p>
+            </div>
+          )}
           {docs.map((doc, i) => (
-            <label key={i} className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
-              <input type="checkbox" checked={!!docChecks[i]} onChange={() => setDocChecks(p => ({ ...p, [i]: !p[i] }))} className="mt-0.5 accent-[#1a3a5c]" />
+            <label key={i} className={`flex items-start gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${!allChecked && docError ? "border-red-200 bg-red-50/30" : "border-gray-200 hover:bg-gray-50"}`}>
+              <input type="checkbox" checked={!!docChecks[i]} onChange={() => { setDocChecks(p => ({ ...p, [i]: !p[i] })); setDocError(""); }} className="mt-0.5 accent-[#1a3a5c]" />
               <span className="text-sm text-gray-700">{doc[language] || doc.en}</span>
             </label>
           ))}
@@ -632,7 +661,7 @@ export default function VoterIdDraftPage() {
               <button onClick={handlePrev} className="flex items-center gap-1 px-4 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50">
                 <ChevronLeft size={14} /> {L.prev}
               </button>
-              <button onClick={handleNext} disabled={currentStepDef.id === "declaration" && !declared} className="flex items-center gap-1 px-4 py-2 text-sm bg-[#1a3a5c] text-white rounded-lg hover:bg-[#0f2540] disabled:opacity-30">
+              <button onClick={handleNext} disabled={(currentStepDef.id === "declaration" && !declared) || (currentStepDef.id === "documents" && (formType === "form6" ? DOCS_FORM6 : DOCS_FORM6A).some((_, i) => !docChecks[i]))} className="flex items-center gap-1 px-4 py-2 text-sm bg-[#1a3a5c] text-white rounded-lg hover:bg-[#0f2540] disabled:opacity-30">
                 {currentStep === steps.length - 1 ? L.generate : L.next} <ChevronRight size={14} />
               </button>
             </div>
