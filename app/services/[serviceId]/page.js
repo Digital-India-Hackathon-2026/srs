@@ -20,6 +20,10 @@ import {
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import PassportGuidanceSection from "../../../components/PassportGuidance";
+import ApplicationSuccessTips from "../../../components/service/ApplicationSuccessTips";
+import OfficeVisitCard from "../../../components/service/OfficeVisitCard";
+import DownloadChecklist from "../../../components/service/DownloadChecklist";
+import DocumentTooltip from "../../../components/service/DocumentTooltip";
 import { getServiceById } from "../../../lib/telanganaServices";
 import { getServiceField, loc } from "../../../lib/serviceData";
 import { useLanguage } from "../../../context/LanguageContext";
@@ -46,6 +50,9 @@ export default function ServiceDetailPage() {
   // Draft generator routes for services that support it
   const DRAFT_ROUTES = {
     passport: "/application-draft/passport",
+    "driving-licence": "/application-draft/driving-licence",
+    "birth-certificate": "/application-draft/birth-certificate",
+    "death-certificate": "/application-draft/death-certificate",
   };
   const draftRoute = DRAFT_ROUTES[service.id];
 
@@ -129,7 +136,10 @@ export default function ServiceDetailPage() {
                   {docs.map((doc, i) => (
                     <div key={i} className="flex items-start gap-2.5 pb-2 border-b border-gray-100 last:border-0">
                       <CheckCircle2 size={15} className="text-[#2d7a4f] flex-shrink-0 mt-0.5" />
-                      <span className="text-sm text-gray-700">{doc}</span>
+                      <span className="text-sm text-gray-700 flex items-center flex-wrap gap-1">
+                        {doc}
+                        <DocumentTooltip documentLabel={doc} />
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -193,6 +203,9 @@ export default function ServiceDetailPage() {
             )}
 
             {service.id === "passport" && <PassportGuidanceSection />}
+
+            {/* Application Success Tips */}
+            <ApplicationSuccessTips serviceId={service.id} />
           </div>
 
           {/* Right sidebar */}
@@ -236,6 +249,25 @@ export default function ServiceDetailPage() {
               <button onClick={() => openChatbot(service.id)} className="w-full inline-flex items-center justify-center gap-2 bg-[#2d7a4f] hover:bg-[#236040] text-white text-xs font-bold px-4 py-2.5 rounded transition-colors" aria-label="Open SevaSetu AI Assistant">
                 <Bot size={13} /> {t("serviceDetails.askHelpDesk")}
               </button>
+            </div>
+
+            {/* Office Visit Recommendations */}
+            <OfficeVisitCard />
+
+            {/* Download Checklist */}
+            <div className="bg-white border border-gray-200 rounded-lg p-4">
+              <div className="text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">
+                Application Checklist
+              </div>
+              <p className="text-[11px] text-gray-400 mb-2">Download a printable checklist for this service.</p>
+              <DownloadChecklist
+                service={service}
+                docs={docs}
+                elig={elig}
+                processingTime={processingTime}
+                fees={fees}
+                whereToApply={whereToApply}
+              />
             </div>
 
             <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-xs text-gray-500 space-y-1.5">
